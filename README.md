@@ -37,6 +37,7 @@ var ShortUniqueId = require('short-unique-id');
 
 // Instantiate
 var uid = new ShortUniqueId();
+```
 
 ## Instantiation (Client-side)
 
