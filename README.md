@@ -79,6 +79,12 @@ npm test
 
 This will update the `short-unique-id.js` file under `./lib`, which will then be imported by the spec and tested.
 
+Find lint using [airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base) for [eslint](https://github.com/eslint/eslint):
+
+```
+npm run lint
+```
+
 ## Build
 
 In order to publish the latest changes you must build the distribution files:
