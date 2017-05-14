@@ -1,0 +1,38 @@
+{
+  "name": "short-unique-id",
+  "version": "1.0.0",
+  "description": "Short UUID Generator with browser and ES6 import support",
+  "main": "dist/short-unique-id.min.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "npm run build:dist",
+    "build:dist": "npm run build:lib && uglifyjs ./lib/short-unique-id.js > ./dist/short-unique-id.min.js",
+    "build:lib": "buble ./src/short-unique-id.js > ./lib/short-unique-id.js",
+    "test": "npm run build:lib && jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeanlescure/short-unique-id.git"
+  },
+  "keywords": [
+    "short",
+    "uuid",
+    "short-uid",
+    "short-uuid",
+    "node",
+    "es6",
+    "browser"
+  ],
+  "author": "Jean M. Lescure",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeanlescure/short-unique-id/issues"
+  },
+  "homepage": "https://github.com/jeanlescure/short-unique-id#readme",
+  "devDependencies": {
+    "buble": "^0.15.2",
+    "eslint": "^3.19.0",
+    "jasmine": "^2.6.0",
+    "uglify-js": "^3.0.4"
+  }
+}
