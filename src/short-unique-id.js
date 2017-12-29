@@ -98,8 +98,9 @@
 
     /* eslint-disable */
     this.dictIndex = this._i = 0;
-    for (this.rangeType in self.DICT_RANGES) {
-      self.dictRange = self.DICT_RANGES[self.rangeType];
+    let rangeType;
+    for (rangeType in self.DICT_RANGES) {
+      self.dictRange = self.DICT_RANGES[rangeType];
       self.lowerBound = self.dictRange[0], self.upperBound = self.dictRange[1];
       for (this.dictIndex = this._i = this.lowerBound; this.lowerBound <= this.upperBound ? this._i < this.upperBound : this._i > this.upperBound; this.dictIndex = this.lowerBound <= this.upperBound ? ++this._i : --this._i) {
         self.dict.push(String.fromCharCode(self.dictIndex));
