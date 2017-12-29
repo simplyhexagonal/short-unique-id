@@ -1,6 +1,6 @@
 {
   "name": "short-unique-id",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Short UUID Generator with browser and ES6 import support",
   "main": "dist/short-unique-id.min.js",
   "scripts": {
