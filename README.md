@@ -5,7 +5,7 @@ This is a straight up manual transpilation to ES6 of the [short-uid](https://git
 
 ## Why?
 
-The above linked repository has gone stale, no updates in the past 2 years (as of writing this README). 
+The above linked repository has gone stale, no updates in the past 3 years (as of updating this README). 
 
 If used in a ES6 environment it fails to follow good `import` standards.
 
