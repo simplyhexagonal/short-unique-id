@@ -1,6 +1,6 @@
 # Short Unique ID (UUID) Generating Library
 
-(Try out the [online generator](https://jeanlescure.github.io/short-unique-id/))
+(Try out the <a target="_blank" href="https://jeanlescure.github.io/short-unique-id/">online generator</a>)
 
 ## With ES6 imports, Node.js, and browser support
 
