@@ -1,15 +1,17 @@
 # Short Unique ID Generator
 ## With ES6 imports, Node.js, and browser support
 
-This is a straight up manual transpilation to ES6 of the [short-uid](https://github.com/serendipious/nodejs-short-uid) npm package by [Ankit Kuwadekar](https://github.com/serendipious/).
+This started as a straight up manual transpilation to ES6 of the [short-uid](https://github.com/serendipious/nodejs-short-uid) npm package by [Ankit Kuwadekar](https://github.com/serendipious/).
 
-## Why?
+![image depicting over 5000 weekly npm downloads](/assets/weekly-downloads.png)
 
-The above linked repository has gone stale, no updates in the past 3 years (as of updating this README). 
+Since my package is now reporting between 4k and 5k+ npm weekly downloads, I've gone ahead and refactored the package using [Neutrino JS](https://neutrinojs.org/).
 
-If used in a ES6 environment it fails to follow good `import` standards.
+## V2.x
 
-Even so, the functionality is still useful. So here we are.
+Version 2.0 was mainly a refactor of the original branch, so functionality and naming conventions have been kept the same.
+
+Even so, there are still **breaking changes**, mainly the removal of the `lib` build output, as well as changes on how to instantiate the library on the browser.
 
 ## Instantiation (Server-side)
 
@@ -49,8 +51,21 @@ Browser:
 
 <!-- Instantiate -->
 <script>
-  var uid = new ShortUniqueId();
+  var ShortUniqueId = window['short-unique-id'].default;
+  var uid = new ShortUniqueId({debug: true});
 </script>
+```
+
+## Options
+
+There are three options available on instantiation:
+
+```javascript
+const options = {
+  dictionary: ['Z', 'a', 'p', 'h', 'o', 'd' ...], // User-defined dictionary
+  skipShuffle: false, // If true, sequentialUUID will iterate over the dictionary in the given order
+  debug: false, // If true the instance will console.log useful info
+};
 ```
 
 ## Usage
@@ -82,7 +97,7 @@ This will update the `short-unique-id.js` file under `./lib`, which will then be
 Find lint using [airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base) for [eslint](https://github.com/eslint/eslint):
 
 ```
-npm run lint
+yarn lint
 ```
 
 ## Build
@@ -90,7 +105,8 @@ npm run lint
 In order to publish the latest changes you must build the distribution files:
 
 ```
-npm run build
+yarn build
+yarn dist:update
 ```
 
-This will update the `short-unique-id.js` file under `./lib`, which will then be minified as the `short-unique-id.min.js` file under the `./dist` directory.
+This will generate the `short-unique-id.min.js` file under the `./dist` directory.
