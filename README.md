@@ -1,4 +1,7 @@
-# Short Unique ID Generator
+# Short Unique ID (UUID) Generating Library
+
+(Try out the [online generator](https://jeanlescure.github.io/short-unique-id/))
+
 ## With ES6 imports, Node.js, and browser support
 
 This is a straight up manual transpilation to ES6 of the [short-uid](https://github.com/serendipious/nodejs-short-uid) npm package by [Ankit Kuwadekar](https://github.com/serendipious/).
