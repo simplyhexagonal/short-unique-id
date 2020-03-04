@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159642755-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-159642755-1');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shirt Unique ID - Short UUID Generator</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <style>
+    :root {
+      --input-padding-x: .75rem;
+      --input-padding-y: .75rem;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      -ms-flex-align: center;
+      -ms-flex-pack: center;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      justify-content: center;
+      padding: 40px;
+      background-color: #f5f5f5;
+    }
+
+    hr {
+      margin-top: 4rem;
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      margin-bottom: 2rem;
+    }
+
+    h3 {
+      margin-top: 2rem;
+    }
+
+    pre {
+      white-space: pre-wrap;
+    }
+
+    .form-uid {
+      max-width: 580px;
+      margin: auto;
+    }
+
+    .form-label-group {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .form-label-group > input,
+    .form-label-group > label {
+      padding: calc(var(--input-padding-y) / 2) var(--input-padding-x);
+    }
+
+    .form-label-group > label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      margin-bottom: 0; /* Override default `<label>` margin */
+      line-height: 1.5;
+      color: #495057;
+      border: 1px solid transparent;
+      border-radius: .25rem;
+      transition: all .1s ease-in-out;
+    }
+
+    .form-label-group input::-webkit-input-placeholder {
+      color: transparent;
+    }
+
+    .form-label-group input:-ms-input-placeholder {
+      color: transparent;
+    }
+
+    .form-label-group input::-ms-input-placeholder {
+      color: transparent;
+    }
+
+    .form-label-group input::-moz-placeholder {
+      color: transparent;
+    }
+
+    .form-label-group input::placeholder {
+      color: transparent;
+    }
+
+    .form-label-group input:not(:placeholder-shown) {
+      padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+      padding-bottom: calc(var(--input-padding-y) / 3);
+    }
+
+    .form-label-group input:not(:placeholder-shown) ~ label {
+      padding-top: calc(var(--input-padding-y) / 3);
+      padding-bottom: calc(var(--input-padding-y) / 3);
+      font-size: 12px;
+      color: #777;
+    }
+
+    #footer {
+      font-size: 18px;
+    }
+
+    .octicon {
+      margin-top: -3px;
+    }
+  </style>
+  <script src="/dist/short-unique-id.min.js"></script>
+  <!-- Instantiate -->
+  <script>
+    var ShortUniqueId = window['short-unique-id'].default;
+    var uid = new ShortUniqueId({debug: true});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+</head>
+<body>
+  <form class="form-uid">
+    <div class="text-center mb-4">
+      <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Order_and_disorder.svg" alt="image depicting order and disorder" width="200">
+      <h1 class="h3 mb-3 font-weight-normal">Short Unique ID</h1>
+      <p>
+        This page is part of the <a href="https://en.wikipedia.org/wiki/Open_source" target="_blank">open source</a> 
+        javascript library</a> <a href="https://github.com/jeanlescure/short-unique-id" target="_blank">short-unique-id</a>.
+      </p>
+      <h2>Online (short) UUID generator</h2>
+      <p>Press the buttons below to generate your short uuid codes:</p>
+      <button id="genRandom" class="btn-success">
+        Generate Random Short UUID
+      </button>
+      <div id="randomResult" class="m-4">&nbsp;</div>
+      <button id="genSequential" class="btn-success">
+        Generate Random Sequential Short UUID
+      </button>
+      <div id="sequentialResult" class="m-4">&nbsp;</div>
+    </div>
+    <p id="footer" class="mt-5 mb-3 text-muted text-center"><svg height="18" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="18" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> See in <a href="https://github.com/jeanlescure/costa-rica-iban" target="_blank" rel="noopener noreferrer">Github</a> | <a href="https://jeanlescure.cr" target="_blank" rel="noopener noreferrer">Jean M. Lescure</a> &copy; 2020-<script>document.write(new Date().getFullYear())</script></p>
+  </form>
+  <script>
+    $('#genRandom').click(function(e){
+      e.preventDefault();
+      $('#randomResult').html(uid.randomUUID());
+    });
+    $('#genSequential').click(function(e){
+      e.preventDefault();
+      $('#sequentialResult').html(uid.sequentialUUID());
+    });
+  </script>
+</body>
+</html>
