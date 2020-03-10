@@ -6,7 +6,7 @@
 
 This started as a straight up manual transpilation to ES6 of the [short-uid](https://github.com/serendipious/nodejs-short-uid) npm package by [Ankit Kuwadekar](https://github.com/serendipious/).
 
-![image depicting over 5000 weekly npm downloads](/assets/weekly-downloads.png)
+![image depicting over 5000 weekly npm downloads](https://raw.githubusercontent.com/jeanlescure/short-unique-id/master/assets/weekly-downloads.png)
 
 Since my package is now reporting between 4k and 5k+ npm weekly downloads, I've gone ahead and refactored the package using [Neutrino JS](https://neutrinojs.org/).
 

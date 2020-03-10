@@ -4,6 +4,10 @@
   "main": "dist/short-unique-id.min.js",
   "license": "MIT",
   "module": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeanlescure/short-unique-id"
+  },
   "scripts": {
     "build": "webpack --mode production",
     "test": "jest",

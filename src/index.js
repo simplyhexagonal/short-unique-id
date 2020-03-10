@@ -1,3 +1,5 @@
+const { version } = require('../package.json');
+
 const DEFAULT_RANDOM_ID_LEN = 6;
 
 const DICT_RANGES = {
@@ -127,6 +129,8 @@ class ShortUniqueId {
     // Return random generated ID.
     return id;
   };
+
+  getVersion = () => version;
 }
 
 export default ShortUniqueId;

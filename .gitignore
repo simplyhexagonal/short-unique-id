@@ -107,4 +107,4 @@ dist
 .vscode-test
 
 # Neutrino build directory
-build
+build/
