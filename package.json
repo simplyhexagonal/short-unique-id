@@ -8,9 +8,10 @@
     "type": "git",
     "url": "https://github.com/jeanlescure/short-unique-id"
   },
+  "runkitExampleFilename": "./test/runkit.js",
   "scripts": {
     "build": "webpack --mode production",
-    "test": "jest",
+    "test": "jest && npm link && npm link short-unique-id && node ./test/runkit.js",
     "lint": "eslint --format codeframe --ext mjs,js src test",
     "dist:update": "rm -rf ./dist && cp -r ./build ./dist",
     "dist:commit": "git add ./dist && git commit -m \"dist updated\"",
