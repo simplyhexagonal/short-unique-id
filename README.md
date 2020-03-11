@@ -92,7 +92,7 @@ uid.sequentialUUID(); // Y
 
 ## Development
 
-Tests run using [Jasmine](https://jasmine.github.io/):
+Tests run using [Jest](https://jestjs.io/):
 
 ```
 yarn test
