@@ -21,11 +21,11 @@
   "runkitExampleFilename": "./test/runkit.js",
   "scripts": {
     "build": "webpack --mode production",
-    "test": "jest && npm link && npm link short-unique-id && node ./test/runkit.js && rm package-lock.json",
+    "test": "jest && yarn link && yarn link short-unique-id && node ./test/runkit.js",
     "lint": "eslint --format codeframe --ext mjs,js src test",
     "dist:update": "rm -rf ./dist && cp -r ./build ./dist",
     "dist:commit": "git add ./dist && git commit -m \"dist updated\"",
-    "deploy": "yarn build && yarn test && yarn dist:update && yarn dist:commit && yarn publish"
+    "deploy": "yarn build && yarn dist:update && yarn test && yarn dist:commit && yarn publish"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.8.3",
