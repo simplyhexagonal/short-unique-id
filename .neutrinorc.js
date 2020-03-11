@@ -26,7 +26,8 @@ module.exports = {
     jest(),
     (neutrino) => {
       neutrino.config.output
-        .filename(`${libName}.min.js`);
+        .filename(`${libName}.min.js`)
+        .set('globalObject', 'this');
     },
   ],
 };
