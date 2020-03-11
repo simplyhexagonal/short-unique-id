@@ -1,5 +1,8 @@
 # Short Unique ID (UUID) Generating Library
 
+[![Try short-unique-id on RunKit](https://badge.runkitcdn.com/short-unique-id.svg)](https://npm.runkit.com/short-unique-id)
+[![NPM Downloads](https://img.shields.io/npm/dt/short-unique-id.svg?maxAge=2592000)](https://npmjs.com/package/short-unique-id)
+
 (Try out the <a target="_blank" href="https://jeanlescure.github.io/short-unique-id/">online generator</a>)
 
 ## With ES6 imports, Node.js, and browser support
@@ -18,10 +21,10 @@ Even so, there are still **breaking changes**, mainly the removal of the `lib` b
 
 ## Instantiation (Server-side)
 
-Install using npm:
+Install:
 
 ```
-npm install --save short-unique-id
+yarn add short-unique-id
 ```
 
 ES6:
@@ -38,10 +41,10 @@ Node.js:
 
 ```javascript
 // Import
-var ShortUniqueId = require('short-unique-id');
+const ShortUniqueId = require('short-unique-id').default;
 
 // Instantiate
-var uid = new ShortUniqueId();
+const uid = new ShortUniqueId();
 ```
 
 ## Instantiation (Client-side)
@@ -92,12 +95,10 @@ uid.sequentialUUID(); // Y
 Tests run using [Jasmine](https://jasmine.github.io/):
 
 ```
-npm test
+yarn test
 ```
 
-This will update the `short-unique-id.js` file under `./lib`, which will then be imported by the spec and tested.
-
-Find lint using [airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base) for [eslint](https://github.com/eslint/eslint):
+Using [airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base) rules for [eslint](https://github.com/eslint/eslint):
 
 ```
 yarn lint

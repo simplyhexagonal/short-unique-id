@@ -1,6 +1,16 @@
 {
   "name": "short-unique-id",
   "version": "2.0.4",
+  "description": "Generate random or sequential UUID of any length",
+  "keywords": [
+    "short",
+    "random",
+    "uid",
+    "uuid",
+    "guid",
+    "unique id",
+    "tiny"
+  ],
   "main": "dist/short-unique-id.min.js",
   "license": "MIT",
   "module": "src/index.js",
@@ -11,7 +21,7 @@
   "runkitExampleFilename": "./test/runkit.js",
   "scripts": {
     "build": "webpack --mode production",
-    "test": "jest && npm link && npm link short-unique-id && node ./test/runkit.js",
+    "test": "jest && npm link && npm link short-unique-id && node ./test/runkit.js && rm package-lock.json",
     "lint": "eslint --format codeframe --ext mjs,js src test",
     "dist:update": "rm -rf ./dist && cp -r ./build ./dist",
     "dist:commit": "git add ./dist && git commit -m \"dist updated\"",
