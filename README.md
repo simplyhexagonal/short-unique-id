@@ -53,7 +53,7 @@ Browser:
 
 ```html
 <!-- Import -->
-<script src="https://rawgit.com/jeanlescure/short-unique-id/master/dist/short-unique-id.min.js"></script>
+<script src="https://unpkg.com/short-unique-id@latest/dist/short-unique-id.min.js"></script>
 
 <!-- Instantiate -->
 <script>
