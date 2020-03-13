@@ -28,7 +28,6 @@
     "deploy": "yarn build && yarn dist:update && yarn test && yarn dist:commit && yarn publish"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@neutrinojs/airbnb-base": "^9.1.0",
     "@neutrinojs/jest": "^9.1.0",
     "@neutrinojs/library": "^9.1.0",

@@ -6,22 +6,9 @@ const libName = require('./package.json').name;
 
 module.exports = {
   use: [
-    airbnbBase({
-      eslint: {
-        baseConfig: {
-          rules: {
-            'jest/no-try-expect': 'off',
-          },
-        },
-      },
-    }),
+    airbnbBase(),
     library({
       name: libName,
-      babel: {
-        plugins: [
-          '@babel/plugin-proposal-class-properties',
-        ],
-      },
     }),
     jest(),
     (neutrino) => {

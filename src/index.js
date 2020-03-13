@@ -9,14 +9,8 @@ const DICT_RANGES = {
 };
 
 class ShortUniqueId {
-  counter = 0;
-
-  debug;
-
-  dict = [];
-
   /* eslint-disable consistent-return */
-  log = (...args) => {
+  log(...args) {
     const finalArgs = [...args];
     finalArgs[0] = `[short-unique-id] ${args[0]}`;
     /* eslint-disable no-console */
@@ -26,10 +20,15 @@ class ShortUniqueId {
       }
     }
     /* eslint-enable no-console */
-  };
+  }
   /* eslint-enable consistent-return */
 
   constructor(options = {}) {
+    this.counter = 0;
+    this.debug = false;
+    this.dict = [];
+    this.version = version;
+
     const {
       dictionary: userDict,
       skipShuffle,
@@ -71,12 +70,14 @@ class ShortUniqueId {
     this.log((`Generator instantiated with Dictionary Size ${this.dictLength}`));
   }
 
-  getDict = () => this.dict;
+  getDict() {
+    return this.dict;
+  }
 
   /**
   * Generates UUID based on internal counter that's incremented after each ID generation.
   */
-  sequentialUUID = () => {
+  sequentialUUID() {
     let counterDiv;
     let counterRem;
     let id;
@@ -94,13 +95,13 @@ class ShortUniqueId {
     /* eslint-enable no-constant-condition */
     this.counter += 1;
     return id;
-  };
+  }
 
   /**
     * Generates UUID by creating each part randomly.
     * @param {Integer} uuidLength Desired UUID length.
     */
-  randomUUID = (uuidLength = DEFAULT_RANDOM_ID_LEN) => {
+  randomUUID(uuidLength = DEFAULT_RANDOM_ID_LEN) {
     let id;
     let randomPartIdx;
     let j;
@@ -128,9 +129,11 @@ class ShortUniqueId {
 
     // Return random generated ID.
     return id;
-  };
+  }
 
-  getVersion = () => version;
+  getVersion() {
+    return this.version;
+  }
 }
 
 export default ShortUniqueId;
