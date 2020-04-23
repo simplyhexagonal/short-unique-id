@@ -14,34 +14,18 @@
   "main": "dist/short-unique-id.min.js",
   "license": "MIT",
   "module": "src/index.js",
+  "homepage": "https://jeanlescure.github.io/short-unique-id/",
   "repository": {
     "type": "git",
     "url": "https://github.com/jeanlescure/short-unique-id"
   },
   "runkitExampleFilename": "./test/runkit.js",
   "scripts": {
-    "build": "webpack --mode production",
     "test": "jest && yarn link && yarn link short-unique-id && node ./test/runkit.js",
     "lint": "eslint --format codeframe --ext mjs,js src test",
-    "dist:update": "rm -rf ./dist && cp -r ./build ./dist",
-    "dist:commit": "git add ./dist && git commit -m \"dist updated\"",
-    "predeploy": "yarn version && yarn build && yarn dist:update && yarn test && yarn dist:commit",
-    "deploy": "yarn publish",
-    "preinstall": "npx use-yarn"
   },
   "devDependencies": {
-    "@neutrinojs/airbnb-base": "^9.1.0",
-    "@neutrinojs/jest": "^9.1.0",
-    "@neutrinojs/library": "^9.1.0",
-    "babel-jest": "^25.1.0",
     "eslint": "^6",
-    "jest": "^25",
-    "neutrino": "^9.1.0",
-    "webpack": "^4",
-    "webpack-chain": "^6.4.0",
-    "webpack-cli": "^3"
-  },
-  "resolutions": {
-    "minimist": "^1.2.5"
+    "jest": "^25"
   }
 }
