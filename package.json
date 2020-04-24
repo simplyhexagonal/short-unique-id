@@ -12,8 +12,8 @@
     "tiny"
   ],
   "main": "dist/short-unique-id.min.js",
-  "license": "MIT",
-  "module": "src/index.js",
+  "license": "Apache",
+  "module": "lib/short-unique-id.js",
   "homepage": "https://jeanlescure.github.io/short-unique-id/",
   "repository": {
     "type": "git",
@@ -21,11 +21,13 @@
   },
   "runkitExampleFilename": "./test/runkit.js",
   "scripts": {
-    "test": "jest && yarn link && yarn link short-unique-id && node ./test/runkit.js",
-    "lint": "eslint --format codeframe --ext mjs,js src test",
+    "gen:version": "echo \"{\\\"version\\\": `jq .version package.json`}\" > src/version.json",
+    "test": "yarn gen:version && cd src && deno test && cd .. && yarn link && yarn link short-unique-id && node ./runkit.js",
+    "lint": "tslint ./src/*.ts"
   },
   "devDependencies": {
-    "eslint": "^6",
-    "jest": "^25"
+    "tslint": "^6.1.1",
+    "tslint-config-airbnb-base": "^0.3.0",
+    "typescript": "^3.8.3"
   }
 }
