@@ -11,8 +11,8 @@
     "unique id",
     "tiny"
   ],
-  "main": "dist/short-unique-id.min.js",
-  "license": "Apache",
+  "main": "lib/short-unique-id.js",
+  "license": "Apache-2.0",
   "module": "lib/short-unique-id.js",
   "homepage": "https://jeanlescure.github.io/short-unique-id/",
   "repository": {
@@ -21,11 +21,16 @@
   },
   "runkitExampleFilename": "./test/runkit.js",
   "scripts": {
-    "gen:version": "echo \"{\\\"version\\\": `jq .version package.json`}\" > src/version.json",
-    "test": "yarn gen:version && cd src && deno test && cd .. && yarn link && yarn link short-unique-id && node ./runkit.js",
-    "lint": "tslint ./src/*.ts"
+    "gen:version": "echo \"{\\\"version\\\": `jq .version package.json`}\" > short_uuid/version.json",
+    "lib:build": "yarn gen:version && rm ./lib/* && sucrase ./short_uuid -d ./lib -t typescript,imports && mv ./lib/mod.js ./lib/short-unique-id.js && rm ./lib/mod* ./lib/test* ; cp short_uuid/version.json ./lib && echo 'module.exports = ShortUniqueId;' >> ./lib/short-unique-id.js",
+    "dist:build": "rm ./dist/* ; echo 'var __suid_module = ' > ./dist/short-unique-id.js && browserify ./lib/short-unique-id.js >> ./dist/short-unique-id.js && echo 'var ShortUUID = __suid_module(1);' >> ./dist/short-unique-id.js && minify ./dist/short-unique-id.js > ./dist/short-unique-id.min.js",
+    "test": "yarn gen:version && cd short_uuid && deno test && cd .. && yarn link && yarn link short-unique-id && node ./runkit.js",
+    "lint": "tslint ./short_uuid/*.ts"
   },
   "devDependencies": {
+    "browserify": "^16.5.1",
+    "minify": "^5.1.1",
+    "sucrase": "^3.13.0",
     "tslint": "^6.1.1",
     "tslint-config-airbnb-base": "^0.3.0",
     "typescript": "^3.8.3"

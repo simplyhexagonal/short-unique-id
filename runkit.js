@@ -1,4 +1,4 @@
-const ShortUniqueId = require('short-unique-id').default;
+const ShortUniqueId = require('short-unique-id');
 
 const uid = new ShortUniqueId();
 
