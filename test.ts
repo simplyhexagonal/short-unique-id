@@ -1,16 +1,12 @@
 // Copyright 2017-2020 the Short Unique ID authors. All rights reserved. Apache license.
-/* eslint-disable import/no-unresolved */
 import {
   assert,
   assertEquals,
 } from 'https://deno.land/std/testing/asserts.ts';
-/* eslint-enable import/no-unresolved */
 
 import ShortUniqueId from './mod.ts';
 
-/* eslint-disable no-undef */
 const { test } = Deno;
-/* eslint-enable no-undef */
 
 test({
   name: 'Short Unique ID is able to generate random id\'s based on internal counter',
