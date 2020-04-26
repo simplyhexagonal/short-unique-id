@@ -26,17 +26,15 @@
       ]
     }
   ],
-  "files": [
-    "README.md"
-  ],
+  "files": ["README.md"],
   "commit": false,
   "imageSize": 100,
   "contributorsPerLine": 5,
   "contributorsSortAlphabetically": false,
   "badgeTemplate": "[![<%= contributors.length %> Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-purple.svg?style=flat-square)](#contributors)",
-  "contributorTemplate": "<div style=\"width: 130px;\"><a style=\"display: block; margin: 15px;\" href=\"<%= contributor.profile %>\"><svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=<%= options.imageSize %> height=<%= options.imageSize %>><defs><rect id=rect width=<%= options.imageSize %> height=<%= options.imageSize %> rx=50% /><clipPath id=clip><use xlink:href=#rect /></clipPath></defs><use xlink:href=#rect /><image xlink:href=\"<%= contributor.avatar_url %>\" width=<%= options.imageSize %> height=<%= options.imageSize %> clip-path=url(#clip) /></svg><br /><span style=\"display: block; font-size: 88%; font-weight: bold; color: #5E40B8;\"><b><%= contributor.name %></b></span></a><%= contributions %></div>",
-  "skipCi": true,
-  "projectName": "short-unique-id",
+  "contributorTemplate": "<a href=\"<%= contributor.profile %>\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"130\" height=\"150\"><defs><rect id=\"rect\" width=\"<%= options.imageSize %>\" height=\"<%= options.imageSize %>\" x=\"15\" y=\"15\" rx=\"50%\"/><clipPath id=\"clip\"><use xlink:href=\"#rect\"/></clipPath></defs><use xlink:href=\"#rect\"/><image xlink:href=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>\" height=\"<%= options.imageSize %>\" x=\"15\" y=\"15\" clip-path=\"url(#clip)\"/><text x=\"15\" y=\"130\" textLength=\"<%= options.imageSize %>\" lengthAdjust=\"spacingAndGlyphs\" style=\"font: bold 88% sans-serif; fill: #5E40B8;\"><%= contributor.name %></text></svg></a><table><tbody><tr><td width=\"150\" align=\"center\"><%= contributions %></td></tr></tbody></table>",
+  "skipCi": "true",
+  "projectName": "costa-rica-iban",
   "projectOwner": "jeanlescure",
   "repoType": "github",
   "repoHost": "https://github.com"
