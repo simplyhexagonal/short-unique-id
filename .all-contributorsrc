@@ -1,5 +1,22 @@
 {
-  "contributors": [],
+  "contributors": [
+    {
+      "login": "jeanlescure",
+      "name": "Jean Lescure",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3330339?v=4",
+      "profile": "http://jeanlescure.io",
+      "contributions": [
+        "maintenance",
+        "code",
+        "content",
+        "userTesting",
+        "test",
+        "example",
+        "doc",
+        "design"
+      ]
+    }
+  ],
   "files": ["README.md"],
   "commit": false,
   "imageSize": 100,
