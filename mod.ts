@@ -106,7 +106,7 @@ class ShortUniqueId {
   }
 
   /* Generates UUID based on internal counter that's incremented after each ID generation. */
-  sequentialUUID() {
+  seq() {
     let counterDiv: number;
     let counterRem;
     let id;
