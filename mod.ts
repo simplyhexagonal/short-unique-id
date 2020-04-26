@@ -36,6 +36,8 @@ class ShortUniqueId {
 
   dictLength: number;
 
+  uuidLength: number;
+
   /* tslint:disable consistent-return */
   log(...args: any[]) {
     const finalArgs = [...args];
@@ -59,7 +61,10 @@ class ShortUniqueId {
     const {
       dictionary: userDict,
       skipShuffle,
+      length,
     } = options;
+
+    this.uuidLength = length;
 
     if (userDict) {
       this.dict = userDict;
