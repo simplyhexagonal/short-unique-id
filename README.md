@@ -1,6 +1,6 @@
 # Short Unique ID (UUID) Generating Library
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![2 Contributors](https://img.shields.io/badge/all_contributors-2-purple.svg?style=flat-square)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Try short-unique-id on RunKit](https://badge.runkitcdn.com/short-unique-id.svg)](https://npm.runkit.com/short-unique-id)
@@ -127,7 +127,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="http://jeanlescure.io"><img src="https://avatars2.githubusercontent.com/u/3330339?v=4" width="100px;" alt=""/><br /><sub><b>Jean Lescure</b></sub></a><br /><a href="#maintenance-jeanlescure" title="Maintenance">🚧</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Code">💻</a> <a href="#content-jeanlescure" title="Content">🖋</a> <a href="#userTesting-jeanlescure" title="User Testing">📓</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Tests">⚠️</a> <a href="#example-jeanlescure" title="Examples">💡</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Documentation">📖</a> <a href="#design-jeanlescure" title="Design">🎨</a></td>
+    <td align="center"><div style="width: 130px;"><a style="display: block; margin: 15px;" href="http://jeanlescure.io"><svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=100 height=100><defs><rect id=rect width=100 height=100 rx=50% /><clipPath id=clip><use xlink:href=#rect /></clipPath></defs><use xlink:href=#rect /><image xlink:href="https://avatars2.githubusercontent.com/u/3330339?v=4" width=100 height=100 clip-path=url(#clip) /></svg><br /><span style="display: block; font-size: 88%; font-weight: bold; color: #5E40B8;"><b>Jean Lescure</b></span></a><a href="#maintenance-jeanlescure" title="Maintenance">🚧</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Code">💻</a> <a href="#content-jeanlescure" title="Content">🖋</a> <a href="#userTesting-jeanlescure" title="User Testing">📓</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Tests">⚠️</a> <a href="#example-jeanlescure" title="Examples">💡</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Documentation">📖</a> <a href="#design-jeanlescure" title="Design">🎨</a></div></td>
+    <td align="center"><div style="width: 130px;"><a style="display: block; margin: 15px;" href="https://twitter.com/jeffturcotte"><svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=100 height=100><defs><rect id=rect width=100 height=100 rx=50% /><clipPath id=clip><use xlink:href=#rect /></clipPath></defs><use xlink:href=#rect /><image xlink:href="https://avatars0.githubusercontent.com/u/65089?v=4" width=100 height=100 clip-path=url(#clip) /></svg><br /><span style="display: block; font-size: 88%; font-weight: bold; color: #5E40B8;"><b>Jeff Turcotte</b></span></a><a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeffturcotte" title="Code">💻</a></div></td>
   </tr>
 </table>
 
