@@ -9,11 +9,8 @@
         "maintenance",
         "code",
         "content",
-        "userTesting",
-        "test",
-        "example",
         "doc",
-        "design"
+        "test"
       ]
     },
     {
