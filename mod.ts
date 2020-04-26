@@ -58,7 +58,7 @@ class ShortUniqueId {
 
     const {
       dictionary: userDict,
-      skipShuffle,
+      shuffle,
     } = options;
 
     if (userDict) {
@@ -87,7 +87,7 @@ class ShortUniqueId {
       /* tslint:enable no-multi-assign */
     }
 
-    if (!skipShuffle) {
+    if (shuffle) {
       // Shuffle Dictionary for removing selection bias.
       const PROBABILITY = 0.5;
       this.dict = this.dict.sort(() => Math.random() - PROBABILITY);

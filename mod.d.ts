@@ -6,6 +6,6 @@ type Ranges = {
 
 type Options = {
   dictionary: string[],
-  skipShuffle: boolean,
+  shuffle: boolean,
   debug: boolean,
 };
