@@ -8,4 +8,5 @@ type Options = {
   dictionary: string[],
   skipShuffle: boolean,
   debug: boolean,
+  length: number,
 };

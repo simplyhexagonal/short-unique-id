@@ -49,9 +49,10 @@ test({
     const uid: ShortUniqueId = new ShortUniqueId({
       dictionary: ['a', '1'],
       skipShuffle: true,
+      length: 2,
     });
     /* tslint:disable no-magic-numbers */
-    assert((/^[a1][a1]$/).test(uid(2)));
+    assert((/^[a1][a1]$/).test(uid()));
     /* tslint:enable no-magic-numbers */
     assertEquals(
       [uid.sequentialUUID(), uid.sequentialUUID()].join(''),

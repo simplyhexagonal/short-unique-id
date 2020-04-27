@@ -2,7 +2,7 @@
 // @deno-types="./mod.d.ts"
 import { version } from './version.json';
 
-const DEFAULT_RANDOM_ID_LEN: number = 6;
+const DEFAULT_ID_LENGTH: number = 6;
 
 const DIGIT_FIRST_ASCII: number = 48;
 const DIGIT_LAST_ASCII: number = 58;
@@ -21,6 +21,7 @@ const DEFAULT_OPTIONS: Options = {
   dictionary: [],
   skipShuffle: false,
   debug: false,
+  length: DEFAULT_ID_LENGTH,
 };
 
 class ShortUniqueId extends Function {
@@ -41,6 +42,8 @@ class ShortUniqueId extends Function {
   upperBound: number = 0;
 
   dictLength: number = 0;
+
+  uuidLength: number;
 
   /* tslint:disable consistent-return */
   log(...args: any[]) {
@@ -72,7 +75,10 @@ class ShortUniqueId extends Function {
     const {
       dictionary: userDict,
       skipShuffle,
+      length,
     } = options;
+
+    this.uuidLength = length;
 
     if (userDict && userDict.length > 1) {
       this.setDictionary(userDict);
@@ -157,8 +163,8 @@ class ShortUniqueId extends Function {
     return id;
   }
 
-  /* Generates UUID by creating each part randomly. */
-  randomUUID(uuidLength: number = DEFAULT_RANDOM_ID_LEN) {
+  /*  Generates UUID by creating each part randomly. */
+  randomUUID(uuidLength: number = this.uuidLength) {
     let id;
     let randomPartIdx;
     let j;
