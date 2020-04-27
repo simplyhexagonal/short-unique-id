@@ -15,9 +15,9 @@ test({
     const uidCollection: string[] = [];
 
     /* tslint:disable no-magic-numbers */
-    uidCollection.push(uid.randomUUID(6));
-    uidCollection.push(uid.randomUUID(7));
-    uidCollection.push(uid.randomUUID(10));
+    uidCollection.push(uid(6));
+    uidCollection.push(uid(7));
+    uidCollection.push(uid(10));
     assertEquals(uidCollection[0].length, 6);
     assertEquals(uidCollection[1].length, 7);
     assertEquals(uidCollection[2].length, 10);
@@ -36,7 +36,7 @@ test({
   name: 'Short Unique ID is able to generate consecutive id\'s based on internal counter',
   fn(): void {
     const uid: ShortUniqueId = new ShortUniqueId();
-    uid.dict = ['v', '0', 'Y'];
+    uid.setDictionary(['v', '0', 'Y']);
     assertEquals(uid.sequentialUUID(), 'v');
     assertEquals(uid.sequentialUUID(), '0');
     assertEquals(uid.sequentialUUID(), 'Y');
@@ -46,8 +46,17 @@ test({
 test({
   name: 'Short Unique ID is able to be instantiated with user-defined dictionary',
   fn(): void {
-    const uid: ShortUniqueId = new ShortUniqueId({ dictionary: ['a', '1'] });
-    assert((/^[a1][a1]$/).test(uid.dict.join('')));
+    const uid: ShortUniqueId = new ShortUniqueId({
+      dictionary: ['a', '1'],
+      skipShuffle: true,
+    });
+    /* tslint:disable no-magic-numbers */
+    assert((/^[a1][a1]$/).test(uid(2)));
+    /* tslint:enable no-magic-numbers */
+    assertEquals(
+      [uid.sequentialUUID(), uid.sequentialUUID()].join(''),
+      'a1',
+    );
   },
 });
 
