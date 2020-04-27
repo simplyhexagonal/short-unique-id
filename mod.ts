@@ -2,14 +2,14 @@
 // @deno-types="./mod.d.ts"
 import { version } from './version.json';
 
-const DEFAULT_RANDOM_ID_LEN = 6;
+const DEFAULT_ID_LENGTH: number = 6;
 
-const DIGIT_FIRST_ASCII = 48;
-const DIGIT_LAST_ASCII = 58;
-const ALPHA_LOWER_FIRST_ASCII = 97;
-const ALPHA_LOWER_LAST_ASCII = 123;
-const ALPHA_UPPER_FIRST_ASCII = 65;
-const ALPHA_UPPER_LAST_ASCII = 91;
+const DIGIT_FIRST_ASCII: number = 48;
+const DIGIT_LAST_ASCII: number = 58;
+const ALPHA_LOWER_FIRST_ASCII: number = 97;
+const ALPHA_LOWER_LAST_ASCII: number = 123;
+const ALPHA_UPPER_FIRST_ASCII: number = 65;
+const ALPHA_UPPER_LAST_ASCII: number = 91;
 
 const DICT_RANGES: Ranges = {
   digits: [DIGIT_FIRST_ASCII, DIGIT_LAST_ASCII],
@@ -17,7 +17,14 @@ const DICT_RANGES: Ranges = {
   upperCase: [ALPHA_UPPER_FIRST_ASCII, ALPHA_UPPER_LAST_ASCII],
 };
 
-class ShortUniqueId {
+const DEFAULT_OPTIONS: Options = {
+  dictionary: [],
+  skipShuffle: false,
+  debug: false,
+  length: DEFAULT_ID_LENGTH,
+};
+
+class ShortUniqueId extends Function {
   counter: number;
 
   debug: boolean;
@@ -34,7 +41,7 @@ class ShortUniqueId {
 
   upperBound: number = 0;
 
-  dictLength: number;
+  dictLength: number = 0;
 
   uuidLength: number;
 
@@ -52,7 +59,14 @@ class ShortUniqueId {
   }
   /* tslint:enable consistent-return */
 
-  constructor(options: Partial<Options> = {}) {
+  constructor(argOptions: Partial<Options> = {}) {
+    super('...args', 'return this.randomUUID(...args)');
+
+    const options: Options = {
+      ...DEFAULT_OPTIONS,
+      ...argOptions as Partial<Options>,
+    };
+
     this.counter = 0;
     this.debug = false;
     this.dict = [];
@@ -66,21 +80,21 @@ class ShortUniqueId {
 
     this.uuidLength = length;
 
-    if (userDict) {
-      this.dict = userDict;
+    if (userDict && userDict.length > 1) {
+      this.setDictionary(userDict);
     } else {
       let i;
-      /* tslint:disable no-multi-assign */
+
       this.dictIndex = i = 0;
+
       Object.keys(DICT_RANGES).forEach((rangeType: any) => {
-        /* tslint:disable no-undef */
         const rangeTypeKey : keyof Ranges = rangeType as keyof Ranges;
-        /* tslint:enable no-undef */
+
         this.dictRange = DICT_RANGES[rangeTypeKey];
-        /* tslint:disable prefer-destructuring */
+
         this.lowerBound = this.dictRange[0];
         this.upperBound = this.dictRange[1];
-        /* tslint:enable prefer-destructuring */
+
         for (
           this.dictIndex = i = this.lowerBound;
           this.lowerBound <= this.upperBound ? i < this.upperBound : i > this.upperBound;
@@ -89,34 +103,51 @@ class ShortUniqueId {
           this.dict.push(String.fromCharCode(this.dictIndex));
         }
       });
-      /* tslint:enable no-multi-assign */
     }
 
     if (!skipShuffle) {
       // Shuffle Dictionary for removing selection bias.
       const PROBABILITY = 0.5;
-      this.dict = this.dict.sort(() => Math.random() - PROBABILITY);
+      this.setDictionary(this.dict.sort(() => Math.random() - PROBABILITY));
+    } else {
+      this.setDictionary(this.dict);
     }
+
+    this.debug = options.debug;
+    this.log(this.dict);
+    this.log((`Generator instantiated with Dictionary Size ${this.dictLength}`));
+
+    const instance = this.bind(this);
+    Object.getOwnPropertyNames(this).forEach((prop: string) => {
+      if (
+        !(
+          /arguments|caller|callee|length|name|prototype/
+        ).test(prop)
+      ) {
+        const propKey = prop as keyof ShortUniqueId;
+        instance[prop] = this[propKey];
+      }
+    });
+
+    return instance;
+  }
+
+  setDictionary(dictionary: string[]) {
+    this.dict = dictionary;
 
     // Cache Dictionary Length for future usage.
     this.dictLength = this.dict.length;// Resets internal counter.
     this.counter = 0;
-    this.debug = options.debug || this.debug;
-    this.log(this.dict);
-    this.log((`Generator instantiated with Dictionary Size ${this.dictLength}`));
-  }
-
-  getDict() {
-    return this.dict;
   }
 
   /* Generates UUID based on internal counter that's incremented after each ID generation. */
   sequentialUUID() {
     let counterDiv: number;
-    let counterRem;
-    let id;
-    id = '';
+    let counterRem: number;
+    let id: string = '';
+
     counterDiv = this.counter;
+
     /* tslint:disable no-constant-condition */
     while (true) {
       counterRem = counterDiv % this.dictLength;
@@ -128,18 +159,16 @@ class ShortUniqueId {
     }
     /* tslint:enable no-constant-condition */
     this.counter += 1;
+
     return id;
   }
 
   /*  Generates UUID by creating each part randomly. */
-  randomUUID(uuidLength: number = DEFAULT_RANDOM_ID_LEN) {
+  randomUUID(uuidLength: number = this.uuidLength) {
     let id;
     let randomPartIdx;
     let j;
-
-    /* tslint:disable no-unused-vars */
     let idIndex;
-    /* tslint:enable no-unused-vars */
 
     if ((uuidLength === null || typeof uuidLength === 'undefined') || uuidLength < 1) {
       throw new Error('Invalid UUID Length Provided');
@@ -147,7 +176,6 @@ class ShortUniqueId {
 
     // Generate random ID parts from Dictionary.
     id = '';
-    /* tslint:disable */
     for (
       idIndex = j = 0;
       0 <= uuidLength ? j < uuidLength : j > uuidLength;
@@ -156,7 +184,6 @@ class ShortUniqueId {
       randomPartIdx = Math.trunc(Math.random() * this.dictLength) % this.dictLength;
       id += this.dict[randomPartIdx];
     }
-    /* tslint:enable */
 
     // Return random generated ID.
     return id;
