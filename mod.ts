@@ -157,7 +157,7 @@ class ShortUniqueId extends Function {
     return id;
   }
 
-  /*  Generates UUID by creating each part randomly. */
+  /* Generates UUID by creating each part randomly. */
   randomUUID(uuidLength: number = DEFAULT_RANDOM_ID_LEN) {
     let id;
     let randomPartIdx;
@@ -181,6 +181,11 @@ class ShortUniqueId extends Function {
 
     // Return random generated ID.
     return id;
+  }
+
+  /* Calculates total number of possible UUIDs */
+  availableUUIDs() {
+    return;
   }
 
   getVersion() {

@@ -68,3 +68,23 @@ test({
     assertEquals(uid.sequentialUUID(), '1');
   },
 });
+
+test({
+  name: 'Short Unique ID is able to calculate total number of possible UUIDs',
+  fn(): void {
+    const totals = [];
+    const uid: ShortUniqueId = new ShortUniqueId();
+    totals.push(uid.availableUUIDs());
+
+    uid.setDictionary(['a', 'b']);
+    totals.push(uid.availableUUIDs());
+
+    uid.setDictionary(['a', 'b', 'b', 'a']);
+    totals.push(uid.availableUUIDs());
+
+    assertEquals(totals[0], 56800235584); // 62^6
+    assertEquals(totals[1], 64); // 2^6
+    assertEquals(totals[2], 64); // 2^6
+  },
+})
+
