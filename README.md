@@ -22,6 +22,27 @@ Version 2.0 was mainly a refactor of the original branch, so functionality and n
 
 Even so, there are still **breaking changes**, mainly the removal of the `lib` build output, as well as changes on how to instantiate the library on the browser.
 
+## What is the probability of generating the same id again?
+
+This largely depends on the given dictionary and the selected UUID length.
+
+Out of the box this library provides a shuffled dictionary of digits from
+0 to 9, as well as the alphabet from a to z both in UPPER and lower case,
+with a default UUID length of 6.
+
+With that, the probability of generating a duplicate in 1,000,000 rounds
+is ~0.00000002, or about 1 in 50,000,000.
+
+If you change the dictionary and/or the UUID length then we have provided
+the function `collisionProbability()` function to calculate the probability
+of hitting a duplicate in a given number of rounds (a collision) and the
+function `uniqueness()` which provides a score (from 0 to 1) to rate the 
+"quality" of the combination of given dictionary and UUID length (the closer
+to 1, higher the uniqueness and thus better the quality).
+
+To find out more about the math behind these functions please refer to the
+<a target="_blank" href="https://jeanlescure.github.io/short-unique-id/classes/shortuniqueid.html#collisionprobability">API Reference</a>.
+
 ## Instantiation (Server-side)
 
 Install:
