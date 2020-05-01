@@ -9,7 +9,7 @@ import ShortUniqueId from './mod.ts';
 const { test } = Deno;
 
 test({
-  name: 'Short Unique ID is able to generate random id\'s based on internal counter',
+  name: 'ability to generate random id\'s based on internal counter',
   fn(): void {
     const uid: ShortUniqueId = new ShortUniqueId();
     const uidCollection: string[] = [];
@@ -33,7 +33,7 @@ test({
 });
 
 test({
-  name: 'Short Unique ID is able to generate consecutive id\'s based on internal counter',
+  name: 'ability to generate consecutive id\'s based on internal counter',
   fn(): void {
     const uid: ShortUniqueId = new ShortUniqueId();
     uid.setDictionary(['v', '0', 'Y']);
@@ -44,7 +44,7 @@ test({
 });
 
 test({
-  name: 'Short Unique ID is able to be instantiated with user-defined dictionary',
+  name: 'ability to be instantiated with user-defined dictionary',
   fn(): void {
     const uid: ShortUniqueId = new ShortUniqueId({
       dictionary: ['a', '1'],
@@ -62,7 +62,7 @@ test({
 });
 
 test({
-  name: 'Short Unique ID is able to skip shuffle when instantiated',
+  name: 'ability to skip shuffle when instantiated',
   fn(): void {
     const uid: ShortUniqueId = new ShortUniqueId({ skipShuffle: true });
     assertEquals(uid.sequentialUUID(), '0');
@@ -71,7 +71,7 @@ test({
 });
 
 test({
-  name: 'Short Unique ID is able to calculate total number of possible UUIDs',
+  name: 'ability to calculate total number of possible UUIDs',
   fn(): void {
     const totals = [];
     const uid: ShortUniqueId = new ShortUniqueId();
@@ -83,9 +83,90 @@ test({
     uid.setDictionary(['a', 'b', 'b', 'a']);
     totals.push(uid.availableUUIDs());
 
+    uid.setDictionary(['a', 'b', 'b', 'a']);
+    const lengthOfTwo = 2;
+    totals.push(uid.availableUUIDs(lengthOfTwo));
+
+    /* tslint:disable no-magic-numbers */
     assertEquals(totals[0], 56800235584); // 62^6
     assertEquals(totals[1], 64); // 2^6
     assertEquals(totals[2], 64); // 2^6
+    assertEquals(totals[3], 4); // 2^2
+    /* tslint:enable no-magic-numbers */
   },
-})
+});
 
+test({
+  name: 'ability to calculate probability of collision given number of UUID generation rounds',
+  fn(): void {
+    const totals: number[] = [];
+    const uid: ShortUniqueId = new ShortUniqueId();
+    /* tslint:disable no-magic-numbers */
+    totals.push(uid.collisionProbability());
+    totals.push(uid.collisionProbability(1000000));
+
+    uid.setDictionary(['a', 'b']);
+    totals.push(uid.collisionProbability(1, 1));
+
+    uid.setDictionary(['a', 'b', 'b', 'a']);
+    totals.push(uid.collisionProbability(1, 1));
+
+    assertEquals(totals[0], 0.00000525877839496618); // sqrt((pi/2)*(62^6))/(62^6)
+    assertEquals(totals[1], 0.00000002206529822331); // sqrt((pi/2)*1000000)/(62^6)
+    assertEquals(totals[2], 0.6266570686577502); // sqrt(pi/2)/(2)
+    assertEquals(totals[3], 0.6266570686577502); // sqrt(pi/2)/(2)
+    /* tslint:enable no-magic-numbers */
+  },
+});
+
+test({
+  name: 'ability to calculate approx. num. of hashes before first collision',
+  fn(): void {
+    const totals = [];
+    const uid: ShortUniqueId = new ShortUniqueId();
+    totals.push(uid.approxMaxBeforeCollision());
+
+    uid.setDictionary(['a', 'b']);
+    totals.push(uid.approxMaxBeforeCollision());
+
+    uid.setDictionary(['a', 'b', 'b', 'a']);
+    totals.push(uid.approxMaxBeforeCollision());
+
+    /* tslint:disable no-magic-numbers */
+    assertEquals(totals[0], 298699.85171812854); // sqrt((pi/2)*(62^6))
+    assertEquals(totals[1], 10.026513098524003); // sqrt((pi/2)*(2^6))
+    assertEquals(totals[2], 10.026513098524003); // sqrt((pi/2)*(2^6))
+    /* tslint:enable no-magic-numbers */
+  },
+});
+
+test({
+  name: 'ability to calculate "uniqueness" score of UUIDs based on size of dictionary and chosen UUID length',
+  fn(): void {
+    const totals = [];
+    const uid: ShortUniqueId = new ShortUniqueId();
+    totals.push(uid.uniqueness());
+    const millionPossibleRounds = 1000000;
+    totals.push(uid.uniqueness(millionPossibleRounds));
+
+    uid.setDictionary(['a', 'a']);
+    totals.push(uid.uniqueness());
+    uid.setDictionary(['a', 'a', 'a', 'a']);
+    totals.push(uid.uniqueness());
+
+    const twoPossibleRounds = 2;
+    uid.setDictionary(['a', 'b']);
+    totals.push(uid.uniqueness(twoPossibleRounds));
+    uid.setDictionary(['a', 'b', 'b', 'a']);
+    totals.push(uid.uniqueness(twoPossibleRounds));
+
+    /* tslint:disable no-magic-numbers */
+    assertEquals(totals[0], 0.999994741221605); // 1 - (sqrt((pi/2)*(62^6)) / (62^6))
+    assertEquals(totals[1], 0.9987466858626844); // 1 - (sqrt((pi/2)*1000000) / (62^6))
+    assertEquals(totals[2], 0);
+    assertEquals(totals[3], 0);
+    assertEquals(totals[4], 0.113773074547242);
+    assertEquals(totals[5], 0.113773074547242);
+    /* tslint:enable no-magic-numbers */
+  },
+});
