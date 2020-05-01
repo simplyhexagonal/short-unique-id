@@ -1,8 +1,20 @@
 // Copyright 2017-2020 the Short Unique ID authors. All rights reserved. Apache license.
 // @deno-types="./mod.d.ts"
+import { Big } from 'https://deno.land/x/math@v1.1.0/mod.ts';
+
 import { version } from './version.json';
 
-const DEFAULT_ID_LENGTH: number = 6;
+/**
+ * 6 was chosen as the default UUID length since for most cases
+ * it will be more than aptly suitable to provide millions of UUIDs
+ * with a very low probability of producing a duplicate UUID.
+ *
+ * For example, with a dictionary including digits from 0 to 9,
+ * as well as the alphabet from a to z both in UPPER and lower case,
+ * the probability of generating a duplicate in 1,000,000 rounds
+ * is ~0.00000002, or about 1 in 50,000,000.
+ */
+const DEFAULT_UUID_LENGTH: number = 6;
 
 const DIGIT_FIRST_ASCII: number = 48;
 const DIGIT_LAST_ASCII: number = 58;
@@ -21,9 +33,61 @@ const DEFAULT_OPTIONS: Options = {
   dictionary: [],
   skipShuffle: false,
   debug: false,
-  length: DEFAULT_ID_LENGTH,
+  length: DEFAULT_UUID_LENGTH,
 };
 
+/**
+ * Generate random or sequential UUID of any length.
+ *
+ * ### Use as module
+ *
+ * ```js
+ * // Import
+ * import ShortUniqueId from 'short-unique-id';
+ * //or
+ * const ShortUniqueId = require('short-unique-id');
+ *
+ * //Instantiate
+ * const uid = new ShortUniqueId();
+ *
+ * // Random UUID
+ * console.log(uid());
+ *
+ * // Sequential UUID
+ * console.log(uid.sequentialUUID());
+ * ```
+ *
+ * ### Use in browser
+ *
+ * ```html
+ * <!-- Import -->
+ * <script src="https://jeanlescure.github.io/short-unique-id/dist/short-unique-id.min.js"></script>
+ *
+ * <!-- Usage -->
+ * <script>
+ *   // Instantiate
+ *   var ShortUniqueId = window['short-unique-id'].default;
+ *   var uid = new ShortUniqueId();
+ *
+ *   // Random UUID
+ *   document.write(uid());
+ *
+ *   // Sequential UUID
+ *   document.write(uid.sequentialUUID());
+ * </script>
+ * ```
+ *
+ * ### Options
+ *
+ * ```js
+ * {
+ *   dictionary: ['z', 'a', 'p', 'h', 'o', 'd', ...], // User-defined dictionary
+ *   skipShuffle: false, // If true, sequentialUUID use the dictionary in the given order
+ *   debug: false, // If true the instance will console.log useful info
+ *   length: 6, // From 1 to infinity, the length you wish your UUID to be
+ * }
+ * ```
+ */
 class ShortUniqueId extends Function {
   counter: number;
 
@@ -132,7 +196,8 @@ class ShortUniqueId extends Function {
     return instance;
   }
 
-  setDictionary(dictionary: string[]) {
+  /** Change the dictionary after initialization. */
+  setDictionary(dictionary: string[]): void {
     this.dict = dictionary;
 
     // Cache Dictionary Length for future usage.
@@ -140,8 +205,8 @@ class ShortUniqueId extends Function {
     this.counter = 0;
   }
 
-  /* Generates UUID based on internal counter that's incremented after each ID generation. */
-  sequentialUUID() {
+  /** Generates UUID based on internal counter that's incremented after each ID generation. */
+  sequentialUUID():string {
     let counterDiv: number;
     let counterRem: number;
     let id: string = '';
@@ -163,12 +228,15 @@ class ShortUniqueId extends Function {
     return id;
   }
 
-  /*  Generates UUID by creating each part randomly. */
-  randomUUID(uuidLength: number = this.uuidLength) {
-    let id;
-    let randomPartIdx;
-    let j;
-    let idIndex;
+  /**
+   * Generates UUID by creating each part randomly.
+   * @alias `const uid = new ShortUniqueId(); uid(uuidLength: number);`
+   */
+  randomUUID(uuidLength: number = this.uuidLength || DEFAULT_UUID_LENGTH): string {
+    let id: string;
+    let randomPartIdx: number;
+    let j: number;
+    let idIndex: number;
 
     if ((uuidLength === null || typeof uuidLength === 'undefined') || uuidLength < 1) {
       throw new Error('Invalid UUID Length Provided');
@@ -181,12 +249,130 @@ class ShortUniqueId extends Function {
       0 <= uuidLength ? j < uuidLength : j > uuidLength;
       idIndex = 0 <= uuidLength ? j += 1: j -= 1
     ) {
-      randomPartIdx = Math.trunc(Math.random() * this.dictLength) % this.dictLength;
+      randomPartIdx = parseInt(
+        Big(Math.random()).times(this.dictLength).toFixed(0),
+        10,
+      ) % this.dictLength;
       id += this.dict[randomPartIdx];
     }
 
     // Return random generated ID.
     return id;
+  }
+
+  /**
+   * Calculates total number of possible UUIDs.
+   *
+   * Given that:
+   *
+   * - `H` is the total number of possible UUIDs
+   * - `n` is the number of unique characters in the dictionary
+   * - `l` is the UUID length
+   *
+   * Then `H` is defined as `n` to the power of `l`:
+   *
+   * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%20H=n%5El)
+   *
+   * This function returns `H`.
+   */
+  availableUUIDs(uuidLength: number = this.uuidLength): number {
+    return parseFloat(
+      Big([...new Set(this.dict)].length).pow(uuidLength).toFixed(0),
+    );
+  }
+
+  /**
+   * Calculates approximate number of hashes before first collision.
+   *
+   * Given that:
+   *
+   * - `H` is the total number of possible UUIDs, or in terms of this library,
+   * the result of running `availableUUIDs()`
+   * - the expected number of values we have to choose before finding the
+   * first collision can be expressed as the quantity `Q(H)`
+   *
+   * Then `Q(H)` can be approximated as the square root of the of the product
+   * of half of pi times `H`:
+   *
+   * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%20Q(H)%5Capprox%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7DH%7D)
+   *
+   * This function returns `Q(H)`.
+   */
+  approxMaxBeforeCollision(rounds: number = this.availableUUIDs(this.uuidLength)) {
+    return parseFloat(
+      Big(Math.PI / 2).times(rounds).sqrt().toFixed(20),
+    );
+  }
+
+  /**
+   * Calculates probability of generating duplicate UUIDs (a collision) in a
+   * given number of UUID generation rounds.
+   *
+   * Given that:
+   *
+   * - `r` is the maximum number of times that `randomUUID()` will be called,
+   * or better said the number of _rounds_
+   * - `H` is the total number of possible UUIDs, or in terms of this library,
+   * the result of running `availableUUIDs()`
+   *
+   * Then the probability of collision `p(r; H)` can be approximated as the result
+   * of dividing the square root of the of the product of half of pi times `H` by `H`:
+   *
+   * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%20p(r%3B%20H)%5Capprox%5Cfrac%7B%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7Dr%7D%7D%7BH%7D)
+   *
+   * This function returns `p(r; H)`.
+   *
+   * (Useful if you are wondering _"If I use this lib and expect to perform at most
+   * `r` rounds of UUID generations, what is the probability that I will hit a duplicate UUID?"_.)
+   */
+  collisionProbability(
+    rounds: number = this.availableUUIDs(this.uuidLength),
+    uuidLength: number = this.uuidLength,
+  ): number {
+    return parseFloat(
+      Big(
+        this.approxMaxBeforeCollision(rounds),
+      ).div(
+        this.availableUUIDs(uuidLength),
+      ).toFixed(20),
+    );
+  }
+
+  /**
+   * Calculate a "uniqueness" score (from 0 to 1) of UUIDs based on size of
+   * dictionary and chosen UUID length.
+   *
+   * Given that:
+   *
+   * - `H` is the total number of possible UUIDs, or in terms of this library,
+   * the result of running `availableUUIDs()`
+   * - `Q(H)` is the approximate number of hashes before first collision,
+   * or in terms of this library, the result of running `approxMaxBeforeCollision()`
+   *
+   * Then `uniqueness` can be expressed as the additive inverse of the probability of
+   * generating a "word" I had previously generated (a duplicate) at any given iteration
+   * up to the the total number of possible UUIDs expressed as the quotiend of `Q(H)` and `H`:
+   *
+   * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%201-%5Cfrac%7BQ(H)%7D%7BH%7D)
+   *
+   * (Useful if you need a value to rate the "quality" of the combination of given dictionary
+   * and UUID length. The closer to 1, higher the uniqueness and thus better the quality.)
+   */
+  uniqueness(rounds: number = this.availableUUIDs(this.uuidLength)) {
+    const score = parseFloat(
+      Big(1).minus(
+        Big(
+          this.approxMaxBeforeCollision(rounds),
+        ).div(rounds),
+      ).toFixed(20),
+    );
+    return (
+      score > 1
+    ) ? (
+      1
+    ) : (
+      (score < 0) ? 0 : score
+    );
   }
 
   getVersion() {
