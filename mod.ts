@@ -22,7 +22,7 @@ type Options = {
   dictionary: string[],
 
   /** If true, sequentialUUID use the dictionary in the given order */
-  skipShuffle: boolean,
+  shuffle: boolean,
 
   /** If true the instance will console.log useful info */
   debug: boolean,
@@ -58,7 +58,7 @@ const DICT_RANGES: Ranges = {
 
 const DEFAULT_OPTIONS: Options = {
   dictionary: [],
-  skipShuffle: false,
+  shuffle: true,
   debug: false,
   length: DEFAULT_UUID_LENGTH,
 };
@@ -166,7 +166,7 @@ class ShortUniqueId extends Function {
 
     const {
       dictionary: userDict,
-      skipShuffle,
+      shuffle,
       length,
     } = options;
 
@@ -197,7 +197,7 @@ class ShortUniqueId extends Function {
       });
     }
 
-    if (!skipShuffle) {
+    if (shuffle) {
       // Shuffle Dictionary for removing selection bias.
       const PROBABILITY = 0.5;
       this.setDictionary(this.dict.sort(() => Math.random() - PROBABILITY));

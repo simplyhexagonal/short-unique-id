@@ -48,7 +48,7 @@ test({
   fn(): void {
     const uid: ShortUniqueId = new ShortUniqueId({
       dictionary: ['a', '1'],
-      skipShuffle: true,
+      shuffle: false,
       length: 2,
     });
     /* tslint:disable no-magic-numbers */
@@ -64,7 +64,7 @@ test({
 test({
   name: 'ability to skip shuffle when instantiated',
   fn(): void {
-    const uid: ShortUniqueId = new ShortUniqueId({ skipShuffle: true });
+    const uid: ShortUniqueId = new ShortUniqueId({ shuffle: false });
     assertEquals(uid.seq(), '0');
     assertEquals(uid.seq(), '1');
   },
