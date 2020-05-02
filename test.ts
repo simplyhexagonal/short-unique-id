@@ -37,9 +37,9 @@ test({
   fn(): void {
     const uid: ShortUniqueId = new ShortUniqueId();
     uid.setDictionary(['v', '0', 'Y']);
-    assertEquals(uid.sequentialUUID(), 'v');
-    assertEquals(uid.sequentialUUID(), '0');
-    assertEquals(uid.sequentialUUID(), 'Y');
+    assertEquals(uid.seq(), 'v');
+    assertEquals(uid.seq(), '0');
+    assertEquals(uid.seq(), 'Y');
   },
 });
 
@@ -55,7 +55,7 @@ test({
     assert((/^[a1][a1]$/).test(uid()));
     /* tslint:enable no-magic-numbers */
     assertEquals(
-      [uid.sequentialUUID(), uid.sequentialUUID()].join(''),
+      [uid.seq(), uid.seq()].join(''),
       'a1',
     );
   },
@@ -65,8 +65,8 @@ test({
   name: 'ability to skip shuffle when instantiated',
   fn(): void {
     const uid: ShortUniqueId = new ShortUniqueId({ skipShuffle: true });
-    assertEquals(uid.sequentialUUID(), '0');
-    assertEquals(uid.sequentialUUID(), '1');
+    assertEquals(uid.seq(), '0');
+    assertEquals(uid.seq(), '1');
   },
 });
 
@@ -113,8 +113,8 @@ test({
 
     assertEquals(totals[0], 0.00000525877839496618); // sqrt((pi/2)*(62^6))/(62^6)
     assertEquals(totals[1], 0.00000002206529822331); // sqrt((pi/2)*1000000)/(62^6)
-    assertEquals(totals[2], 0.6266570686577502); // sqrt(pi/2)/(2)
-    assertEquals(totals[3], 0.6266570686577502); // sqrt(pi/2)/(2)
+    assertEquals(totals[2], 0.6266570686577501); // sqrt(pi/2)/(2)
+    assertEquals(totals[3], 0.6266570686577501); // sqrt(pi/2)/(2)
     /* tslint:enable no-magic-numbers */
   },
 });
@@ -134,8 +134,8 @@ test({
 
     /* tslint:disable no-magic-numbers */
     assertEquals(totals[0], 298699.85171812854); // sqrt((pi/2)*(62^6))
-    assertEquals(totals[1], 10.026513098524003); // sqrt((pi/2)*(2^6))
-    assertEquals(totals[2], 10.026513098524003); // sqrt((pi/2)*(2^6))
+    assertEquals(totals[1], 10.026513098524001); // sqrt((pi/2)*(2^6))
+    assertEquals(totals[2], 10.026513098524001); // sqrt((pi/2)*(2^6))
     /* tslint:enable no-magic-numbers */
   },
 });
@@ -165,8 +165,8 @@ test({
     assertEquals(totals[1], 0.9987466858626844); // 1 - (sqrt((pi/2)*1000000) / (62^6))
     assertEquals(totals[2], 0);
     assertEquals(totals[3], 0);
-    assertEquals(totals[4], 0.113773074547242);
-    assertEquals(totals[5], 0.113773074547242);
+    assertEquals(totals[4], 0.11377307454724206);
+    assertEquals(totals[5], 0.11377307454724206);
     /* tslint:enable no-magic-numbers */
   },
 });

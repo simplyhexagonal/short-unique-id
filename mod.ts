@@ -1,8 +1,35 @@
 // Copyright 2017-2020 the Short Unique ID authors. All rights reserved. Apache license.
-// @deno-types="./mod.d.ts"
-import { Big } from 'https://deno.land/x/math@v1.1.0/mod.ts';
-
 import { version } from './version.json';
+
+type Ranges = {
+  digits: number[],
+  lowerCase: number[],
+  upperCase: number[],
+};
+
+/**
+ * ```js
+ * {
+ *   dictionary: ['z', 'a', 'p', 'h', 'o', 'd', ...],
+ *   skipShuffle: false,
+ *   debug: false,
+ *   length: 6,
+ * }
+ * ```
+ */
+type Options = {
+  /** User-defined character dictionary */
+  dictionary: string[],
+
+  /** If true, sequentialUUID use the dictionary in the given order */
+  skipShuffle: boolean,
+
+  /** If true the instance will console.log useful info */
+  debug: boolean,
+
+  /** From 1 to infinity, the length you wish your UUID to be */
+  length: number,
+};
 
 /**
  * 6 was chosen as the default UUID length since for most cases
@@ -79,14 +106,15 @@ const DEFAULT_OPTIONS: Options = {
  *
  * ### Options
  *
+ * Options can be passed when instantiating `uid`:
+ *
  * ```js
- * {
- *   dictionary: ['z', 'a', 'p', 'h', 'o', 'd', ...], // User-defined dictionary
- *   skipShuffle: false, // If true, sequentialUUID use the dictionary in the given order
- *   debug: false, // If true the instance will console.log useful info
- *   length: 6, // From 1 to infinity, the length you wish your UUID to be
- * }
+ * const options = { ... };
+ *
+ * const uid = new ShortUniqueId(options);
  * ```
+ *
+ * For more information take a look at the [Options type definition](/globals.html#options).
  */
 class ShortUniqueId extends Function {
   counter: number;
@@ -110,7 +138,7 @@ class ShortUniqueId extends Function {
   uuidLength: number;
 
   /* tslint:disable consistent-return */
-  log(...args: any[]) {
+  protected log(...args: any[]): void {
     const finalArgs = [...args];
     finalArgs[0] = `[short-unique-id] ${args[0]}`;
     /* tslint:disable no-console */
@@ -205,8 +233,15 @@ class ShortUniqueId extends Function {
     this.counter = 0;
   }
 
-  /** Generates UUID based on internal counter that's incremented after each ID generation. */
-  sequentialUUID():string {
+  seq(): string {
+    return this.sequentialUUID();
+  }
+
+  /**
+   * Generates UUID based on internal counter that's incremented after each ID generation.
+   * @alias `const uid = new ShortUniqueId(); uid.seq();`
+   */
+  sequentialUUID(): string {
     let counterDiv: number;
     let counterRem: number;
     let id: string = '';
@@ -250,7 +285,7 @@ class ShortUniqueId extends Function {
       idIndex = 0 <= uuidLength ? j += 1: j -= 1
     ) {
       randomPartIdx = parseInt(
-        Big(Math.random()).times(this.dictLength).toFixed(0),
+        (Math.random() * this.dictLength).toFixed(0),
         10,
       ) % this.dictLength;
       id += this.dict[randomPartIdx];
@@ -277,7 +312,7 @@ class ShortUniqueId extends Function {
    */
   availableUUIDs(uuidLength: number = this.uuidLength): number {
     return parseFloat(
-      Big([...new Set(this.dict)].length).pow(uuidLength).toFixed(0),
+      Math.pow([...new Set(this.dict)].length, uuidLength).toFixed(0),
     );
   }
 
@@ -298,9 +333,9 @@ class ShortUniqueId extends Function {
    *
    * This function returns `Q(H)`.
    */
-  approxMaxBeforeCollision(rounds: number = this.availableUUIDs(this.uuidLength)) {
+  approxMaxBeforeCollision(rounds: number = this.availableUUIDs(this.uuidLength)): number {
     return parseFloat(
-      Big(Math.PI / 2).times(rounds).sqrt().toFixed(20),
+      Math.sqrt((Math.PI / 2) * rounds).toFixed(20),
     );
   }
 
@@ -330,10 +365,8 @@ class ShortUniqueId extends Function {
     uuidLength: number = this.uuidLength,
   ): number {
     return parseFloat(
-      Big(
-        this.approxMaxBeforeCollision(rounds),
-      ).div(
-        this.availableUUIDs(uuidLength),
+      (
+        this.approxMaxBeforeCollision(rounds) / this.availableUUIDs(uuidLength)
       ).toFixed(20),
     );
   }
@@ -358,13 +391,11 @@ class ShortUniqueId extends Function {
    * (Useful if you need a value to rate the "quality" of the combination of given dictionary
    * and UUID length. The closer to 1, higher the uniqueness and thus better the quality.)
    */
-  uniqueness(rounds: number = this.availableUUIDs(this.uuidLength)) {
+  uniqueness(rounds: number = this.availableUUIDs(this.uuidLength)): number {
     const score = parseFloat(
-      Big(1).minus(
-        Big(
-          this.approxMaxBeforeCollision(rounds),
-        ).div(rounds),
-      ).toFixed(20),
+      (1 - (
+        this.approxMaxBeforeCollision(rounds) / rounds
+      )).toFixed(20),
     );
     return (
       score > 1
@@ -375,7 +406,7 @@ class ShortUniqueId extends Function {
     );
   }
 
-  getVersion() {
+  getVersion(): string {
     return this.version;
   }
 }
