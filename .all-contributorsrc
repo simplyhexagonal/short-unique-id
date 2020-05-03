@@ -1,6 +1,15 @@
 {
   "contributors": [
     {
+      "login": "serendipious",
+      "name": "Ankit Kuwadekar",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/909781?v=4",
+      "profile": "https://github.com/serendipious",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
       "login": "jeanlescure",
       "name": "Jean Lescure",
       "avatar_url": "https://avatars2.githubusercontent.com/u/3330339?v=4",
@@ -11,33 +20,6 @@
         "content",
         "doc",
         "test"
-      ]
-    },
-    {
-      "login": "jeffturcotte",
-      "name": "Jeff Turcotte",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/65089?v=4",
-      "profile": "https://twitter.com/jeffturcotte",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "neversun",
-      "name": "Robert Scheinpflug",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/9157500?v=4",
-      "profile": "https://github.com/neversun",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "serendipious",
-      "name": "Ankit Kuwadekar",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/909781?v=4",
-      "profile": "https://github.com/serendipious",
-      "contributions": [
-        "code"
       ]
     },
     {
@@ -54,6 +36,34 @@
       "name": "EmerLM",
       "avatar_url": "https://avatars2.githubusercontent.com/u/64379301?v=4",
       "profile": "https://github.com/EmerLM",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "angelnath26",
+      "name": "angelnath26",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/63522028?v=4",
+      "profile": "https://github.com/angelnath26",
+      "contributions": [
+        "code",
+        "review"
+      ]
+    },
+    {
+      "login": "jeffturcotte",
+      "name": "Jeff Turcotte",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/65089?v=4",
+      "profile": "https://twitter.com/jeffturcotte",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "neversun",
+      "name": "Robert Scheinpflug",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/9157500?v=4",
+      "profile": "https://github.com/neversun",
       "contributions": [
         "code"
       ]
