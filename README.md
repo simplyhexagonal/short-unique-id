@@ -1,6 +1,6 @@
 # Short Unique ID (UUID) Generating Library
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![7 Contributors](https://img.shields.io/badge/all_contributors-7-purple.svg?style=flat-square)](#contributors)
+[![8 Contributors](https://img.shields.io/badge/all_contributors-8-purple.svg?style=flat-square)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Try short-unique-id on RunKit](https://badge.runkitcdn.com/short-unique-id.svg)](https://npm.runkit.com/short-unique-id)
@@ -136,6 +136,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/angelnath26"><img src="assets/contributors/angelnath26.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short_uuid/commits?author=angelnath26" title="Code">💻</a> <a href="https://github.com/jeanlescure/short_uuid/pulls?q=is%3Apr+reviewed-by%3Aangelnath26" title="Reviewed Pull Requests">👀</a></td></tr></tbody></table></td>
     <td align="center"><a href="https://twitter.com/jeffturcotte"><img src="assets/contributors/jeffturcotte.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeffturcotte" title="Code">💻</a></td></tr></tbody></table></td>
     <td align="center"><a href="https://github.com/neversun"><img src="assets/contributors/neversun.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/commits?author=neversun" title="Code">💻</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://github.com/ekelvin"><img src="assets/contributors/ekelvin.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/issues/19" title="Ideas, Planning, & Feedback">🤔</a></td></tr></tbody></table></td>
   </tr>
 </table>
 
