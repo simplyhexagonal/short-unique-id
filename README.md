@@ -6,21 +6,11 @@
 [![Try short-unique-id on RunKit](https://badge.runkitcdn.com/short-unique-id.svg)](https://npm.runkit.com/short-unique-id)
 [![NPM Downloads](https://img.shields.io/npm/dt/short-unique-id.svg?maxAge=2592000)](https://npmjs.com/package/short-unique-id)
 
-(Try out the <a target="_blank" href="https://jeanlescure.github.io/short-unique-id/">online generator</a>)
+## Documentation and Online Short UUID Generator
 
-## With ES6 imports, Node.js, and browser support
+You can find the docs and online generator at:
 
-This started as a straight up manual transpilation to ES6 of the [short-uid](https://github.com/serendipious/nodejs-short-uid) npm package by [Ankit Kuwadekar](https://github.com/serendipious/).
-
-![image depicting over 5000 weekly npm downloads](https://raw.githubusercontent.com/jeanlescure/short-unique-id/master/assets/weekly-downloads.png)
-
-Since my package is now reporting between 4k and 5k+ npm weekly downloads, I've gone ahead and refactored the package using [Neutrino JS](https://neutrinojs.org/).
-
-## V2.x
-
-Version 2.0 was mainly a refactor of the original branch, so functionality and naming conventions have been kept the same.
-
-Even so, there are still **breaking changes**, mainly the removal of the `lib` build output, as well as changes on how to instantiate the library on the browser.
+<a target="_blank" href="https://shortunique.id">https://shortunique.id</a>
 
 ## What is the probability of generating the same id again?
 
@@ -28,10 +18,11 @@ This largely depends on the given dictionary and the selected UUID length.
 
 Out of the box this library provides a shuffled dictionary of digits from
 0 to 9, as well as the alphabet from a to z both in UPPER and lower case,
-with a default UUID length of 6.
+with a default UUID length of 6. That gives you a total of 56,800,235,584
+possible UUIDs.
 
-With that, the probability of generating a duplicate in 1,000,000 rounds
-is ~0.00000002, or about 1 in 50,000,000.
+So, given the previous values, the probability of generating a duplicate
+in 1,000,000 rounds is ~0.00000002, or about 1 in 50,000,000.
 
 If you change the dictionary and/or the UUID length then we have provided
 the function `collisionProbability()` function to calculate the probability
@@ -41,88 +32,59 @@ function `uniqueness()` which provides a score (from 0 to 1) to rate the
 to 1, higher the uniqueness and thus better the quality).
 
 To find out more about the math behind these functions please refer to the
-<a target="_blank" href="https://jeanlescure.github.io/short-unique-id/classes/shortuniqueid.html#collisionprobability">API Reference</a>.
-
-## Instantiation (Server-side)
-
-Install:
-
-```
-yarn add short-unique-id
+<a target="_blank" href="https://shortunique.id/classes/shortuniqueid.html#collisionprobability">API Reference</a>.
 ```
 
-ES6:
+## V3.x
 
-```javascript
-// Import
-import ShortUniqueId from 'short-unique-id';
+Version 3.0 is a re-write of this library aiming to use [Deno](https://deno.land/) as the driving
+force of the development and distribution of Short Unique ID.
 
-// Instantiate
-const uid = new ShortUniqueId();
-```
+We did this by separating the Deno compatible typescript logic into a [git submodule](https://github.com/jeanlescure/short_uuid)
+which gets bundled for the rest of the platforms by the scripts within the
+`package.json` in this repo.
 
-Node.js:
+Another reason for the re-write was to define a new license for the source
+code within this repo, the [Apache 2.0 license](http://www.apache.org/licenses/LICENSE-2.0.html).
 
-```javascript
-// Import
-const ShortUniqueId = require('short-unique-id').default;
+## "Deno" who? what?
 
-// Instantiate
-const uid = new ShortUniqueId();
-```
+Ryan Dahl, creator of Node.js, has spent the last couple of years working
+on Deno, a new runtime for JavaScript that is supposed to fix all the inherent
+problems of Node.
 
-## Instantiation (Client-side)
+We have tried it out and are convinced that Deno is stable enough and
+delivers on all expectations we could have.
 
-Browser:
+For more info check out this [detailed look at Deno from LogRocket's blog](https://blog.logrocket.com/what-is-deno/).
 
-```html
-<!-- Import -->
-<script src="https://unpkg.com/short-unique-id@latest/dist/short-unique-id.min.js"></script>
+## Acknowledgement and platform support
 
-<!-- Instantiate -->
-<script>
-  var ShortUniqueId = window['short-unique-id'].default;
-  var uid = new ShortUniqueId({debug: true});
-</script>
-```
+This repo and npm package started as a straight up manual transpilation to ES6 of the [short-uid](https://github.com/serendipious/nodejs-short-uid) npm package by [Ankit Kuwadekar](https://github.com/serendipious/).
 
-## Options
+![image depicting over 5000 weekly npm downloads](https://raw.githubusercontent.com/jeanlescure/short-unique-id/master/assets/weekly-downloads.png)
 
-There are three options available on instantiation:
-
-```javascript
-const options = {
-  dictionary: ['Z', 'a', 'p', 'h', 'o', 'd' ...], // User-defined dictionary
-  skipShuffle: false, // If true, sequentialUUID will iterate over the dictionary in the given order
-  debug: false, // If true the instance will console.log useful info
-};
-```
-
-## Usage
-
-Once instantiated you can use one of two functions:
-
-```
-// Generate Random Unique ID of a specific length
-uid.randomUUID(6); // zUvMF8
-uid.randomUUID(8); // 4308OPWZ
-uid.randomUUID(13); // o0Sf6rfoPOrz5
-
-// Generate Sequential Unique ID based on internal dictionary and counter
-uid.sequentialUUID(); // v
-uid.sequentialUUID(); // 0
-uid.sequentialUUID(); // Y
-```
+Since this package is now reporting between 4k and 5k+ npm weekly downloads, we've gone ahead and re-written the whole of it in TypeScript and made sure to package lib and dist modules compatible with Deno, Node.js and all major Browsers.
 
 ## Development
 
-Tests run using [Jest](https://jestjs.io/):
+Clone this repo (including submodules):
+
+```sh
+# SSH
+git clone --recurse-submodules git@github.com:jeanlescure/short-unique-id.git
+
+# HTTPS
+git clone --recurse-submodules https://github.com/jeanlescure/short-unique-id.git
+```
+
+Tests run using [Deno](https://deno.land/std/testing/):
 
 ```
 yarn test
 ```
 
-Using [airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base) rules for [eslint](https://github.com/eslint/eslint):
+Using [airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base) rules for [tslint](https://palantir.github.io/tslint/):
 
 ```
 yarn lint
@@ -130,14 +92,14 @@ yarn lint
 
 ## Build
 
-In order to publish the latest changes you must build the distribution files:
+In order to publish the latest changes you must build the library and distribution files:
 
 ```
-yarn build
-yarn dist:update
+yarn lib:build
+yarn dist:build
 ```
 
-This will generate the `short-unique-id.min.js` file under the `./dist` directory.
+**IMPORTANT**: The `dist:build` script depends on the files generated by `lib:build`.
 
 ## Contributors ✨
 
@@ -148,9 +110,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
+    <td align="center"><a href="https://github.com/serendipious"><img src="assets/contributors/serendipious.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/commits?author=serendipious" title="Code">💻</a></td></tr></tbody></table></td>
     <td align="center"><a href="https://jeanlescure.cr"><img src="assets/contributors/jeanlescure.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="#maintenance-jeanlescure" title="Maintenance">🚧</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Code">💻</a> <a href="#content-jeanlescure" title="Content">🖋</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Documentation">📖</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Tests">⚠️</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://dianalu.design"><img src="assets/contributors/dilescure.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short_uuid/commits?author=DiLescure" title="Code">💻</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://github.com/EmerLM"><img src="assets/contributors/emerlm.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short_uuid/commits?author=EmerLM" title="Code">💻</a></td></tr></tbody></table></td>
+    </tr>
+    <tr>
+    <td align="center"><a href="https://github.com/angelnath26"><img src="assets/contributors/angelnath26.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short_uuid/commits?author=angelnath26" title="Code">💻</a> <a href="https://github.com/jeanlescure/short_uuid/pulls?q=is%3Apr+reviewed-by%3Aangelnath26" title="Reviewed Pull Requests">👀</a></td></tr></tbody></table></td>
     <td align="center"><a href="https://twitter.com/jeffturcotte"><img src="assets/contributors/jeffturcotte.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeffturcotte" title="Code">💻</a></td></tr></tbody></table></td>
     <td align="center"><a href="https://github.com/neversun"><img src="assets/contributors/neversun.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/commits?author=neversun" title="Code">💻</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://github.com/ekelvin"><img src="assets/contributors/ekelvin.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/issues/19" title="Ideas, Planning, & Feedback">🤔</a></td></tr></tbody></table></td>
   </tr>
 </table>
 
@@ -159,3 +128,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## License
+
+Copyright (c) 2018-2020 [Short Unique ID Contributors](https://github.com/jeanlescure/short-unique-id/graphs/contributors).<br/>
+Licensed under the Apache License 2.0.

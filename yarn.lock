@@ -1236,6 +1236,13 @@ shelljs@^0.8.4:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
+short_uuid_typedoc_template@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/short_uuid_typedoc_template/-/short_uuid_typedoc_template-1.0.2.tgz#ed6485750541a9a9b234589e4755817f65e59c3b"
+  integrity sha512-B+9Wnz7KfX4o1YyOKLHLdw+Ei5cmAkcrjLEihaTsH3hFUM7PIgpfwWlR6q1TdlZ6DLXMFmNgXu78gyK+sNyx7g==
+  dependencies:
+    lunr "^2.3.8"
+
 simple-concat@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/simple-concat/-/simple-concat-1.0.0.tgz#7344cbb8b6e26fb27d66b2fc86f9f6d5997521c6"

@@ -37,7 +37,7 @@
   ],
   "commit": false,
   "imageSize": 100,
-  "contributorsPerLine": 5,
+  "contributorsPerLine": 4,
   "contributorsSortAlphabetically": false,
   "badgeTemplate": "[![<%= contributors.length %> Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-purple.svg?style=flat-square)](#contributors)",
   "contributorTemplate": "<a href=\"<%= contributor.profile %>\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"130\" height=\"150\"><defs><rect id=\"rect\" width=\"<%= options.imageSize %>\" height=\"<%= options.imageSize %>\" x=\"15\" y=\"15\" rx=\"50%\"/><clipPath id=\"clip\"><use xlink:href=\"#rect\"/></clipPath></defs><use xlink:href=\"#rect\"/><image xlink:href=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>\" height=\"<%= options.imageSize %>\" x=\"15\" y=\"15\" clip-path=\"url(#clip)\"/><text x=\"15\" y=\"130\" textLength=\"<%= options.imageSize %>\" lengthAdjust=\"spacingAndGlyphs\" style=\"font: bold 88% sans-serif; fill: #5E40B8;\"><%= contributor.name %></text></svg></a><table><tbody><tr><td width=\"150\" align=\"center\"><%= contributions %></td></tr></tbody></table>",
