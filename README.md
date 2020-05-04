@@ -1,6 +1,6 @@
 # Deno Short UUID Module
 
-This is a random UUID reneration module which allows you to set your own dictionary and length.
+This is a random UUID generation module which allows you to set your own dictionary and length.
 
 ## Platform Support
 
@@ -34,7 +34,7 @@ const abUid = new ShortUniqueId({
   shuffle: false,
 });
 
-// Sequential UUID
+// Sequential UUID (using internal counter)
 console.log(abUid.seq()); // a
 console.log(abUid.seq()); // b
 console.log(abUid.seq()); // ab
