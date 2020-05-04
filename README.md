@@ -6,7 +6,7 @@
 [![Try short-unique-id on RunKit](https://badge.runkitcdn.com/short-unique-id.svg)](https://npm.runkit.com/short-unique-id)
 [![NPM Downloads](https://img.shields.io/npm/dt/short-unique-id.svg?maxAge=2592000)](https://npmjs.com/package/short-unique-id)
 
-(Try out the <a target="_blank" href="https://jeanlescure.github.io/short-unique-id/">online generator</a>)
+(Try out the <a target="_blank" href="https://shortunique.id">online generator</a>)
 
 ## With ES6 imports, Node.js, and browser support
 
