@@ -83,26 +83,25 @@ const DEFAULT_OPTIONS: Options = {
  * console.log(uid());
  *
  * // Sequential UUID
- * console.log(uid.sequentialUUID());
+ * console.log(uid.seq());
  * ```
  *
  * ### Use in browser
  *
  * ```html
  * <!-- Import -->
- * <script src="https://jeanlescure.github.io/short-unique-id/dist/short-unique-id.min.js"></script>
+ * <script src="https://cdn.jsdelivr.net/npm/short-unique-id@3.0.0-rc1/dist/short-unique-id.min.js"></script>
  *
  * <!-- Usage -->
  * <script>
  *   // Instantiate
- *   var ShortUniqueId = window['short-unique-id'].default;
  *   var uid = new ShortUniqueId();
  *
  *   // Random UUID
  *   document.write(uid());
  *
  *   // Sequential UUID
- *   document.write(uid.sequentialUUID());
+ *   document.write(uid.seq());
  * </script>
  * ```
  *
