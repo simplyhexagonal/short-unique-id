@@ -1,4 +1,4 @@
-// Copyright 2017-2020 the Short Unique ID authors. All rights reserved. Apache license.
+// Copyright 2017-2020 the Short Unique ID authors. All rights reserved. Apache 2.0 license.
 import { version } from './version.json';
 
 type Ranges = {
@@ -69,9 +69,11 @@ const DEFAULT_OPTIONS: Options = {
  * ### Use as module
  *
  * ```js
- * // Import
+ * // Deno (web module) Import
+ * import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@3.0.0-rc1/short_uuid/mod.ts';
+ * // ES6 Import
  * import ShortUniqueId from 'short-unique-id';
- * //or
+ * //or Node.js require
  * const ShortUniqueId = require('short-unique-id');
  *
  * //Instantiate
