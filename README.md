@@ -33,7 +33,7 @@ to 1, higher the uniqueness and thus better the quality).
 
 To find out more about the math behind these functions please refer to the
 <a target="_blank" href="https://shortunique.id/classes/shortuniqueid.html#collisionprobability">API Reference</a>.
-```
+
 
 ## V3.x
 

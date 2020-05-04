@@ -114,8 +114,8 @@ System.register("version", [], function (exports_1, context_1) {
     return {
         setters: [],
         execute: function () {
-            exports_1("default", { "version": "3.0.0-alpha" });
-            exports_1("version", version = "3.0.0-alpha");
+            exports_1("default", { "version": "3.0.0-rc1" });
+            exports_1("version", version = "3.0.0-rc1");
         }
     };
 });
@@ -164,9 +164,11 @@ System.register("mod", ["version"], function (exports_2, context_2) {
              * ### Use as module
              *
              * ```js
-             * // Import
+             * // Deno (web module) Import
+             * import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@3.0.0-rc1/short_uuid/mod.ts';
+             * // ES6 Import
              * import ShortUniqueId from 'short-unique-id';
-             * //or
+             * //or Node.js require
              * const ShortUniqueId = require('short-unique-id');
              *
              * //Instantiate
