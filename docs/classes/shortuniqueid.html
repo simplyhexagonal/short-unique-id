@@ -1,0 +1,593 @@
+<!doctype html>
+<html class="default no-js toggle-inherited">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Short Unique ID - Short UUID Generator</title>
+	<meta name="description" content="Documentation for short-unique-id - v3.0.0-alpha">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script src="https://raw.githubusercontent.com/jeanlescure/short-unique-id/v3.0.0-alpha/dist/short-unique-id.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+	<script src="https://unpkg.com/cookiejs@1.0.26/dist/cookie.js"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">short-unique-id - v3.0.0-alpha</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="/">Home</a>
+				</li>
+				<li>
+					<a href="shortuniqueid.html">ShortUniqueId</a>
+				</li>
+			</ul>
+			<h1>Class ShortUniqueId</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
+			<h3>API Reference</h3>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="shortuniqueid.html" class="tsd-kind-icon">Short<wbr>Unique<wbr>Id</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="shortuniqueid.html#apply" class="tsd-kind-icon">apply</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="shortuniqueid.html#approxmaxbeforecollision" class="tsd-kind-icon">approx<wbr>Max<wbr>Before<wbr>Collision</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="shortuniqueid.html#availableuuids" class="tsd-kind-icon">availableUUIDs</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="shortuniqueid.html#bind" class="tsd-kind-icon">bind</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="shortuniqueid.html#call" class="tsd-kind-icon">call</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="shortuniqueid.html#collisionprobability" class="tsd-kind-icon">collision<wbr>Probability</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="shortuniqueid.html#randomuuid" class="tsd-kind-icon">randomUUID</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="shortuniqueid.html#sequentialuuid" class="tsd-kind-icon">sequentialUUID</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="shortuniqueid.html#setdictionary" class="tsd-kind-icon">set<wbr>Dictionary</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="shortuniqueid.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="shortuniqueid.html#uniqueness" class="tsd-kind-icon">uniqueness</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-type-alias">
+						<a href="../globals.html#options" class="tsd-kind-icon">Options</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#default_uuid_length" class="tsd-kind-icon">DEFAULT_<wbr>UUID_<wbr>LENGTH</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-9 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Generate random or sequential UUID of any length.</p>
+					</div>
+					<a href="#use-as-module" id="use-as-module" style="color: inherit; text-decoration: none;">
+						<h3>Use as module</h3>
+					</a>
+					<pre><code class="language-js"><span class="hljs-comment">// Import</span>
+<span class="hljs-keyword">import</span> ShortUniqueId <span class="hljs-keyword">from</span> <span class="hljs-string">'short-unique-id'</span>;
+<span class="hljs-comment">//or</span>
+<span class="hljs-keyword">const</span> ShortUniqueId = <span class="hljs-built_in">require</span>(<span class="hljs-string">'short-unique-id'</span>);
+
+<span class="hljs-comment">//Instantiate</span>
+<span class="hljs-keyword">const</span> uid = <span class="hljs-keyword">new</span> ShortUniqueId();
+
+<span class="hljs-comment">// Random UUID</span>
+<span class="hljs-built_in">console</span>.log(uid());
+
+<span class="hljs-comment">// Sequential UUID</span>
+<span class="hljs-built_in">console</span>.log(uid.sequentialUUID());</code></pre>
+					<a href="#use-in-browser" id="use-in-browser" style="color: inherit; text-decoration: none;">
+						<h3>Use in browser</h3>
+					</a>
+					<pre><code class="language-html"><span class="hljs-comment">&lt;!-- Import --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://jeanlescure.github.io/short-unique-id/dist/short-unique-id.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- Usage --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-comment">// Instantiate</span>
+  <span class="hljs-keyword">var</span> ShortUniqueId = <span class="hljs-built_in">window</span>[<span class="hljs-string">'short-unique-id'</span>].default;
+  <span class="hljs-keyword">var</span> uid = <span class="hljs-keyword">new</span> ShortUniqueId();
+
+  <span class="hljs-comment">// Random UUID</span>
+  <span class="hljs-built_in">document</span>.write(uid());
+
+  <span class="hljs-comment">// Sequential UUID</span>
+  <span class="hljs-built_in">document</span>.write(uid.sequentialUUID());
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+					<a href="#options" id="options" style="color: inherit; text-decoration: none;">
+						<h3>Options</h3>
+					</a>
+					<p>Options can be passed when instantiating <code>uid</code>:</p>
+					<pre><code class="language-js"><span class="hljs-keyword">const</span> options = { ... };
+
+<span class="hljs-keyword">const</span> uid = <span class="hljs-keyword">new</span> ShortUniqueId(options);</code></pre>
+					<p>For more information take a look at the <a href="/globals.html#options">Options type definition</a>.</p>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="tsd-signature-type">Function</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">ShortUniqueId</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="shortuniqueid.html#apply" class="tsd-kind-icon">apply</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="shortuniqueid.html#approxmaxbeforecollision" class="tsd-kind-icon">approx<wbr>Max<wbr>Before<wbr>Collision</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="shortuniqueid.html#availableuuids" class="tsd-kind-icon">availableUUIDs</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="shortuniqueid.html#bind" class="tsd-kind-icon">bind</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="shortuniqueid.html#call" class="tsd-kind-icon">call</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="shortuniqueid.html#collisionprobability" class="tsd-kind-icon">collision<wbr>Probability</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="shortuniqueid.html#randomuuid" class="tsd-kind-icon">randomUUID</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="shortuniqueid.html#sequentialuuid" class="tsd-kind-icon">sequentialUUID</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="shortuniqueid.html#setdictionary" class="tsd-kind-icon">set<wbr>Dictionary</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="shortuniqueid.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="shortuniqueid.html#uniqueness" class="tsd-kind-icon">uniqueness</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="apply" class="tsd-anchor"></a>
+					<h3>apply</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">apply<span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span>, thisArg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, argArray<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="shortuniqueid.html">ShortUniqueId</a>.<a href="shortuniqueid.html#apply">apply</a></p>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calls the function, substituting the specified object for the this value of the function, and the specified array for the arguments of the function.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>this: <span class="tsd-signature-type">Function</span></h5>
+								</li>
+								<li>
+									<h5>thisArg: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object to be used as the this object.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> argArray: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A set of arguments to be passed to the function.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="approxmaxbeforecollision" class="tsd-anchor"></a>
+					<h3>approx<wbr>Max<wbr>Before<wbr>Collision</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">approx<wbr>Max<wbr>Before<wbr>Collision<span class="tsd-signature-symbol">(</span>rounds<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calculates approximate number of hashes before first collision.</p>
+								</div>
+								<p>Given that:</p>
+								<ul>
+									<li><code>H</code> is the total number of possible UUIDs, or in terms of this library,
+									the result of running <code>availableUUIDs()</code></li>
+									<li>the expected number of values we have to choose before finding the
+									first collision can be expressed as the quantity <code>Q(H)</code></li>
+								</ul>
+								<p>Then <code>Q(H)</code> can be approximated as the square root of the of the product
+								of half of pi times <code>H</code>:</p>
+								<p><img src="https://render.githubusercontent.com/render/math?math=%5CHuge%20Q(H)%5Capprox%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7DH%7D" alt=""></p>
+								<p>This function returns <code>Q(H)</code>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> rounds: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = this.availableUUIDs(this.uuidLength)</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="availableuuids" class="tsd-anchor"></a>
+					<h3>availableUUIDs</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">availableUUIDs<span class="tsd-signature-symbol">(</span>uuidLength<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calculates total number of possible UUIDs.</p>
+								</div>
+								<p>Given that:</p>
+								<ul>
+									<li><code>H</code> is the total number of possible UUIDs</li>
+									<li><code>n</code> is the number of unique characters in the dictionary</li>
+									<li><code>l</code> is the UUID length</li>
+								</ul>
+								<p>Then <code>H</code> is defined as <code>n</code> to the power of <code>l</code>:</p>
+								<p><img src="https://render.githubusercontent.com/render/math?math=%5CHuge%20H=n%5El" alt=""></p>
+								<p>This function returns <code>H</code>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> uuidLength: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = this.uuidLength</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="bind" class="tsd-anchor"></a>
+					<h3>bind</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">bind<span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span>, thisArg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, <span class="tsd-signature-symbol">...</span>argArray<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="shortuniqueid.html">ShortUniqueId</a>.<a href="shortuniqueid.html#bind">bind</a></p>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>For a given function, creates a bound function that has the same body as the original function.
+									The this object of the bound function is associated with the specified object, and has the specified initial parameters.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>this: <span class="tsd-signature-type">Function</span></h5>
+								</li>
+								<li>
+									<h5>thisArg: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An object to which the this keyword can refer inside the new function.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>argArray: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A list of arguments to be passed to the new function.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="call" class="tsd-anchor"></a>
+					<h3>call</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">call<span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span>, thisArg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, <span class="tsd-signature-symbol">...</span>argArray<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="shortuniqueid.html">ShortUniqueId</a>.<a href="shortuniqueid.html#call">call</a></p>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calls a method of an object, substituting another object for the current object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>this: <span class="tsd-signature-type">Function</span></h5>
+								</li>
+								<li>
+									<h5>thisArg: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object to be used as the current object.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>argArray: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A list of arguments to be passed to the method.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="collisionprobability" class="tsd-anchor"></a>
+					<h3>collision<wbr>Probability</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">collision<wbr>Probability<span class="tsd-signature-symbol">(</span>rounds<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, uuidLength<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calculates probability of generating duplicate UUIDs (a collision) in a
+									given number of UUID generation rounds.</p>
+								</div>
+								<p>Given that:</p>
+								<ul>
+									<li><code>r</code> is the maximum number of times that <code>randomUUID()</code> will be called,
+									or better said the number of <em>rounds</em></li>
+									<li><code>H</code> is the total number of possible UUIDs, or in terms of this library,
+									the result of running <code>availableUUIDs()</code></li>
+								</ul>
+								<p>Then the probability of collision <code>p(r; H)</code> can be approximated as the result
+								of dividing the square root of the of the product of half of pi times <code>H</code> by <code>H</code>:</p>
+								<p><img src="https://render.githubusercontent.com/render/math?math=%5CHuge%20p(r%3B%20H)%5Capprox%5Cfrac%7B%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7Dr%7D%7D%7BH%7D" alt=""></p>
+								<p>This function returns <code>p(r; H)</code>.</p>
+								<p>(Useful if you are wondering <em>&quot;If I use this lib and expect to perform at most
+								<code>r</code> rounds of UUID generations, what is the probability that I will hit a duplicate UUID?&quot;</em>.)</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> rounds: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = this.availableUUIDs(this.uuidLength)</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> uuidLength: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = this.uuidLength</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="randomuuid" class="tsd-anchor"></a>
+					<h3>randomUUID</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">randomUUID<span class="tsd-signature-symbol">(</span>uuidLength<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates UUID by creating each part randomly.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>alias</dt>
+									<dd><p><code>const uid = new ShortUniqueId(); uid(uuidLength: number);</code></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> uuidLength: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = this.uuidLength || DEFAULT_UUID_LENGTH</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="sequentialuuid" class="tsd-anchor"></a>
+					<h3>sequentialUUID</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">sequentialUUID<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates UUID based on internal counter that&#39;s incremented after each ID generation.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>alias</dt>
+									<dd><p><code>const uid = new ShortUniqueId(); uid.seq();</code></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setdictionary" class="tsd-anchor"></a>
+					<h3>set<wbr>Dictionary</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Dictionary<span class="tsd-signature-symbol">(</span>dictionary<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Change the dictionary after initialization.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>dictionary: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="tostring" class="tsd-anchor"></a>
+					<h3>to<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="shortuniqueid.html">ShortUniqueId</a>.<a href="shortuniqueid.html#tostring">toString</a></p>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a string representation of a function.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="uniqueness" class="tsd-anchor"></a>
+					<h3>uniqueness</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">uniqueness<span class="tsd-signature-symbol">(</span>rounds<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calculate a &quot;uniqueness&quot; score (from 0 to 1) of UUIDs based on size of
+									dictionary and chosen UUID length.</p>
+								</div>
+								<p>Given that:</p>
+								<ul>
+									<li><code>H</code> is the total number of possible UUIDs, or in terms of this library,
+									the result of running <code>availableUUIDs()</code></li>
+									<li><code>Q(H)</code> is the approximate number of hashes before first collision,
+									or in terms of this library, the result of running <code>approxMaxBeforeCollision()</code></li>
+								</ul>
+								<p>Then <code>uniqueness</code> can be expressed as the additive inverse of the probability of
+									generating a &quot;word&quot; I had previously generated (a duplicate) at any given iteration
+								up to the the total number of possible UUIDs expressed as the quotiend of <code>Q(H)</code> and <code>H</code>:</p>
+								<p><img src="https://render.githubusercontent.com/render/math?math=%5CHuge%201-%5Cfrac%7BQ(H)%7D%7BH%7D" alt=""></p>
+								<p>(Useful if you need a value to rate the &quot;quality&quot; of the combination of given dictionary
+								and UUID length. The closer to 1, higher the uniqueness and thus better the quality.)</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> rounds: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = this.availableUUIDs(this.uuidLength)</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<p>
+			<svg height="18" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="18" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> See in <a href="https://github.com/jeanlescure/short-unique-id" target="_blank" rel="noopener noreferrer">Github</a> | <a href="https://jeanlescure.cr" target="_blank" rel="noopener noreferrer">Jean M. Lescure</a> &copy; 2018-<script>document.write(new Date().getFullYear())</script> | Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a>
+		</p>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>
+		&nbsp;
+	</p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
