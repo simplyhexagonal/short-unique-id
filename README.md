@@ -6,9 +6,9 @@ This is a random UUID generation module which allows you to set your own diction
 
 This repo is pulled as a submodule by the npm package [short-unique-id](https://github.com/jeanlescure/short-unique-id). This allows us to support the following platforms through TypeScript and `deno bundle`:
 
-- Deno
-- Node.js
-- Browsers
+- [Deno](https://deno.land/x/short_uuid/)
+- [Node.js](https://www.npmjs.com/package/short-unique-id)
+- [Browsers](https://www.jsdelivr.com/package/npm/short-unique-id?path=dist)
 
 ## Documentation
 
