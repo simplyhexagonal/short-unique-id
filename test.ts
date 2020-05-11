@@ -9,6 +9,19 @@ import ShortUniqueId from './mod.ts';
 const { test } = Deno;
 
 test({
+  name: 'ability to show module version',
+  fn(): void {
+    const uid: ShortUniqueId = new ShortUniqueId({
+      dictionary: ['a', 'b'],
+      shuffle: false,
+    });
+    const version = uid.getVersion();
+
+    assert((/^\d+\.\d+.\d+/).test(version));
+  },
+});
+
+test({
   name: 'ability to generate random id\'s based on internal counter',
   fn(): void {
     const uid: ShortUniqueId = new ShortUniqueId();

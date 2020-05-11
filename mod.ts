@@ -1,5 +1,5 @@
 // Copyright 2017-2020 the Short Unique ID authors. All rights reserved. Apache 2.0 license.
-import { version } from './version.json';
+import version from './version.ts';
 
 type Ranges = {
   digits: number[],
@@ -407,6 +407,9 @@ class ShortUniqueId extends Function {
     );
   }
 
+  /**
+   * Return the version of this module.
+   */
   getVersion(): string {
     return this.version;
   }
