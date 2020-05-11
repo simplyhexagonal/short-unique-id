@@ -7,7 +7,13 @@
 [![3 Contributors](https://img.shields.io/badge/all_contributors-3-purple.svg?style=flat-square)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-## Documentation and Online Short UUID Generator
+## Available for
+
+- [Node.js (npm)](https://www.npmjs.com/package/short-unique-id)
+- [Deno](https://deno.land/x/short_uuid/)
+- [Browsers](https://www.jsdelivr.com/package/npm/short-unique-id?path=dist)
+
+## Documentation with Online Short UUID Generator
 
 You can find the docs and online generator at:
 
