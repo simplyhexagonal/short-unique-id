@@ -4,14 +4,22 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Short Unique ID - Short UUID Generator</title>
-	<meta name="description" content="Documentation for short-unique-id - v3.0.0-rc1">
+	<meta name="description" content="Documentation for short-unique-id - v3.0.0-rc2">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
-	<script src="https://cdn.jsdelivr.net/npm/short-unique-id@3.0.0-rc1/dist/short-unique-id.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
 	<script src="https://unpkg.com/cookiejs@1.0.26/dist/cookie.js"></script>
 </head>
 <body>
+<div class="tsd-page-cookieconsent row">
+	<div class="col-8">
+		<p>This site uses cookies. To consent, continue navigating this site or click the "Accept cookies" button.</p>
+	</div>
+	<div class="col-4 consent-button-holder">
+		<button class="cookieconsent-button">Accept cookies</button>
+	</div>
+</div>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
@@ -25,7 +33,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">short-unique-id - v3.0.0-rc1</a>
+					<a href="../index.html" class="title">short-unique-id - v3.0.0-rc2</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -90,6 +98,9 @@
 								<a href="shortuniqueid.html#collisionprobability" class="tsd-kind-icon">collision<wbr>Probability</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="shortuniqueid.html#getversion" class="tsd-kind-icon">get<wbr>Version</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="shortuniqueid.html#randomuuid" class="tsd-kind-icon">randomUUID</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -140,24 +151,23 @@
 <span class="hljs-built_in">console</span>.log(uid());
 
 <span class="hljs-comment">// Sequential UUID</span>
-<span class="hljs-built_in">console</span>.log(uid.sequentialUUID());</code></pre>
+<span class="hljs-built_in">console</span>.log(uid.seq());</code></pre>
 					<a href="#use-in-browser" id="use-in-browser" style="color: inherit; text-decoration: none;">
 						<h3>Use in browser</h3>
 					</a>
 					<pre><code class="language-html"><span class="hljs-comment">&lt;!-- Import --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://jeanlescure.github.io/short-unique-id/dist/short-unique-id.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/short-unique-id@3.0.0-rc1/dist/short-unique-id.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-comment">&lt;!-- Usage --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
   <span class="hljs-comment">// Instantiate</span>
-  <span class="hljs-keyword">var</span> ShortUniqueId = <span class="hljs-built_in">window</span>[<span class="hljs-string">'short-unique-id'</span>].default;
   <span class="hljs-keyword">var</span> uid = <span class="hljs-keyword">new</span> ShortUniqueId();
 
   <span class="hljs-comment">// Random UUID</span>
   <span class="hljs-built_in">document</span>.write(uid());
 
   <span class="hljs-comment">// Sequential UUID</span>
-  <span class="hljs-built_in">document</span>.write(uid.sequentialUUID());
+  <span class="hljs-built_in">document</span>.write(uid.seq());
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 					<a href="#options" id="options" style="color: inherit; text-decoration: none;">
 						<h3>Options</h3>
@@ -195,6 +205,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="shortuniqueid.html#bind" class="tsd-kind-icon">bind</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="shortuniqueid.html#call" class="tsd-kind-icon">call</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="shortuniqueid.html#collisionprobability" class="tsd-kind-icon">collision<wbr>Probability</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="shortuniqueid.html#getversion" class="tsd-kind-icon">get<wbr>Version</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="shortuniqueid.html#randomuuid" class="tsd-kind-icon">randomUUID</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="shortuniqueid.html#sequentialuuid" class="tsd-kind-icon">sequentialUUID</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="shortuniqueid.html#setdictionary" class="tsd-kind-icon">set<wbr>Dictionary</a></li>
@@ -435,6 +446,25 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getversion" class="tsd-anchor"></a>
+					<h3>get<wbr>Version</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Version<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the version of this module.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="randomuuid" class="tsd-anchor"></a>
 					<h3>randomUUID</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -591,5 +621,46 @@
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
 <script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-159642755-1"></script>
+<script>
+  var gtagId = 'UA-159642755-1';
+  window['ga-disable-' + gtagId] = true;
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  function initTracking(){
+    cookie('cookieconsent_status', 'allow');
+
+    $('.tsd-page-cookieconsent').removeClass('show');
+    $(window).off('scroll');
+    $('.cookieconsent-button').off('click');
+
+    window['ga-disable-' + gtagId] = false;
+    gtag('event', 'CookieConsent');
+    gtag('config', gtagId);
+  }
+
+  if (cookie.get('cookieconsent_status') === 'allow') {
+    initTracking();
+  } else {
+    $('.tsd-page-cookieconsent').addClass('show');
+
+    var scrollCounter = 0;
+    $(window).scroll(function(e) {
+      scrollCounter += 1;
+
+      if (scrollCounter >= 30) {
+        initTracking();
+      }
+    });
+
+    $('.cookieconsent-button').click(function() {
+      initTracking();
+    });
+  }
+</script>
 </body>
 </html>
