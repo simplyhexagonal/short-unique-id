@@ -1,10 +1,11 @@
 # Short Unique ID (UUID) Generating Library
-![CD](https://github.com/jeanlescure/short-unique-id/workflows/CD/badge.svg)
+![tests](https://github.com/jeanlescure/short-unique-id/workflows/tests/badge.svg)
 [![Try short-unique-id on RunKit](https://badge.runkitcdn.com/short-unique-id.svg)](https://npm.runkit.com/short-unique-id)
 [![NPM Downloads](https://img.shields.io/npm/dt/short-unique-id.svg?maxAge=2592000)](https://npmjs.com/package/short-unique-id)
+[![Deno v1.0.0](https://img.shields.io/badge/deno-v1.0.0-green.svg)](https://deno.land)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![8 Contributors](https://img.shields.io/badge/all_contributors-8-purple.svg?style=flat-square)](#contributors)
+[![8 Contributors](https://img.shields.io/badge/all_contributors-8-purple.svg)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Available for
