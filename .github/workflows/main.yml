@@ -1,4 +1,4 @@
-name: CD
+name: tests
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -24,6 +24,9 @@ jobs:
         node-version: '10.x'
 
     # Runs a single command using the runners shell
+    - name: Install Deno
+      run: curl -fsSL https://deno.land/x/install/install.sh | sh -s v1.0.0
+
     - name: Install Yarn
       run: npm install -g yarn
 
