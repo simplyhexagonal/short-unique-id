@@ -70,7 +70,7 @@ const DEFAULT_OPTIONS: Options = {
  *
  * ```js
  * // Deno (web module) Import
- * import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@3.0.0-rc1/short_uuid/mod.ts';
+ * import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@latest/short_uuid/mod.ts';
  * // ES6 Import
  * import ShortUniqueId from 'short-unique-id';
  * //or Node.js require
@@ -90,7 +90,7 @@ const DEFAULT_OPTIONS: Options = {
  *
  * ```html
  * <!-- Import -->
- * <script src="https://cdn.jsdelivr.net/npm/short-unique-id@3.0.0-rc1/dist/short-unique-id.min.js"></script>
+ * <script src="https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js"></script>
  *
  * <!-- Usage -->
  * <script>

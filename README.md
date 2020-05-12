@@ -19,7 +19,7 @@ You can find the docs and online generator at:
 ## Example
 
 ```js
-import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@3.0.0-rc1/short_uuid/mod.ts';
+import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@latest/short_uuid/mod.ts';
 
 const uid = new ShortUniqueId();
 
