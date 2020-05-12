@@ -298,43 +298,75 @@ yarn <span class="hljs-symbol">dist:</span>build</code></pre><p><strong>IMPORTAN
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159642755-1"></script>
 <script>
-  var gtagId = 'UA-159642755-1';
-  window['ga-disable-' + gtagId] = true;
+    var gtagId = 'UA-159642755-1';
+    window['ga-disable-' + gtagId] = true;
 
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  function initTracking(){
-    cookie('cookieconsent_status', 'allow');
+    function initTracking(){
+      cookie('cookieconsent_status', 'allow');
 
-    $('.tsd-page-cookieconsent').removeClass('show');
-    $(window).off('scroll');
-    $('.cookieconsent-button').off('click');
+      $('.tsd-page-cookieconsent').removeClass('show');
+      $(window).off('scroll');
+      $('.cookieconsent-button').off('click');
 
-    window['ga-disable-' + gtagId] = false;
-    gtag('event', 'CookieConsent');
-    gtag('config', gtagId);
-  }
+      window['ga-disable-' + gtagId] = false;
+      gtag('event', 'CookieConsent');
+      gtag('config', gtagId, {
+        'custom_map': {
+          'metric1': 'cookie_consent',
+          'metric2': 'color_mode_dark',
+          'metric3': 'color_mode_light',
+          'metric4': 'color_mode_np'
+        }
+      });
+      gtag('event', 'custom_metrics', {
+        'cookie_consent': 1,
+        'color_mode_dark': (
+          window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        ) ? (
+          1
+        ) : (
+          0
+        ),
+        'color_mode_light': (
+          window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
+        ) ? (
+          1
+        ) : (
+          0
+        ),
+        'color_mode_np' : (
+          !window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+          && !window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
+        ) ? (
+          1
+        ) : (
+          0
+        )
+      });
+    }
 
-  if (cookie.get('cookieconsent_status') === 'allow') {
-    initTracking();
-  } else {
-    $('.tsd-page-cookieconsent').addClass('show');
-
-    var scrollCounter = 0;
-    $(window).scroll(function(e) {
-      scrollCounter += 1;
-
-      if (scrollCounter >= 30) {
-        initTracking();
-      }
-    });
-
-    $('.cookieconsent-button').click(function() {
+    if (cookie.get('cookieconsent_status') === 'allow') {
       initTracking();
-    });
-  }
-</script>
+    } else {
+      $('.tsd-page-cookieconsent').addClass('show');
+
+      var scrollCounter = 0;
+      $(window).scroll(function(e) {
+        scrollCounter += 1;
+
+        if (scrollCounter >= 30) {
+          initTracking();
+        }
+      });
+
+      $('.cookieconsent-button').click(function() {
+        initTracking();
+      });
+    }
+  </script>
 </body>
 </html>
