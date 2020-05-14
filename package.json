@@ -25,7 +25,7 @@
     "gen:docs": "cd short_uuid && typedoc --gaID UA-159642755-1 --readme ../README.md --theme ../node_modules/short_uuid_typedoc_template/bin/default --out ../docs . && cd .. && cp -r ./assets ./docs && mv ./docs/assets/favicon.ico ./docs/ && echo shortunique.id > ./docs/CNAME",
     "lib:build": "yarn gen:version && rm ./lib/* ; mkdir -p tmp && cd short_uuid && deno bundle mod.ts ../tmp/mod.js && deno bundle version.ts ../tmp/version.js && cd .. && sucrase ./tmp -d ./lib -t imports && mv ./lib/mod.js ./lib/short-unique-id.js && rm -rf ./tmp",
     "dist:build": "yarn lib:build && rm ./dist/* ; echo 'var __suid_module = ' > ./dist/short-unique-id.js && browserify ./lib/short-unique-id.js >> ./dist/short-unique-id.js && echo 'var ShortUniqueId = __suid_module(1)[\"default\"];' >> ./dist/short-unique-id.js && minify ./dist/short-unique-id.js > ./dist/short-unique-id.min.js",
-    "test": "yarn gen:version && cd short_uuid && deno test && cd .. && yarn link && yarn link short-unique-id && node ./runkit.js",
+    "test": "cd short_uuid && deno test && cd .. && yarn link && yarn link short-unique-id && node ./runkit.js",
     "lint": "tslint ./short_uuid/*.ts"
   },
   "devDependencies": {
