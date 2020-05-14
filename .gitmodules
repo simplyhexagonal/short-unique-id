@@ -1,0 +1,4 @@
+[submodule "short_uuid"]
+	path = short_uuid
+	url = https://github.com/jeanlescure/short_uuid
+	branch = master
