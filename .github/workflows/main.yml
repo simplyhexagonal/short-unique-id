@@ -37,4 +37,6 @@ jobs:
       run: yarn lint
 
     - name: Test
-      run: yarn test
+      run: PATH="$DENO_INSTALL/bin:$PATH" yarn test
+      env:
+        DENO_INSTALL: /home/runner/.deno
