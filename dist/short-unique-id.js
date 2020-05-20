@@ -113,7 +113,7 @@ System.register("version", [], function (exports_1, context_1) {
   return {
     setters: [],
     execute: function () {
-      exports_1("default", "3.0.0");
+      exports_1("default", "3.0.1");
     },
   };
 });
@@ -173,11 +173,11 @@ System.register("mod", ["version"], function (exports_2, context_2) {
              *
              * ```js
              * // Deno (web module) Import
-             * import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@3.0.0-rc1/short_uuid/mod.ts';
+             * import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@latest/short_uuid/mod.ts';
              * // ES6 Import
              * import ShortUniqueId from 'short-unique-id';
              * //or Node.js require
-             * const ShortUniqueId = require('short-unique-id');
+             * const {default: ShortUniqueId} = require('short-unique-id');
              *
              * //Instantiate
              * const uid = new ShortUniqueId();
@@ -193,7 +193,7 @@ System.register("mod", ["version"], function (exports_2, context_2) {
              *
              * ```html
              * <!-- Import -->
-             * <script src="https://cdn.jsdelivr.net/npm/short-unique-id@3.0.0-rc1/dist/short-unique-id.min.js"></script>
+             * <script src="https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js"></script>
              *
              * <!-- Usage -->
              * <script>
@@ -353,7 +353,7 @@ System.register("mod", ["version"], function (exports_2, context_2) {
           ) {
             randomPartIdx =
               parseInt((Math.random() * this.dictLength).toFixed(0), 10) %
-                this.dictLength;
+              this.dictLength;
             id += this.dict[randomPartIdx];
           }
           // Return random generated ID.

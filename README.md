@@ -8,6 +8,61 @@
 [![8 Contributors](https://img.shields.io/badge/all_contributors-8-purple.svg)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
+Generate random or sequential UUID of any length.
+
+### Use as module
+
+```js
+// Deno (web module) Import
+import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@latest/short_uuid/mod.ts';
+
+// ES6 Import
+import ShortUniqueId from 'short-unique-id';
+
+//or Node.js require
+const { default: ShortUniqueId } = require('short-unique-id');
+
+//Instantiate
+const uid = new ShortUniqueId();
+
+// Random UUID
+console.log(uid());
+
+// Sequential UUID
+console.log(uid.seq());
+```
+
+### Use in browser
+
+```html
+<!-- Import -->
+<script src="https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js"></script>
+
+<!-- Usage -->
+<script>
+  // Instantiate
+  var uid = new ShortUniqueId();
+
+  // Random UUID
+  document.write(uid());
+
+  // Sequential UUID
+  document.write(uid.seq());
+</script>
+```
+
+### Options
+
+Options can be passed when instantiating `uid`:
+
+```js
+const options = { ... };
+
+const uid = new ShortUniqueId(options);
+```
+
+For more information take a look at the [docs](https://shortunique.id/globals.html#options).
+
 ## Available for
 
 - [Node.js (npm)](https://www.npmjs.com/package/short-unique-id)
