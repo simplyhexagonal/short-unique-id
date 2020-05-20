@@ -74,7 +74,7 @@ const DEFAULT_OPTIONS: Options = {
  * // ES6 Import
  * import ShortUniqueId from 'short-unique-id';
  * //or Node.js require
- * const ShortUniqueId = require('short-unique-id');
+ * const {default: ShortUniqueId} = require('short-unique-id');
  *
  * //Instantiate
  * const uid = new ShortUniqueId();
