@@ -1,0 +1,6 @@
+short_uuid
+.gitmodules
+*.log
+*.tgz
+.vscode
+.github
