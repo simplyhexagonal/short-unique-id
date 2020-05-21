@@ -16,7 +16,7 @@ Generate random or sequential UUID of any length.
 // Deno (web module) Import
 import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@latest/short_uuid/mod.ts';
 
-// ES6 Import
+// ES6 / TypeScript Import
 import ShortUniqueId from 'short-unique-id';
 
 //or Node.js require
@@ -140,6 +140,8 @@ git clone --recurse-submodules git@github.com:jeanlescure/short-unique-id.git
 # HTTPS
 git clone --recurse-submodules https://github.com/jeanlescure/short-unique-id.git
 ```
+
+All feature development must happen under `./short_uuid/mod.ts`.
 
 Tests run using [Deno](https://deno.land/std/testing/):
 

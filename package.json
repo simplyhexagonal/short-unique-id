@@ -1,6 +1,6 @@
 {
   "name": "short-unique-id",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Generate random or sequential UUID of any length",
   "keywords": [
     "short",
@@ -14,7 +14,7 @@
   "license": "Apache-2.0",
   "main": "lib/short-unique-id",
   "module": "lib/short-unique-id",
-  "typings": "short_uuid/mod",
+  "typings": "typings/short-unique-id",
   "homepage": "https://jeanlescure.github.io/short-unique-id/",
   "repository": {
     "type": "git",
@@ -24,10 +24,12 @@
   "scripts": {
     "gen:version": "echo \"export default '`jq -r .version package.json`';\" > short_uuid/version.ts",
     "gen:docs": "cd short_uuid && typedoc --gaID UA-159642755-1 --readme ../README.md --theme ../node_modules/short_uuid_typedoc_template/bin/default --out ../docs . && cd .. && cp -r ./assets ./docs && mv ./docs/assets/favicon.ico ./docs/ && echo shortunique.id > ./docs/CNAME",
+    "gen:typings": "cd short_uuid && ../node_modules/typescript/bin/tsc --declaration --emitDeclarationOnly mod.ts ; mv mod.d.ts ../typings/short-unique-id.d.ts",
     "lib:build": "yarn gen:version && rm ./lib/* ; mkdir -p tmp && cd short_uuid && deno bundle mod.ts ../tmp/mod.js && deno bundle version.ts ../tmp/version.js && cd .. && sucrase ./tmp -d ./lib -t imports && mv ./lib/mod.js ./lib/short-unique-id.js && rm -rf ./tmp",
     "dist:build": "yarn lib:build && rm ./dist/* ; echo 'var __suid_module = ' > ./dist/short-unique-id.js && browserify ./lib/short-unique-id.js >> ./dist/short-unique-id.js && echo 'var ShortUniqueId = __suid_module(1)[\"default\"];' >> ./dist/short-unique-id.js && minify ./dist/short-unique-id.js > ./dist/short-unique-id.min.js",
     "test": "cd short_uuid && deno test && cd .. && yarn link && yarn link short-unique-id && node ./runkit.js",
-    "lint": "tslint ./short_uuid/*.ts"
+    "lint": "tslint ./short_uuid/*.ts",
+    "prepare:release": "yarn gen:typings && yarn lint && yarn lib:build && yarn dist:build && yarn test && yarn gen:docs"
   },
   "devDependencies": {
     "browserify": "^16.5.1",
