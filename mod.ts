@@ -11,7 +11,7 @@ type Ranges = {
  * ```js
  * {
  *   dictionary: ['z', 'a', 'p', 'h', 'o', 'd', ...],
- *   skipShuffle: false,
+ *   shuffle: false,
  *   debug: false,
  *   length: 6,
  * }
@@ -71,8 +71,10 @@ const DEFAULT_OPTIONS: Options = {
  * ```js
  * // Deno (web module) Import
  * import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@latest/short_uuid/mod.ts';
- * // ES6 Import
+ *
+ * // ES6 / TypeScript Import
  * import ShortUniqueId from 'short-unique-id';
+ *
  * //or Node.js require
  * const {default: ShortUniqueId} = require('short-unique-id');
  *
