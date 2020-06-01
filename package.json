@@ -1,6 +1,6 @@
 {
   "name": "short-unique-id",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Generate random or sequential UUID of any length",
   "keywords": [
     "short",
@@ -15,7 +15,7 @@
   "main": "lib/short-unique-id",
   "module": "lib/short-unique-id",
   "typings": "typings/short-unique-id",
-  "homepage": "https://jeanlescure.github.io/short-unique-id/",
+  "homepage": "https://shortunique.id",
   "repository": {
     "type": "git",
     "url": "https://github.com/jeanlescure/short-unique-id"
