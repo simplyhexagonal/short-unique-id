@@ -20,6 +20,9 @@
     "type": "git",
     "url": "https://github.com/jeanlescure/short-unique-id"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "runkitExampleFilename": "./test/runkit.js",
   "scripts": {
     "gen:version": "echo \"export default '`jq -r .version package.json`';\" > short_uuid/version.ts",
