@@ -1,4 +1,5 @@
 // Copyright 2017-2020 the Short Unique ID authors. All rights reserved. Apache 2.0 license.
+// @ts-ignore
 import version from './version.ts';
 
 type Ranges = {
