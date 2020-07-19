@@ -31,7 +31,7 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Install Deno
-      run: curl -fsSL https://deno.land/x/install/install.sh | sh -s v1.0.0
+      run: curl -fsSL https://deno.land/x/install/install.sh | sh
 
     - name: Install Yarn
       run: npm install -g yarn
