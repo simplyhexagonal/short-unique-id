@@ -1,6 +1,6 @@
 {
   "name": "short-unique-id",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "Generate random or sequential UUID of any length",
   "keywords": [
     "short",
@@ -8,7 +8,9 @@
     "uid",
     "uuid",
     "guid",
+    "node",
     "unique id",
+    "generator",
     "tiny"
   ],
   "license": "Apache-2.0",
@@ -23,7 +25,7 @@
   "runkitExampleFilename": "./test/runkit.js",
   "scripts": {
     "gen:version": "echo \"export default '`jq -r .version package.json`';\" > short_uuid/version.ts",
-    "gen:docs": "cd short_uuid && typedoc --gaID UA-159642755-1 --readme ../README.md --theme ../node_modules/short_uuid_typedoc_template/bin/default --out ../docs . && cd .. && cp -r ./assets ./docs && mv ./docs/assets/favicon.ico ./docs/ && echo shortunique.id > ./docs/CNAME",
+    "gen:docs": "cd short_uuid && typedoc --gaID UA-159642755-1 --readme ../README.md --theme ../node_modules/short_uuid_typedoc_template/bin/default --out ../docs . && cd .. && cp -r ./assets ./docs && mv ./docs/assets/favicon.ico ./docs/ && mv ./docs/assets/cookie-policy ./docs/ && echo shortunique.id > ./docs/CNAME",
     "gen:typings": "tsc --lib dom,es2015 --downlevelIteration --declaration --emitDeclarationOnly ./short_uuid/mod.ts ; mv ./short_uuid/mod.d.ts ./typings/short-unique-id.d.ts",
     "lib:build": "yarn gen:version && rm ./lib/* ; mkdir -p tmp && cd short_uuid && deno bundle mod.ts ../tmp/mod.js && deno bundle version.ts ../tmp/version.js && cd .. && sucrase ./tmp -d ./lib -t imports && mv ./lib/mod.js ./lib/short-unique-id.js && rm -rf ./tmp",
     "dist:build": "yarn lib:build && rm ./dist/* ; echo 'var __suid_module = ' > ./dist/short-unique-id.js && browserify ./lib/short-unique-id.js >> ./dist/short-unique-id.js && echo 'var ShortUniqueId = __suid_module(1)[\"default\"];' >> ./dist/short-unique-id.js && minify ./dist/short-unique-id.js > ./dist/short-unique-id.min.js",
@@ -34,7 +36,7 @@
   "devDependencies": {
     "browserify": "^16.5.1",
     "minify": "^5.1.1",
-    "short_uuid_typedoc_template": "^1.0.9",
+    "short_uuid_typedoc_template": "^1.0.10",
     "sucrase": "^3.13.0",
     "tslint": "^6.1.1",
     "tslint-config-airbnb-base": "^0.3.0",

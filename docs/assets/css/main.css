@@ -2717,10 +2717,23 @@ ul.tsd-type-parameters .tsd-comment {
   right: 0;
   left: 0;
   margin: 0;
-  padding: 50px;
-  background: #4da6ff;
+  padding: 0;
   display: none;
   z-index: 100;
+}
+.tsd-page-cookieconsent .message::before {
+  content: "";
+  opacity: 0.85;
+  background: #000;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+.tsd-page-cookieconsent .message {
+  padding: 40px;
 }
 .tsd-page-cookieconsent.show {
   display: block;
@@ -2899,8 +2912,9 @@ input[type=checkbox]:checked + .tsd-widget:before {
 }
 
 @media (prefers-color-scheme: dark) {
-  .tsd-page-cookieconsent {
-    background: #4da6ff;
+  .tsd-page-cookieconsent .message::before {
+    opacity: 0.85;
+    background: #000;
   }
 
   .tsd-page-toolbar {
