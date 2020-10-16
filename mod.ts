@@ -156,7 +156,7 @@ class ShortUniqueId extends Function {
   /* tslint:enable consistent-return */
 
   constructor(argOptions: Partial<Options> = {}) {
-    super('...args', 'return this.randomUUID(...args)');
+    super();
 
     const options: Options = {
       ...DEFAULT_OPTIONS,
@@ -202,7 +202,7 @@ class ShortUniqueId extends Function {
     }
 
     if (shuffle) {
-      // Shuffle Dictionary for removing selection bias.
+      // Shuffle Dictionary to remove selection bias.
       const PROBABILITY = 0.5;
       this.setDictionary(this.dict.sort(() => Math.random() - PROBABILITY));
     } else {
@@ -213,19 +213,9 @@ class ShortUniqueId extends Function {
     this.log(this.dict);
     this.log((`Generator instantiated with Dictionary Size ${this.dictLength}`));
 
-    const instance = this.bind(this);
-    Object.getOwnPropertyNames(this).forEach((prop: string) => {
-      if (
-        !(
-          /arguments|caller|callee|length|name|prototype/
-        ).test(prop)
-      ) {
-        const propKey = prop as keyof ShortUniqueId;
-        instance[prop] = this[propKey];
-      }
+    return new Proxy(this, {
+      apply: (target, that, args) => this.randomUUID(...args),
     });
-
-    return instance;
   }
 
   /** Change the dictionary after initialization. */
