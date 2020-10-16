@@ -6,7 +6,7 @@
 [![Deno v1.2.0](https://img.shields.io/badge/deno-v1.2.0-green.svg)](https://deno.land)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![8 Contributors](https://img.shields.io/badge/all_contributors-8-purple.svg)](#contributors)
+[![9 Contributors](https://img.shields.io/badge/all_contributors-8-purple.svg)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Generate random or sequential UUID of any length.
@@ -197,12 +197,15 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://jeanlescure.cr"><img src="https://shortunique.id/assets/contributors/jeanlescure.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="#maintenance-jeanlescure" title="Maintenance">🚧</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Code">💻</a> <a href="#content-jeanlescure" title="Content">🖋</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Documentation">📖</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Tests">⚠️</a></td></tr></tbody></table></td>
     <td align="center"><a href="https://dianalu.design"><img src="https://shortunique.id/assets/contributors/dilescure.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short_uuid/commits?author=DiLescure" title="Code">💻</a></td></tr></tbody></table></td>
     <td align="center"><a href="https://github.com/EmerLM"><img src="https://shortunique.id/assets/contributors/emerlm.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short_uuid/commits?author=EmerLM" title="Code">💻</a></td></tr></tbody></table></td>
-    </tr>
-    <tr>
+  </tr>
+  <tr>
     <td align="center"><a href="https://github.com/angelnath26"><img src="https://shortunique.id/assets/contributors/angelnath26.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short_uuid/commits?author=angelnath26" title="Code">💻</a> <a href="https://github.com/jeanlescure/short_uuid/pulls?q=is%3Apr+reviewed-by%3Aangelnath26" title="Reviewed Pull Requests">👀</a></td></tr></tbody></table></td>
     <td align="center"><a href="https://twitter.com/jeffturcotte"><img src="https://shortunique.id/assets/contributors/jeffturcotte.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeffturcotte" title="Code">💻</a></td></tr></tbody></table></td>
     <td align="center"><a href="https://github.com/neversun"><img src="https://shortunique.id/assets/contributors/neversun.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/commits?author=neversun" title="Code">💻</a></td></tr></tbody></table></td>
     <td align="center"><a href="https://github.com/ekelvin"><img src="https://shortunique.id/assets/contributors/ekelvin.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/issues/19" title="Ideas, Planning, & Feedback">🤔</a></td></tr></tbody></table></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/anthony-arnold"><img src="https://shortunique.id/assets/contributors/anthony-arnold.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/issues/35" title="Security">🛡️</a></td></tr></tbody></table></td>
   </tr>
 </table>
 
