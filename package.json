@@ -1,6 +1,6 @@
 {
   "name": "short-unique-id",
-  "version": "3.1.5",
+  "version": "3.2.0",
   "description": "Generate random or sequential UUID of any length",
   "keywords": [
     "short",
@@ -34,8 +34,8 @@
     "dist:build": "yarn lib:build && rm -rf ./dist/* ; echo 'var __suid_module = ' > ./dist/short-unique-id.js && browserify ./lib/short-unique-id.js >> ./dist/short-unique-id.js && echo 'var ShortUniqueId = __suid_module(1)[\"default\"];' >> ./dist/short-unique-id.js && minify ./dist/short-unique-id.js > ./dist/short-unique-id.min.js",
     "test": "cd short_uuid && deno test && cd .. && yarn link && yarn link short-unique-id && node ./runkit.js",
     "lint": "tslint ./short_uuid/*.ts",
-    "prepare:release": "yarn gen:typings && yarn lint && yarn lib:build && yarn dist:build && yarn test && yarn gen:docs",
-    "release": "standard-version"
+    "prepare:release": "yarn gen:typings && yarn lint && yarn lib:build && yarn dist:build && yarn test && cd short_uuid && git commit -am \"release v$(jq -r .version package.json)\" && cd .. && git add short_uuid && yarn gen:docs",
+    "release": "standard-version -a"
   },
   "husky": {
     "hooks": {
