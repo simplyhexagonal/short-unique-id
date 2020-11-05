@@ -15,13 +15,29 @@ This project is open to updates by its users, I ensure that PRs are relevant to 
 In other words, if you find a bug or want a new feature, please help us by becoming one of the
 [contributors](#contributors-) ✌️ ! See the [contributing section](#contributing).
 
-## Like this module? :heart:
+## Like this module? ❤
 
 Please consider:
 
-- [Buying me a coffee](https://www.buymeacoffee.com/jeanlescure) :coffee:
-- Supporting me on [Patreon](https://www.patreon.com/jeanlescure) :trophy:
-- Starring this repo on [Github](https://github.com/jeanlescure/string-crypto) :star2:
+- [Buying me a coffee](https://www.buymeacoffee.com/jeanlescure) ☕
+- Supporting me on [Patreon](https://www.patreon.com/jeanlescure) 🏆
+- Starring this repo on [Github](https://github.com/jeanlescure/short-unique-id) 🌟
+
+### Use in CLI 🆕
+
+```sh
+$ npm install -g short-unique-id
+
+$ short-unique-id -h
+
+# Usage:
+#   node short-unique-id [OPTION]
+
+# Options:
+#   -l, --length=ARG         character length of the uid to generate.
+#       --dictionaryJson=ARG json file with dictionary array.
+#   -h, --help               display this help
+```
 
 ### Use as module
 

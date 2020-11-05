@@ -1,6 +1,6 @@
 {
   "name": "short-unique-id",
-  "version": "3.0.5",
+  "version": "3.1.5",
   "description": "Generate random or sequential UUID of any length",
   "keywords": [
     "short",
@@ -14,6 +14,9 @@
     "tiny"
   ],
   "license": "Apache-2.0",
+  "bin": {
+    "short-unique-id": "bin/short-unique-id"
+  },
   "main": "lib/short-unique-id",
   "module": "lib/short-unique-id",
   "typings": "typings/short-unique-id",
@@ -27,20 +30,29 @@
     "gen:version": "echo \"export default '`jq -r .version package.json`';\" > short_uuid/version.ts",
     "gen:docs": "cd short_uuid && typedoc --gaID UA-159642755-1 --readme ../README.md --theme ../node_modules/short_uuid_typedoc_template/bin/default --out ../docs . && cd .. && cp -r ./assets ./docs && mv ./docs/assets/favicon.ico ./docs/ && mv ./docs/assets/cookie-policy ./docs/ && echo shortunique.id > ./docs/CNAME",
     "gen:typings": "tsc --lib dom,es2015 --downlevelIteration --declaration --emitDeclarationOnly ./short_uuid/mod.ts ; mv ./short_uuid/mod.d.ts ./typings/short-unique-id.d.ts",
-    "lib:build": "yarn gen:version && rm ./lib/* ; mkdir -p tmp && cd short_uuid && deno bundle mod.ts ../tmp/mod.js && deno bundle version.ts ../tmp/version.js && cd .. && sucrase ./tmp -d ./lib -t imports && mv ./lib/mod.js ./lib/short-unique-id.js && rm -rf ./tmp",
-    "dist:build": "yarn lib:build && rm ./dist/* ; echo 'var __suid_module = ' > ./dist/short-unique-id.js && browserify ./lib/short-unique-id.js >> ./dist/short-unique-id.js && echo 'var ShortUniqueId = __suid_module(1)[\"default\"];' >> ./dist/short-unique-id.js && minify ./dist/short-unique-id.js > ./dist/short-unique-id.min.js",
+    "lib:build": "yarn gen:version && rm -rf ./lib/* ; mkdir -p tmp && cd short_uuid && deno bundle mod.ts ../tmp/mod.js && deno bundle version.ts ../tmp/version.js && cd .. && sucrase ./tmp -d ./lib -t imports && mv ./lib/mod.js ./lib/short-unique-id.js && rm -rf ./tmp",
+    "dist:build": "yarn lib:build && rm -rf ./dist/* ; echo 'var __suid_module = ' > ./dist/short-unique-id.js && browserify ./lib/short-unique-id.js >> ./dist/short-unique-id.js && echo 'var ShortUniqueId = __suid_module(1)[\"default\"];' >> ./dist/short-unique-id.js && minify ./dist/short-unique-id.js > ./dist/short-unique-id.min.js",
     "test": "cd short_uuid && deno test && cd .. && yarn link && yarn link short-unique-id && node ./runkit.js",
     "lint": "tslint ./short_uuid/*.ts",
-    "prepare:release": "yarn gen:typings && yarn lint && yarn lib:build && yarn dist:build && yarn test && yarn gen:docs"
+    "prepare:release": "yarn gen:typings && yarn lint && yarn lib:build && yarn dist:build && yarn test && yarn gen:docs",
+    "release": "standard-version"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn prepare:release && git add --all ."
+    }
   },
   "devDependencies": {
     "browserify": "^16.5.1",
+    "husky": "^4.3.0",
     "minify": "^5.1.1",
     "short_uuid_typedoc_template": "^1.0.10",
+    "standard-version": "^9.0.0",
     "sucrase": "^3.13.0",
     "tslint": "^6.1.1",
     "tslint-config-airbnb-base": "^0.3.0",
     "typedoc": "^0.17.6",
     "typescript": "^3.8.3"
-  }
+  },
+  "dependencies": {}
 }
