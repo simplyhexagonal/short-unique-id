@@ -1,6 +1,6 @@
 {
   "name": "short-unique-id",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Generate random or sequential UUID of any length",
   "keywords": [
     "short",
@@ -25,7 +25,7 @@
     "type": "git",
     "url": "https://github.com/jeanlescure/short-unique-id"
   },
-  "runkitExampleFilename": "./test/runkit.js",
+  "runkitExampleFilename": "./runkit.js",
   "scripts": {
     "gen:version": "echo \"export default '`jq -r .version package.json`';\" > short_uuid/version.ts",
     "gen:docs": "cd short_uuid && typedoc --gaID UA-159642755-1 --readme ../README.md --theme ../node_modules/short_uuid_typedoc_template/bin/default --out ../docs . && cd .. && cp -r ./assets ./docs && mv ./docs/assets/favicon.ico ./docs/ && mv ./docs/assets/cookie-policy ./docs/ && echo shortunique.id > ./docs/CNAME",

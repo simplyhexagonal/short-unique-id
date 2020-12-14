@@ -106,7 +106,7 @@ System.register("version", [], function (exports_1, context_1) {
     return {
         setters: [],
         execute: function () {
-            exports_1("default", '3.2.0');
+            exports_1("default", '3.2.1');
         }
     };
 });
