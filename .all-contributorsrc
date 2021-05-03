@@ -1,0 +1,104 @@
+{
+  "contributors": [
+    {
+      "login": "serendipious",
+      "name": "Ankit Kuwadekar",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/909781?v=4",
+      "profile": "https://github.com/serendipious",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jeanlescure",
+      "name": "Jean Lescure",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3330339?v=4",
+      "profile": "https://jeanlescure.cr",
+      "contributions": [
+        "maintenance",
+        "code",
+        "content",
+        "doc",
+        "test"
+      ]
+    },
+    {
+      "login": "DiLescure",
+      "name": "Diana Lescure",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1036995?v=4",
+      "profile": "https://dianalu.design",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "EmerLM",
+      "name": "EmerLM",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/64379301?v=4",
+      "profile": "https://github.com/EmerLM",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "angelnath26",
+      "name": "angelnath26",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/63522028?v=4",
+      "profile": "https://github.com/angelnath26",
+      "contributions": [
+        "code",
+        "review"
+      ]
+    },
+    {
+      "login": "jeffturcotte",
+      "name": "Jeff Turcotte",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/65089?v=4",
+      "profile": "https://twitter.com/jeffturcotte",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "neversun",
+      "name": "Robert Scheinpflug",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/9157500?v=4",
+      "profile": "https://github.com/neversun",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ekelvin",
+      "name": "Kelvin",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6638327?v=4",
+      "profile": "https://github.com/ekelvin",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "anthony-arnold",
+      "name": "Anthony Arnold",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/154739?v=4",
+      "profile": "https://github.com/anthony-arnold",
+      "contributions": [
+        "security"
+      ]
+    }
+  ],
+  "files": [
+    "README.md"
+  ],
+  "commit": false,
+  "imageSize": 100,
+  "contributorsPerLine": 5,
+  "contributorsSortAlphabetically": false,
+  "badgeTemplate": "[![<%= contributors.length %> Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-purple.svg?style=flat-square)](#contributors)",
+  "contributorTemplate": "<a href=\"<%= contributor.profile %>\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"130\" height=\"150\"><defs><rect id=\"rect\" width=\"<%= options.imageSize %>\" height=\"<%= options.imageSize %>\" x=\"15\" y=\"15\" rx=\"50%\"/><clipPath id=\"clip\"><use xlink:href=\"#rect\"/></clipPath></defs><use xlink:href=\"#rect\"/><image xlink:href=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>\" height=\"<%= options.imageSize %>\" x=\"15\" y=\"15\" clip-path=\"url(#clip)\"/><text x=\"15\" y=\"130\" textLength=\"<%= options.imageSize %>\" lengthAdjust=\"spacingAndGlyphs\" style=\"font: bold 88% sans-serif; fill: #5E40B8;\"><%= contributor.name %></text></svg></a><table><tbody><tr><td width=\"150\" align=\"center\"><%= contributions %></td></tr></tbody></table>",
+  "skipCi": true,
+  "projectName": "short-unique-id",
+  "projectOwner": "jeanlescure",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}

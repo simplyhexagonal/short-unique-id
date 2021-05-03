@@ -1,9 +1,0 @@
-{
-  "disableSources": true,
-  "ignoreCompilerErrors": true,
-  "includeVersion": true,
-  "exclude": ["test.ts"],
-  "excludeExternals": true,
-  "excludeNotDocumented": true,
-  "mode": "file"
-}

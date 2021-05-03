@@ -1,0 +1,45 @@
+{
+  "name": "short-unique-id",
+  "version": "3.2.3",
+  "description": "Generate random or sequential UUID of any length",
+  "keywords": [
+    "short",
+    "random",
+    "uid",
+    "uuid",
+    "guid",
+    "node",
+    "unique id",
+    "generator",
+    "tiny"
+  ],
+  "bin": {
+    "short-unique-id": "bin/short-unique-id"
+  },
+  "main": "dist/short-unique-id.js",
+  "homepage": "https://shortunique.id",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeanlescure/short-unique-id"
+  },
+  "license": "Apache-2.0",
+  "runkitExampleFilename": "./runkit.js",
+  "scripts": {
+    "test": "ts-node src/test.ts",
+    "build": "scripty"
+  },
+  "devDependencies": {
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-typescript": "^8.2.1",
+    "@types/node": "^15.0.1",
+    "rollup": "^2.46.0",
+    "scripty": "^2.0.0",
+    "short_uuid_typedoc_template": "^1.0.10",
+    "standard-version": "^9.2.0",
+    "terser": "^5.7.0",
+    "ts-node": "^9.1.1",
+    "tslib": "^2.2.0",
+    "typedoc": "0.17.8",
+    "typescript": "^4.2.4"
+  }
+}
