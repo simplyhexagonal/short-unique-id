@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 rm -rf dist/* docs/*
 rollup -p @rollup/plugin-typescript -p @rollup/plugin-json -m -f umd -n ShortUniqueId --exports default -i src/index.ts -o dist/short-unique-id.js
