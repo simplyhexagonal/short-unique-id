@@ -174,7 +174,7 @@ To find out more about the math behind these functions please refer to the
 
 This repo and npm package started as a straight up manual transpilation to ES6 of the [short-uid](https://github.com/serendipious/nodejs-short-uid) npm package by [Ankit Kuwadekar](https://github.com/serendipious/).
 
-![image depicting over 12000 weekly npm downloads](https://raw.githubusercontent.com/jeanlescure/short-unique-id/master/assets/weekly-downloads.png)
+![image depicting over 12000 weekly npm downloads](https://raw.githubusercontent.com/jeanlescure/short-unique-id/main/assets/weekly-downloads.png)
 
 Since this package is now reporting 12k+ npm weekly downloads, we've gone ahead and re-written the whole of it in TypeScript and made sure to package dist modules compatible with Deno, Node.js and all major Browsers.
 
