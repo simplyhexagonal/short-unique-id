@@ -392,8 +392,8 @@
              *  ```
              */
             _this.stamp = function (finalLength) {
-                if (finalLength < 10) {
-                    throw new Error('Param finalLength must be at least 10');
+                if (typeof finalLength !== 'number' || finalLength < 10) {
+                    throw new Error('Param finalLength must be number greater than 10');
                 }
                 var hexStamp = Math.floor(+new Date() / 1000).toString(16);
                 var idLength = finalLength - 9;

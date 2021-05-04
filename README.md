@@ -168,7 +168,7 @@ const options = { ... };
 const uid = new ShortUniqueId(options);
 ```
 
-For more information take a look at the [docs](https://shortunique.id/globals.html#options).
+For more information take a look at the [docs](https://shortunique.id/interfaces/shortuniqueidoptions.html).
 
 ## Available for
 
@@ -202,15 +202,18 @@ function `uniqueness()` which provides a score (from 0 to 1) to rate the
 to 1, higher the uniqueness and thus better the quality).
 
 To find out more about the math behind these functions please refer to the
-<a target="_blank" href="https://shortunique.id/classes/shortuniqueid.html#collisionprobability">API Reference</a>.
+<a target="_blank" href="https://shortunique.id/classes/default.html#collisionprobability">API Reference</a>.
 
 ## Acknowledgement and platform support
 
 This repo and npm package started as a straight up manual transpilation to ES6 of the [short-uid](https://github.com/serendipious/nodejs-short-uid) npm package by [Ankit Kuwadekar](https://github.com/serendipious/).
 
 ![image depicting over 12000 weekly npm downloads](https://raw.githubusercontent.com/jeanlescure/short-unique-id/main/assets/weekly-downloads.png)
+![image depicting over 100000 weekly cdn hits](https://raw.githubusercontent.com/jeanlescure/short-unique-id/main/assets/weekly-cdn-hits.png)
 
-Since this package is now reporting 12k+ npm weekly downloads, we've gone ahead and re-written the whole of it in TypeScript and made sure to package dist modules compatible with Deno, Node.js and all major Browsers.
+Since this package is now reporting 12k+ npm weekly downloads and 100k+ weekly cdn hits,
+we've gone ahead and re-written the whole of it in TypeScript and made sure to package
+dist modules compatible with Deno, Node.js and all major Browsers.
 
 ## Development
 
