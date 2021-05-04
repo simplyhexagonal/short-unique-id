@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/jeanlescure/short-unique-id/compare/v4.0.2...v4.1.0) (2021-05-04)
+
+
+### Bug Fixes
+
+* wrong image address ([ac7ccb6](https://github.com/jeanlescure/short-unique-id/commit/ac7ccb600dedfcaccbde2cfd7aca2047262dc440))
+
 ### [4.0.2](https://github.com/jeanlescure/short-unique-id/compare/v4.0.1...v4.0.2) (2021-05-04)
 
 ### [4.0.1](https://github.com/jeanlescure/short-unique-id/compare/v4.0.0...v4.0.1) (2021-05-04)
