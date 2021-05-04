@@ -1,6 +1,6 @@
 {
   "name": "short-unique-id",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Generate random or sequential UUID of any length",
   "keywords": [
     "short",
@@ -34,12 +34,12 @@
     "@types/node": "^15.0.1",
     "rollup": "^2.46.0",
     "scripty": "^2.0.0",
-    "short_uuid_typedoc_template": "^1.0.10",
+    "short-unique-id-typedoc-template": "^2.0.1",
     "standard-version": "^9.2.0",
     "terser": "^5.7.0",
     "ts-node": "^9.1.1",
     "tslib": "^2.2.0",
-    "typedoc": "0.17.8",
+    "typedoc": "^0.20.36",
     "typescript": "^4.2.4"
   }
 }
