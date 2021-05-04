@@ -419,8 +419,8 @@ export default class ShortUniqueId extends Function {
    *  ```
    */
   stamp = (finalLength: number): string => {
-    if (finalLength < 10) {
-      throw new Error('Param finalLength must be at least 10');
+    if (typeof finalLength !== 'number' || finalLength < 10) {
+      throw new Error('Param finalLength must be number greater than 10');
     }
 
     const hexStamp = Math.floor(+new Date() / 1000).toString(16);
