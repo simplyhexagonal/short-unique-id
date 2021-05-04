@@ -1,3 +1,7 @@
+interface ShortUniqueIdRanges {
+    [k: string]: [number, number];
+}
+declare type defaultDictionaries = 'number' | 'alpha' | 'alpha_lower' | 'alpha_upper' | 'alphanum' | 'alphanum_lower' | 'alphanum_upper' | 'hex';
 /**
  * ```js
  * {
@@ -10,7 +14,7 @@
  */
 export interface ShortUniqueIdOptions {
     /** User-defined character dictionary */
-    dictionary: string[];
+    dictionary: string[] | defaultDictionaries;
     /** If true, sequentialUUID use the dictionary in the given order */
     shuffle: boolean;
     /** If true the instance will console.log useful info */
@@ -96,9 +100,24 @@ export default class ShortUniqueId extends Function {
     upperBound: number;
     dictLength: number;
     uuidLength: number;
+    protected _digit_first_ascii: number;
+    protected _digit_last_ascii: number;
+    protected _alpha_lower_first_ascii: number;
+    protected _alpha_lower_last_ascii: number;
+    protected _hex_last_ascii: number;
+    protected _alpha_upper_first_ascii: number;
+    protected _alpha_upper_last_ascii: number;
+    protected _number_dict_ranges: ShortUniqueIdRanges;
+    protected _alpha_dict_ranges: ShortUniqueIdRanges;
+    protected _alpha_lower_dict_ranges: ShortUniqueIdRanges;
+    protected _alpha_upper_dict_ranges: ShortUniqueIdRanges;
+    protected _alphanum_dict_ranges: ShortUniqueIdRanges;
+    protected _alphanum_lower_dict_ranges: ShortUniqueIdRanges;
+    protected _alphanum_upper_dict_ranges: ShortUniqueIdRanges;
+    protected _hex_dict_ranges: ShortUniqueIdRanges;
     protected log: (...args: any[]) => void;
     /** Change the dictionary after initialization. */
-    setDictionary: (dictionary: string[]) => void;
+    setDictionary: (dictionary: string[] | defaultDictionaries, shuffle?: boolean | undefined) => void;
     seq: () => string;
     /**
      * Generates UUID based on internal counter that's incremented after each ID generation.
@@ -219,3 +238,4 @@ export default class ShortUniqueId extends Function {
     parseStamp: (stamp: string) => Date;
     constructor(argOptions?: Partial<ShortUniqueIdOptions>);
 }
+export {};

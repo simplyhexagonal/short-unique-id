@@ -52,7 +52,7 @@ Also, the following changes might generate errors in some edge-cases:
 
 ### New Features 🥳
 
-We have added the ability to generate UUIDs that contain a timestamp which can be extracted:
+The ability to generate UUIDs that contain a timestamp which can be extracted:
 
 ```js
 const uid = new ShortUniqueId();
@@ -63,6 +63,34 @@ console.log(uidWithTimestamp);
 
 console.log(uid.parseStamp(uidWithTimestamp));
 // 2021-05-03T06:24:58.000Z
+```
+
+Default dictionaries (generated on the spot to reduce memory footprint and
+avoid dictionary injection vulnerabilities):
+
+- number
+- alpha
+- alpha_lower
+- alpha_upper
+- **alphanum** _(default when no dictionary is provided to `new ShortUniqueId()`)_
+- alphanum_lower
+- alphanum_upper
+- hex
+
+```js
+// instantiate using one of the default dictionary strings
+const uid = new ShortUniqueId({
+  dictionary: 'hex', // the default
+});
+
+console.log(uid.dict.join());
+// 0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f
+
+// or change the dictionary after instantiation
+uid.setDictionary('alpha_upper');
+
+console.log(uid.dict.join());
+// A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
 ```
 
 ### Use in CLI
@@ -85,6 +113,8 @@ $ short-unique-id -h
 
 ### Use as module
 
+Add to your project:
+
 ```js
 // Deno (web module) Import
 import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@latest/src/index.ts';
@@ -92,9 +122,13 @@ import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@latest/s
 // ES6 / TypeScript Import
 import ShortUniqueId from 'short-unique-id';
 
-//or Node.js require
+// Node.js require
 const ShortUniqueId = require('short-unique-id');
+```
 
+Instantiate and use:
+
+```js
 //Instantiate
 const uid = new ShortUniqueId();
 
@@ -108,7 +142,7 @@ console.log(uid.seq());
 ### Use in browser
 
 ```html
-<!-- Import -->
+<!-- Add source (minified 6.9K) -->
 <script src="https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js"></script>
 
 <!-- Usage -->

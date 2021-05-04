@@ -25,12 +25,14 @@ test({
     });
     const version = uid.getVersion();
 
+    console.log(version);
+
     assert((/^\d+\.\d+.\d+/).test(version));
   },
 });
 
 test({
-  name: 'ability to generate random id\'s based on internal counter',
+  name: 'ability to generate random id\'s of different lengths',
   fn(): void {
     const uid: ShortUniqueId = new ShortUniqueId();
     const uidCollection: string[] = [];
@@ -39,6 +41,9 @@ test({
     uidCollection.push(uid(6));
     uidCollection.push(uid(7));
     uidCollection.push(uid(10));
+
+    console.log(uidCollection);
+
     assert(uidCollection[0].length === 6);
     assert(uidCollection[1].length === 7);
     assert(uidCollection[2].length === 10);
@@ -58,9 +63,71 @@ test({
   fn(): void {
     const uid: ShortUniqueId = new ShortUniqueId();
     uid.setDictionary(['v', '0', 'Y']);
-    assert(uid.seq() === 'v');
-    assert(uid.seq() === '0');
-    assert(uid.seq() === 'Y');
+
+    let seq = uid.seq();
+    console.log(seq);
+    assert(seq === 'v');
+
+    seq = uid.seq();
+    console.log(seq);
+    assert(seq === '0');
+
+    seq = uid.seq();
+    console.log(seq);
+    assert(seq === 'Y');
+  },
+});
+
+test({
+  name: 'ability to be instantiated with default dictionaries',
+  fn(): void {
+    const uid: ShortUniqueId = new ShortUniqueId();
+
+    uid.setDictionary('number', false);
+    console.log(uid.dict.join());
+    assert([uid.seq(), uid.seq()].join('') === '01');
+
+    uid.setDictionary('alpha', false);
+    console.log(uid.dict.join());
+    assert([uid.seq(), uid.seq()].join('') === 'ab');
+    assert(uid.dict[uid.dict.length - 1] === 'Z');
+
+    uid.setDictionary('alpha_lower', false);
+    console.log(uid.dict.join());
+    assert(uid.dict[uid.dict.length - 1] === 'z');
+
+    uid.setDictionary('alpha_upper', false);
+    console.log(uid.dict.join());
+    assert([uid.seq(), uid.seq()].join('') === 'AB');
+
+    uid.setDictionary('alphanum', false);
+    console.log(uid.dict.join());
+    assert([uid.seq(), uid.seq()].join('') === '01');
+    assert(uid.dict[uid.dict.length - 1] === 'Z');
+
+    uid.setDictionary('alphanum_lower', false);
+    console.log(uid.dict.join());
+    assert([uid.seq(), uid.seq()].join('') === '01');
+    assert(uid.dict[uid.dict.length - 1] === 'z');
+
+    uid.setDictionary('alphanum_upper', false);
+    console.log(uid.dict.join());
+    assert([uid.seq(), uid.seq()].join('') === '01');
+    assert(uid.dict[uid.dict.length - 1] === 'Z');
+
+    uid.setDictionary('hex', false);
+    console.log(uid.dict.join());
+    assert([
+      uid.seq(), uid.seq(), uid.seq(), uid.seq(),
+      uid.seq(), uid.seq(), uid.seq(), uid.seq(),
+      uid.seq(), uid.seq(), uid.seq(), uid.seq(),
+      uid.seq(), uid.seq(), uid.seq(), uid.seq(),
+    ].join('') === '0123456789abcdef');
+
+    uid.setDictionary('hex', true);
+    const result = uid(3);
+    console.log(result);
+    assert((/^[0123456789abcdef][0123456789abcdef][0123456789abcdef]$/).test(result));
   },
 });
 
@@ -75,7 +142,10 @@ test({
     /* tslint:disable no-magic-numbers */
     assert((/^[a1][a1]$/).test(uid()));
     /* tslint:enable no-magic-numbers */
-    assert([uid.seq(), uid.seq()].join('') === 'a1');
+
+    const result = [uid.seq(), uid.seq()].join('');
+    console.log(result);
+    assert(result === 'a1');
   },
 });
 
@@ -83,8 +153,14 @@ test({
   name: 'ability to skip shuffle when instantiated',
   fn(): void {
     const uid: ShortUniqueId = new ShortUniqueId({ shuffle: false });
-    assert(uid.seq() === '0');
-    assert(uid.seq() === '1');
+
+    let seq = uid.seq();
+    console.log(seq);
+    assert(seq === '0');
+
+    seq = uid.seq();
+    console.log(seq);
+    assert(seq === '1');
   },
 });
 
@@ -104,6 +180,8 @@ test({
     uid.setDictionary(['a', 'b', 'b', 'a']);
     const lengthOfTwo = 2;
     totals.push(uid.availableUUIDs(lengthOfTwo));
+
+    console.log(totals);
 
     /* tslint:disable no-magic-numbers */
     assert(totals[0] === 56800235584); // 62^6
@@ -129,6 +207,8 @@ test({
     uid.setDictionary(['a', 'b', 'b', 'a']);
     totals.push(uid.collisionProbability(1, 1));
 
+    console.log(totals);
+
     assert(totals[0] === 0.00000525877839496618); // sqrt((pi/2)*(62^6))/(62^6)
     assert(totals[1] === 0.00000002206529822331); // sqrt((pi/2)*1000000)/(62^6)
     assert(totals[2] === 0.6266570686577501); // sqrt(pi/2)/(2)
@@ -149,6 +229,8 @@ test({
 
     uid.setDictionary(['a', 'b', 'b', 'a']);
     totals.push(uid.approxMaxBeforeCollision());
+
+    console.log(totals);
 
     /* tslint:disable no-magic-numbers */
     assert(totals[0] === 298699.85171812854); // sqrt((pi/2)*(62^6))
@@ -177,6 +259,8 @@ test({
     totals.push(uid.uniqueness(twoPossibleRounds));
     uid.setDictionary(['a', 'b', 'b', 'a']);
     totals.push(uid.uniqueness(twoPossibleRounds));
+
+    console.log(totals);
 
     /* tslint:disable no-magic-numbers */
     assert(totals[0] === 0.999994741221605); // 1 - (sqrt((pi/2)*(62^6)) / (62^6))

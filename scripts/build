@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 rm -rf dist/* docs/*
-rollup -p @rollup/plugin-typescript -p @rollup/plugin-json -m -f umd -n ShortUniqueId --exports named -i src/index.ts -o dist/short-unique-id.js
+rollup -p @rollup/plugin-typescript -p @rollup/plugin-json -m -f umd -n ShortUniqueId --exports default -i src/dist.ts -o dist/short-unique-id.js
 tsc -d --emitDeclarationOnly --rootDir src --outDir dist
 mv dist/index.d.ts dist/short-unique-id.d.ts
 terser -o dist/short-unique-id.min.js dist/short-unique-id.js

@@ -6,10 +6,10 @@
 import {version} from '../package.json';
 
 interface ShortUniqueIdRanges {
-  digits: number[];
-  lowerCase: number[];
-  upperCase: number[];
+  [k: string]: [number, number];
 };
+
+type defaultDictionaries = 'number' | 'alpha' | 'alpha_lower' | 'alpha_upper' | 'alphanum' | 'alphanum_lower' | 'alphanum_upper' | 'hex';
 
 /**
  * ```js
@@ -23,7 +23,7 @@ interface ShortUniqueIdRanges {
  */
 export interface ShortUniqueIdOptions {
   /** User-defined character dictionary */
-  dictionary: string[];
+  dictionary: string[] | defaultDictionaries;
 
   /** If true, sequentialUUID use the dictionary in the given order */
   shuffle: boolean;
@@ -47,21 +47,8 @@ export interface ShortUniqueIdOptions {
  */
 export const DEFAULT_UUID_LENGTH: number = 6;
 
-const DIGIT_FIRST_ASCII: number = 48;
-const DIGIT_LAST_ASCII: number = 58;
-const ALPHA_LOWER_FIRST_ASCII: number = 97;
-const ALPHA_LOWER_LAST_ASCII: number = 123;
-const ALPHA_UPPER_FIRST_ASCII: number = 65;
-const ALPHA_UPPER_LAST_ASCII: number = 91;
-
-const DICT_RANGES: ShortUniqueIdRanges = {
-  digits: [DIGIT_FIRST_ASCII, DIGIT_LAST_ASCII],
-  lowerCase: [ALPHA_LOWER_FIRST_ASCII, ALPHA_LOWER_LAST_ASCII],
-  upperCase: [ALPHA_UPPER_FIRST_ASCII, ALPHA_UPPER_LAST_ASCII],
-};
-
 const DEFAULT_OPTIONS: ShortUniqueIdOptions = {
-  dictionary: [],
+  dictionary: 'alphanum',
   shuffle: true,
   debug: false,
   length: DEFAULT_UUID_LENGTH,
@@ -124,25 +111,62 @@ const DEFAULT_OPTIONS: ShortUniqueIdOptions = {
  * For more information take a look at the [ShortUniqueIdOptions type definition](/interfaces/shortuniqueidoptions.html).
  */
 export default class ShortUniqueId extends Function {
-  counter: number;
+  public counter: number;
+  public debug: boolean;
+  public dict: string[];
+  public version: string;
+  public dictIndex: number = 0;
+  public dictRange: number[] =[];
+  public lowerBound: number = 0;
+  public upperBound: number = 0;
+  public dictLength: number = 0;
+  public uuidLength: number;
 
-  debug: boolean;
+  protected _digit_first_ascii: number = 48;
+  protected _digit_last_ascii: number = 58;
+  protected _alpha_lower_first_ascii: number = 97;
+  protected _alpha_lower_last_ascii: number = 123;
+  protected _hex_last_ascii: number = 103;
+  protected _alpha_upper_first_ascii: number = 65;
+  protected _alpha_upper_last_ascii: number = 91;
 
-  dict: string[];
+  protected _number_dict_ranges: ShortUniqueIdRanges = {
+    digits: [this._digit_first_ascii, this._digit_last_ascii],
+  };
 
-  version: string;
+  protected _alpha_dict_ranges: ShortUniqueIdRanges = {
+    lowerCase: [this._alpha_lower_first_ascii, this._alpha_lower_last_ascii],
+    upperCase: [this._alpha_upper_first_ascii, this._alpha_upper_last_ascii],
+  };
 
-  dictIndex: number = 0;
+  protected _alpha_lower_dict_ranges: ShortUniqueIdRanges = {
+    lowerCase: [this._alpha_lower_first_ascii, this._alpha_lower_last_ascii],
+  };
 
-  dictRange: number[] =[];
+  protected _alpha_upper_dict_ranges: ShortUniqueIdRanges = {
+    upperCase: [this._alpha_upper_first_ascii, this._alpha_upper_last_ascii],
+  };
 
-  lowerBound: number = 0;
+  protected _alphanum_dict_ranges: ShortUniqueIdRanges = {
+    digits: [this._digit_first_ascii, this._digit_last_ascii],
+    lowerCase: [this._alpha_lower_first_ascii, this._alpha_lower_last_ascii],
+    upperCase: [this._alpha_upper_first_ascii, this._alpha_upper_last_ascii],
+  };
 
-  upperBound: number = 0;
+  protected _alphanum_lower_dict_ranges: ShortUniqueIdRanges = {
+    digits: [this._digit_first_ascii, this._digit_last_ascii],
+    lowerCase: [this._alpha_lower_first_ascii, this._alpha_lower_last_ascii],
+  };
 
-  dictLength: number = 0;
+  protected _alphanum_upper_dict_ranges: ShortUniqueIdRanges = {
+    digits: [this._digit_first_ascii, this._digit_last_ascii],
+    upperCase: [this._alpha_upper_first_ascii, this._alpha_upper_last_ascii],
+  };
 
-  uuidLength: number;
+  protected _hex_dict_ranges: ShortUniqueIdRanges = {
+    decDigits: [this._digit_first_ascii, this._digit_last_ascii],
+    alphaDigits: [this._alpha_lower_first_ascii, this._hex_last_ascii],
+  };
 
   /* tslint:disable consistent-return */
   protected log = (...args: any[]): void => {
@@ -159,8 +183,46 @@ export default class ShortUniqueId extends Function {
   /* tslint:enable consistent-return */
 
   /** Change the dictionary after initialization. */
-  setDictionary = (dictionary: string[]): void => {
-    this.dict = dictionary;
+  setDictionary = (dictionary: string[] | defaultDictionaries, shuffle?: boolean): void => {
+    let finalDict: string[];
+
+    if (dictionary && Array.isArray(dictionary) && dictionary.length > 1) {
+      finalDict = dictionary as string[];
+    } else {
+      finalDict = [];
+
+      let i;
+
+      this.dictIndex = i = 0;
+
+      const rangesName = `_${dictionary as defaultDictionaries}_dict_ranges`;
+      const ranges: ShortUniqueIdRanges = this[rangesName as keyof ShortUniqueId];
+
+      Object.keys(ranges).forEach((rangeType) => {
+        const rangeTypeKey = rangeType;
+
+        this.dictRange = ranges[rangeTypeKey];
+
+        this.lowerBound = this.dictRange[0];
+        this.upperBound = this.dictRange[1];
+
+        for (
+          this.dictIndex = i = this.lowerBound;
+          this.lowerBound <= this.upperBound ? i < this.upperBound : i > this.upperBound;
+          this.dictIndex = this.lowerBound <= this.upperBound ? i += 1 : i -= 1
+        ) {
+          finalDict.push(String.fromCharCode(this.dictIndex));
+        }
+      });
+    }
+
+    if (shuffle) {
+      // Shuffle Dictionary to remove selection bias.
+      const PROBABILITY = 0.5;
+      finalDict = finalDict.sort(() => Math.random() - PROBABILITY);
+    }
+
+    this.dict = finalDict;
 
     // Cache Dictionary Length for future usage.
     this.dictLength = this.dict.length;// Resets internal counter.
@@ -408,45 +470,14 @@ export default class ShortUniqueId extends Function {
     this.version = version;
 
     const {
-      dictionary: userDict,
+      dictionary,
       shuffle,
       length,
     } = options;
 
     this.uuidLength = length;
 
-    if (userDict && userDict.length > 1) {
-      this.setDictionary(userDict);
-    } else {
-      let i;
-
-      this.dictIndex = i = 0;
-
-      Object.keys(DICT_RANGES).forEach((rangeType: any) => {
-        const rangeTypeKey : keyof ShortUniqueIdRanges = rangeType as keyof ShortUniqueIdRanges;
-
-        this.dictRange = DICT_RANGES[rangeTypeKey];
-
-        this.lowerBound = this.dictRange[0];
-        this.upperBound = this.dictRange[1];
-
-        for (
-          this.dictIndex = i = this.lowerBound;
-          this.lowerBound <= this.upperBound ? i < this.upperBound : i > this.upperBound;
-          this.dictIndex = this.lowerBound <= this.upperBound ? i += 1 : i -= 1
-        ) {
-          this.dict.push(String.fromCharCode(this.dictIndex));
-        }
-      });
-    }
-
-    if (shuffle) {
-      // Shuffle Dictionary to remove selection bias.
-      const PROBABILITY = 0.5;
-      this.setDictionary(this.dict.sort(() => Math.random() - PROBABILITY));
-    } else {
-      this.setDictionary(this.dict);
-    }
+    this.setDictionary(dictionary, shuffle);
 
     this.debug = options.debug;
     this.log(this.dict);

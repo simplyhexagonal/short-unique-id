@@ -77,6 +77,8 @@
 				</p>
 				<pre>
     <code>
+      <span style="color: #88846F">// instantiate using a dictionary containing all 16 valid hex characters</span>
+
       <span class="hljs-keyword">var</span> uid = <span class="hljs-keyword">new</span> ShortUniqueId({
         dictionary: [
           <span class="hljs-string">'0'</span>, <span class="hljs-string">'1'</span>, <span class="hljs-string">'2'</span>, <span class="hljs-string">'3'</span>,
@@ -85,6 +87,13 @@
           <span class="hljs-string">'C'</span>, <span class="hljs-string">'D'</span>, <span class="hljs-string">'E'</span>, <span class="hljs-string">'F'</span>,
         ],
       });
+
+      <span style="color: #88846F">// or using default dictionaries available since v4.3+</span>
+
+      <span class="hljs-keyword">var</span> uid = <span class="hljs-keyword">new</span> ShortUniqueId({ dictionary: <span class="hljs-string">'hex'</span> });
+
+      <span style="color: #88846F">// then taste the rainbow 🌈</span>
+
       <span class="hljs-keyword">var</span> color = <span class="hljs-string">'#'</span> + uid.randomUUID(6) + <span class="hljs-string">';'</span>;
     </code>
   </pre>
@@ -95,9 +104,9 @@
 					<strong>Your random color:</strong> <span id="colorResult" class="m-4">&nbsp;</span>
 				</p>
 				<script>
-    // Just so website doesn't fail if @latest tag points to version < 3
-    if ((window['short-unique-id'] || {}).default) {
-      var ShortUniqueId = window['short-unique-id'].default;
+    // Just so website doesn't fail if @latest tag points to bad umd versions
+    if ((window['short-unique-id'] || window['ShortUniqueId'] || {}).default) {
+      var ShortUniqueId = (window['short-unique-id'] || window['ShortUniqueId']).default;
     }
 
     var uid = new ShortUniqueId({debug: true});
@@ -179,7 +188,7 @@
 				<a href="#new-features-🥳" id="new-features-🥳" style="color: inherit; text-decoration: none;">
 					<h3>New Features 🥳</h3>
 				</a>
-				<p>We have added the ability to generate UUIDs that contain a timestamp which can be extracted:</p>
+				<p>The ability to generate UUIDs that contain a timestamp which can be extracted:</p>
 				<pre><code class="language-js"><span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">();</span>
 
 <span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uidWithTimestamp </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> uid.</span><span style="color: #A6E22E">stamp</span><span style="color: #F8F8F2">(</span><span style="color: #AE81FF">32</span><span style="color: #F8F8F2">);</span>
@@ -188,6 +197,32 @@
 
 <span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(uid.</span><span style="color: #A6E22E">parseStamp</span><span style="color: #F8F8F2">(uidWithTimestamp));</span>
 <span style="color: #88846F">// 2021-05-03T06:24:58.000Z</span>
+</code></pre>
+				<p>Default dictionaries (generated on the spot to reduce memory footprint and
+				avoid dictionary injection vulnerabilities):</p>
+				<ul>
+					<li>number</li>
+					<li>alpha</li>
+					<li>alpha_lower</li>
+					<li>alpha_upper</li>
+					<li><strong>alphanum</strong> <em>(default when no dictionary is provided to <code>new ShortUniqueId()</code>)</em></li>
+					<li>alphanum_lower</li>
+					<li>alphanum_upper</li>
+					<li>hex</li>
+				</ul>
+				<pre><code class="language-js"><span style="color: #88846F">// instantiate using one of the default dictionary strings</span>
+<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">({</span>
+<span style="color: #F8F8F2">  dictionary: </span><span style="color: #E6DB74">&#039;hex&#039;</span><span style="color: #F8F8F2">, </span><span style="color: #88846F">// the default</span>
+<span style="color: #F8F8F2">});</span>
+
+<span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(uid.dict.</span><span style="color: #A6E22E">join</span><span style="color: #F8F8F2">());</span>
+<span style="color: #88846F">// 0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f</span>
+
+<span style="color: #88846F">// or change the dictionary after instantiation</span>
+<span style="color: #F8F8F2">uid.</span><span style="color: #A6E22E">setDictionary</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;alpha_upper&#039;</span><span style="color: #F8F8F2">);</span>
+
+<span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(uid.dict.</span><span style="color: #A6E22E">join</span><span style="color: #F8F8F2">());</span>
+<span style="color: #88846F">// A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z</span>
 </code></pre>
 				<a href="#use-in-cli" id="use-in-cli" style="color: inherit; text-decoration: none;">
 					<h3>Use in CLI</h3>
@@ -209,16 +244,18 @@
 				<a href="#use-as-module" id="use-as-module" style="color: inherit; text-decoration: none;">
 					<h3>Use as module</h3>
 				</a>
+				<p>Add to your project:</p>
 				<pre><code class="language-js"><span style="color: #88846F">// Deno (web module) Import</span>
 <span style="color: #F92672">import</span><span style="color: #F8F8F2"> ShortUniqueId </span><span style="color: #F92672">from</span><span style="color: #F8F8F2"> </span><span style="color: #E6DB74">&#039;https://cdn.jsdelivr.net/npm/short-unique-id@latest/src/index.ts&#039;</span><span style="color: #F8F8F2">;</span>
 
 <span style="color: #88846F">// ES6 / TypeScript Import</span>
 <span style="color: #F92672">import</span><span style="color: #F8F8F2"> ShortUniqueId </span><span style="color: #F92672">from</span><span style="color: #F8F8F2"> </span><span style="color: #E6DB74">&#039;short-unique-id&#039;</span><span style="color: #F8F8F2">;</span>
 
-<span style="color: #88846F">//or Node.js require</span>
+<span style="color: #88846F">// Node.js require</span>
 <span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> ShortUniqueId </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">require</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;short-unique-id&#039;</span><span style="color: #F8F8F2">);</span>
-
-<span style="color: #88846F">//Instantiate</span>
+</code></pre>
+				<p>Instantiate and use:</p>
+				<pre><code class="language-js"><span style="color: #88846F">//Instantiate</span>
 <span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">();</span>
 
 <span style="color: #88846F">// Random UUID</span>
@@ -230,7 +267,7 @@
 				<a href="#use-in-browser" id="use-in-browser" style="color: inherit; text-decoration: none;">
 					<h3>Use in browser</h3>
 				</a>
-				<pre><code class="language-html"><span style="color: #88846F">&lt;!-- Import --&gt;</span>
+				<pre><code class="language-html"><span style="color: #88846F">&lt;!-- Add source (minified 6.9K) --&gt;</span>
 <span style="color: #F8F8F2">&lt;</span><span style="color: #F92672">script</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">src</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">&quot;https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js&quot;</span><span style="color: #F8F8F2">&gt;&lt;/</span><span style="color: #F92672">script</span><span style="color: #F8F8F2">&gt;</span>
 
 <span style="color: #88846F">&lt;!-- Usage --&gt;</span>

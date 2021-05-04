@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const fs = require('fs');
 const assert = require('assert');
-const { default: ShortUniqueId } = require('short-unique-id');
+const ShortUniqueId = require('short-unique-id');
 
 const [,, ...args] = process.argv;
 

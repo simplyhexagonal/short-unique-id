@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-    typeof define === 'function' && define.amd ? define(['exports'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ShortUniqueId = {}));
-}(this, (function (exports) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.ShortUniqueId = factory());
+}(this, (function () { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -83,19 +83,8 @@
      * is ~0.00000002, or about 1 in 50,000,000.
      */
     var DEFAULT_UUID_LENGTH = 6;
-    var DIGIT_FIRST_ASCII = 48;
-    var DIGIT_LAST_ASCII = 58;
-    var ALPHA_LOWER_FIRST_ASCII = 97;
-    var ALPHA_LOWER_LAST_ASCII = 123;
-    var ALPHA_UPPER_FIRST_ASCII = 65;
-    var ALPHA_UPPER_LAST_ASCII = 91;
-    var DICT_RANGES = {
-        digits: [DIGIT_FIRST_ASCII, DIGIT_LAST_ASCII],
-        lowerCase: [ALPHA_LOWER_FIRST_ASCII, ALPHA_LOWER_LAST_ASCII],
-        upperCase: [ALPHA_UPPER_FIRST_ASCII, ALPHA_UPPER_LAST_ASCII]
-    };
     var DEFAULT_OPTIONS = {
-        dictionary: [],
+        dictionary: 'alphanum',
         shuffle: true,
         debug: false,
         length: DEFAULT_UUID_LENGTH
@@ -166,6 +155,43 @@
             _this.lowerBound = 0;
             _this.upperBound = 0;
             _this.dictLength = 0;
+            _this._digit_first_ascii = 48;
+            _this._digit_last_ascii = 58;
+            _this._alpha_lower_first_ascii = 97;
+            _this._alpha_lower_last_ascii = 123;
+            _this._hex_last_ascii = 103;
+            _this._alpha_upper_first_ascii = 65;
+            _this._alpha_upper_last_ascii = 91;
+            _this._number_dict_ranges = {
+                digits: [_this._digit_first_ascii, _this._digit_last_ascii]
+            };
+            _this._alpha_dict_ranges = {
+                lowerCase: [_this._alpha_lower_first_ascii, _this._alpha_lower_last_ascii],
+                upperCase: [_this._alpha_upper_first_ascii, _this._alpha_upper_last_ascii]
+            };
+            _this._alpha_lower_dict_ranges = {
+                lowerCase: [_this._alpha_lower_first_ascii, _this._alpha_lower_last_ascii]
+            };
+            _this._alpha_upper_dict_ranges = {
+                upperCase: [_this._alpha_upper_first_ascii, _this._alpha_upper_last_ascii]
+            };
+            _this._alphanum_dict_ranges = {
+                digits: [_this._digit_first_ascii, _this._digit_last_ascii],
+                lowerCase: [_this._alpha_lower_first_ascii, _this._alpha_lower_last_ascii],
+                upperCase: [_this._alpha_upper_first_ascii, _this._alpha_upper_last_ascii]
+            };
+            _this._alphanum_lower_dict_ranges = {
+                digits: [_this._digit_first_ascii, _this._digit_last_ascii],
+                lowerCase: [_this._alpha_lower_first_ascii, _this._alpha_lower_last_ascii]
+            };
+            _this._alphanum_upper_dict_ranges = {
+                digits: [_this._digit_first_ascii, _this._digit_last_ascii],
+                upperCase: [_this._alpha_upper_first_ascii, _this._alpha_upper_last_ascii]
+            };
+            _this._hex_dict_ranges = {
+                decDigits: [_this._digit_first_ascii, _this._digit_last_ascii],
+                alphaDigits: [_this._alpha_lower_first_ascii, _this._hex_last_ascii]
+            };
             /* tslint:disable consistent-return */
             _this.log = function () {
                 var args = [];
@@ -184,8 +210,33 @@
             };
             /* tslint:enable consistent-return */
             /** Change the dictionary after initialization. */
-            _this.setDictionary = function (dictionary) {
-                _this.dict = dictionary;
+            _this.setDictionary = function (dictionary, shuffle) {
+                var finalDict;
+                if (dictionary && Array.isArray(dictionary) && dictionary.length > 1) {
+                    finalDict = dictionary;
+                }
+                else {
+                    finalDict = [];
+                    var i_1;
+                    _this.dictIndex = i_1 = 0;
+                    var rangesName = "_" + dictionary + "_dict_ranges";
+                    var ranges_1 = _this[rangesName];
+                    Object.keys(ranges_1).forEach(function (rangeType) {
+                        var rangeTypeKey = rangeType;
+                        _this.dictRange = ranges_1[rangeTypeKey];
+                        _this.lowerBound = _this.dictRange[0];
+                        _this.upperBound = _this.dictRange[1];
+                        for (_this.dictIndex = i_1 = _this.lowerBound; _this.lowerBound <= _this.upperBound ? i_1 < _this.upperBound : i_1 > _this.upperBound; _this.dictIndex = _this.lowerBound <= _this.upperBound ? i_1 += 1 : i_1 -= 1) {
+                            finalDict.push(String.fromCharCode(_this.dictIndex));
+                        }
+                    });
+                }
+                if (shuffle) {
+                    // Shuffle Dictionary to remove selection bias.
+                    var PROBABILITY_1 = 0.5;
+                    finalDict = finalDict.sort(function () { return Math.random() - PROBABILITY_1; });
+                }
+                _this.dict = finalDict;
                 // Cache Dictionary Length for future usage.
                 _this.dictLength = _this.dict.length; // Resets internal counter.
                 _this.counter = 0;
@@ -374,32 +425,9 @@
             _this.debug = false;
             _this.dict = [];
             _this.version = version;
-            var userDict = options.dictionary, shuffle = options.shuffle, length = options.length;
+            var dictionary = options.dictionary, shuffle = options.shuffle, length = options.length;
             _this.uuidLength = length;
-            if (userDict && userDict.length > 1) {
-                _this.setDictionary(userDict);
-            }
-            else {
-                var i_1;
-                _this.dictIndex = i_1 = 0;
-                Object.keys(DICT_RANGES).forEach(function (rangeType) {
-                    var rangeTypeKey = rangeType;
-                    _this.dictRange = DICT_RANGES[rangeTypeKey];
-                    _this.lowerBound = _this.dictRange[0];
-                    _this.upperBound = _this.dictRange[1];
-                    for (_this.dictIndex = i_1 = _this.lowerBound; _this.lowerBound <= _this.upperBound ? i_1 < _this.upperBound : i_1 > _this.upperBound; _this.dictIndex = _this.lowerBound <= _this.upperBound ? i_1 += 1 : i_1 -= 1) {
-                        _this.dict.push(String.fromCharCode(_this.dictIndex));
-                    }
-                });
-            }
-            if (shuffle) {
-                // Shuffle Dictionary to remove selection bias.
-                var PROBABILITY_1 = 0.5;
-                _this.setDictionary(_this.dict.sort(function () { return Math.random() - PROBABILITY_1; }));
-            }
-            else {
-                _this.setDictionary(_this.dict);
-            }
+            _this.setDictionary(dictionary, shuffle);
             _this.debug = options.debug;
             _this.log(_this.dict);
             _this.log(("Generator instantiated with Dictionary Size " + _this.dictLength));
@@ -410,10 +438,7 @@
         return ShortUniqueId;
     }(Function));
 
-    exports.DEFAULT_UUID_LENGTH = DEFAULT_UUID_LENGTH;
-    exports.default = ShortUniqueId;
-
-    Object.defineProperty(exports, '__esModule', { value: true });
+    return ShortUniqueId;
 
 })));
 //# sourceMappingURL=short-unique-id.js.map
