@@ -1432,10 +1432,10 @@ shiki@^0.9.3:
     onigasm "^2.2.5"
     vscode-textmate "^5.2.0"
 
-short-unique-id-typedoc-template@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/short-unique-id-typedoc-template/-/short-unique-id-typedoc-template-2.0.1.tgz#1a4abcd72c60b27d65bb9229249a93ca49834b24"
-  integrity sha512-MY/37he5aB/Si4O+YmJOi9sh7D9Wvvt2MKEzRT6EBFv0D/ja/5eMRoBtzbdW5Av+YYwIz6/hN+YwjhcK1ByxBA==
+short-unique-id-typedoc-template@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/short-unique-id-typedoc-template/-/short-unique-id-typedoc-template-2.0.2.tgz#c9ed0f2dfe8fcf8c68307b75448699686cd2686b"
+  integrity sha512-uJWrLHKg7BBStC4wWaHq4ofal8OoS7IngpdtlZouxZ1cGXj8F2WsLIVZYIJgHWt2NY5ff4Hb1fLLDHL5PPqZ/w==
 
 signal-exit@^3.0.0:
   version "3.0.3"
