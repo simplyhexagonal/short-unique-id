@@ -35,7 +35,7 @@ With that said, for Node.js require use-cases:
 - The `dist` js files are now generated as UMD, named as `ShortUniqueId`, which means that...
 
 ```js
-// ...this
+// ...if you get the error "TypeError: ShortUniqueId is not a constructor" then this
 const { default: ShortUniqueId } = require('short-unique-id');
 
 // must be refactored to this
