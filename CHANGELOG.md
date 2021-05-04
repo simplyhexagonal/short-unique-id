@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.2](https://github.com/jeanlescure/short-unique-id/compare/v4.3.1...v4.3.2) (2021-05-04)
+
+
+### Bug Fixes
+
+* default is not a constructor when using allowSyntheticDefaultImports ([61a9ad7](https://github.com/jeanlescure/short-unique-id/commit/61a9ad7324f4f69c69ca6ab16fa69775c0949ec9))
+
 ### [4.3.1](https://github.com/jeanlescure/short-unique-id/compare/v4.3.0...v4.3.1) (2021-05-04)
 
 
