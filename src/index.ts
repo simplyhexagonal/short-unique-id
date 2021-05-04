@@ -111,6 +111,8 @@ const DEFAULT_OPTIONS: ShortUniqueIdOptions = {
  * For more information take a look at the [ShortUniqueIdOptions type definition](/interfaces/shortuniqueidoptions.html).
  */
 export default class ShortUniqueId extends Function {
+  static default: typeof ShortUniqueId = ShortUniqueId;
+
   public counter: number;
   public debug: boolean;
   public dict: string[];

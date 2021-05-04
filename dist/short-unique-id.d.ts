@@ -90,6 +90,7 @@ export declare const DEFAULT_UUID_LENGTH: number;
  * For more information take a look at the [ShortUniqueIdOptions type definition](/interfaces/shortuniqueidoptions.html).
  */
 export default class ShortUniqueId extends Function {
+    static default: typeof ShortUniqueId;
     counter: number;
     debug: boolean;
     dict: string[];

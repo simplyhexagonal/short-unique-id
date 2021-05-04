@@ -435,6 +435,7 @@
                 apply: function (target, that, args) { return _this.randomUUID.apply(_this, __spreadArray([], __read(args))); }
             });
         }
+        ShortUniqueId["default"] = ShortUniqueId;
         return ShortUniqueId;
     }(Function));
 
