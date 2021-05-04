@@ -1,7 +1,7 @@
 // Copyright 2017-2020 the Short Unique ID authors. All rights reserved. Apache license.
 import assert from 'assert';
 
-import ShortUniqueId from '../dist/short-unique-id';
+import ShortUniqueId from './';
 
 const test = (
   {
