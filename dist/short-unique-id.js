@@ -69,7 +69,7 @@
         return to;
     }
 
-    var version = "4.1.0";
+    var version = "4.1.2";
 
     // @module ShortUniqueId
     /**

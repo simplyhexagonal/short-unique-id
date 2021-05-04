@@ -2,3 +2,4 @@
 
 yarn build
 git add dist docs
+git commit -m "chore: build dist and docs for release"
