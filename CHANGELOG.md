@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.1](https://github.com/jeanlescure/short-unique-id/compare/v4.2.0...v4.2.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* error in docs when scrolling ([5329c26](https://github.com/jeanlescure/short-unique-id/commit/5329c26ba1aa2b866c5e71ebf567a4ab2a4e23d9))
+* ShortUniqueId is not a constructor in CLI ([0e94254](https://github.com/jeanlescure/short-unique-id/commit/0e94254c91fd731b83069eca0442bcaca2f19b36))
+
 ## [4.2.0](https://github.com/jeanlescure/short-unique-id/compare/v4.1.3...v4.2.0) (2021-05-04)
 
 ### [4.1.3](https://github.com/jeanlescure/short-unique-id/compare/v4.1.2...v4.1.3) (2021-05-04)
