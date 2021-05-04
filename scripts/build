@@ -4,7 +4,7 @@ rm -rf dist/* docs/*
 rollup -p @rollup/plugin-typescript -p @rollup/plugin-json -m -f umd -n ShortUniqueId --exports default -i src/dist.ts -o dist/short-unique-id.js
 tsc -d --emitDeclarationOnly --rootDir src --outDir dist
 mv dist/index.d.ts dist/short-unique-id.d.ts
-terser -o dist/short-unique-id.min.js dist/short-unique-id.js
+terser -o dist/short-unique-id.min.js --comments /$^/ dist/short-unique-id.js
 typedoc --name "short-unique-id - v$(jq -r .version package.json)"\
   --highlightTheme monokai\
   --gaID UA-159642755-1\

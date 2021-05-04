@@ -142,7 +142,7 @@ console.log(uid.seq());
 ### Use in browser
 
 ```html
-<!-- Add source (minified 6.9K) -->
+<!-- Add source (minified 7.2K) -->
 <script src="https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js"></script>
 
 <!-- Usage -->
