@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.1](https://github.com/jeanlescure/short-unique-id/compare/v4.3.0...v4.3.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* stamp length check ([4714321](https://github.com/jeanlescure/short-unique-id/commit/47143219a0c33e98addd319e58ca6d3ab29f7ef9))
+
 ## [4.3.0](https://github.com/jeanlescure/short-unique-id/compare/v4.2.1...v4.3.0) (2021-05-04)
 
 
