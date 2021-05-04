@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.3.0](https://github.com/jeanlescure/short-unique-id/compare/v4.2.1...v4.3.0) (2021-05-04)
+
+
+### Features
+
+* add immutable default dictionaries ([3dd1026](https://github.com/jeanlescure/short-unique-id/commit/3dd10269ea02f563808df99a92c527f686e3aa0d))
+
 ### [4.2.1](https://github.com/jeanlescure/short-unique-id/compare/v4.2.0...v4.2.1) (2021-05-04)
 
 
