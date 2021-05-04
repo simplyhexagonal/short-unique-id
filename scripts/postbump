@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+yarn build
+git add dist docs

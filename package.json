@@ -31,7 +31,7 @@
   },
   "standard-version": {
     "scripts": {
-      "postbump": "yarn build"
+      "postbump": "scripty"
     }
   },
   "devDependencies": {
