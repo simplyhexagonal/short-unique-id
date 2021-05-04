@@ -1,10 +1,10 @@
 <!doctype html>
-<html class="default no-js toggle-inherited">
+<html class="default no-js">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Short Unique ID - Short UUID Generator</title>
-	<meta name="description" content="Documentation for short-unique-id">
+	<meta name="description" content="Documentation for short-unique-id - v4.0.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 	<script src="https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js"></script>
@@ -12,60 +12,10 @@
 	<script src="https://unpkg.com/cookiejs@1.0.26/dist/cookie.js"></script>
 </head>
 <body>
-<div class="tsd-page-cookieconsent">
-	<div class="message">
-		<p>
-			This site uses cookies to provide a high quality user experience and gather anonymized data
-			for statistical analysis of the website's traffic.
-			You can learn more by reading our <a href="/cookie-policy">cookie policy</a>.
-		</p>
-		<p>To consent, continue navigating this site or click the "Accept cookies" button.</p>
-		<div class="consent-button-holder">
-			<button class="cookieconsent-button">Accept cookies</button>
-		</div>
-	</div>
-</div>
 <header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">short-unique-id</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<ul class="tsd-breadcrumb">
-			</ul>
-			<h1>short-unique-id</h1>
+			<h1>short-unique-id - v4.0.0</h1>
 		</div>
 	</div>
 </header>
@@ -75,6 +25,21 @@
 			<h3>API Reference</h3>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/default.html" class="tsd-kind-icon">
+							ShortUniqueId
+						</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/shortuniqueidoptions.html" class="tsd-kind-icon">
+							Short<wbr>Unique<wbr>IdOptions
+						</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#default_uuid_length" class="tsd-kind-icon">
+							DEFAULT_<wbr>UUID_<wbr>LENGTH
+						</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -87,7 +52,7 @@
 					javascript library</a> <a href="https://github.com/jeanlescure/short-unique-id" target="_blank">short-unique-id</a>.
 				</p>
 				<p>
-					For usage examples <a href="/classes/shortuniqueid.html">click here</a>.
+					For usage examples <a href="/classes/default.html">click here</a>.
 				</p>
 			</div>
 			<div class="tsd-panel tsd-typography">
@@ -167,8 +132,7 @@
 				<p><img src="https://github.com/jeanlescure/short-unique-id/workflows/tests/badge.svg" alt="Tests">
 					<a href="https://npm.runkit.com/short-unique-id"><img src="https://badge.runkitcdn.com/short-unique-id.svg" alt="Try short-unique-id on RunKit"></a>
 					<a href="https://npmjs.com/package/short-unique-id"><img src="https://img.shields.io/npm/dt/short-unique-id.svg?maxAge=2592000" alt="NPM Downloads"></a>
-					<a href="https://www.jsdelivr.com/package/npm/short-unique-id"><img src="https://data.jsdelivr.com/v1/package/npm/short-unique-id/badge?style=rounded" alt="JsDelivr Hits"></a>
-				<a href="https://deno.land"><img src="https://img.shields.io/badge/deno-v1.2.0-green.svg" alt="Deno v1.2.0"></a></p>
+				<a href="https://www.jsdelivr.com/package/npm/short-unique-id"><img src="https://data.jsdelivr.com/v1/package/npm/short-unique-id/badge?style=rounded" alt="JsDelivr Hits"></a></p>
 				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 				<p><a href="#contributors"><img src="https://img.shields.io/badge/all_contributors-8-purple.svg" alt="9 Contributors"></a></p>
 				<!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -185,71 +149,117 @@
 					<li>Supporting me on <a href="https://www.patreon.com/jeanlescure">Patreon</a> 🏆</li>
 					<li>Starring this repo on <a href="https://github.com/jeanlescure/short-unique-id">Github</a> 🌟</li>
 				</ul>
-				<a href="#use-in-cli-🆕" id="use-in-cli-🆕" style="color: inherit; text-decoration: none;">
-					<h3>Use in CLI 🆕</h3>
+				<a href="#📣-v4-notice" id="📣-v4-notice" style="color: inherit; text-decoration: none;">
+					<h2>📣 v4 Notice</h2>
 				</a>
-				<pre><code class="language-sh">$ npm install -g short-unique-id
+				<a href="#breaking-changes" id="breaking-changes" style="color: inherit; text-decoration: none;">
+					<h3>BREAKING CHANGES</h3>
+				</a>
+				<p>This project has been completely refactored from v3 to be less &quot;Deno centric&quot; and more good &#39;ol Typescript.</p>
+				<p>We tried avoiding breaking changes, and generally succeded.</p>
+				<p>With that said, for Node.js require use-cases:</p>
+				<ul>
+					<li>The <code>dist</code> js files are now generated as UMD, named as <code>ShortUniqueId</code>, which means that...</li>
+				</ul>
+				<pre><code class="language-js"><span style="color: #88846F">// ...this</span>
+<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> { default: ShortUniqueId } </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">require</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;short-unique-id&#039;</span><span style="color: #F8F8F2">);</span>
 
-$ short-unique-id -h
+<span style="color: #88846F">// must be refactored to this</span>
+<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> ShortUniqueId </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">require</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;short-unique-id&#039;</span><span style="color: #F8F8F2">);</span>
+</code></pre>
+				<ul>
+					<li>The <code>lib</code> directory is now completely removed</li>
+				</ul>
+				<p>Also, the following changes might generate errors in some edge-cases:</p>
+				<ul>
+					<li>The <code>short_uuid</code> Deno submodule has been completely removed from this repo and now all the logic lives in <code>src/index.ts</code></li>
+					<li>Typings are no longer under the <code>typings</code> directory but are now under the <code>dist</code> directory</li>
+					<li>A sourcemap is now included along with the <code>dist</code> files</li>
+				</ul>
+				<a href="#new-features-🥳" id="new-features-🥳" style="color: inherit; text-decoration: none;">
+					<h3>New Features 🥳</h3>
+				</a>
+				<p>We have added the ability to generate UUIDs that contain a timestamp which can be extracted:</p>
+				<pre><code class="language-js"><span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">();</span>
 
-<span class="hljs-comment"># Usage:</span>
-<span class="hljs-comment">#   node short-unique-id [OPTION]</span>
+<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uidWithTimestamp </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> uid.</span><span style="color: #A6E22E">stamp</span><span style="color: #F8F8F2">(</span><span style="color: #AE81FF">32</span><span style="color: #F8F8F2">);</span>
+<span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(uidWithTimestamp);</span>
+<span style="color: #88846F">// GDa608f973aRCHLXQYPTbKDbjDeVsSb3</span>
 
-<span class="hljs-comment"># Options:</span>
-<span class="hljs-comment">#   -l, --length=ARG         character length of the uid to generate.</span>
-<span class="hljs-comment">#       --dictionaryJson=ARG json file with dictionary array.</span>
-<span class="hljs-comment">#   -h, --help               display this help</span></code></pre>
+<span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(uid.</span><span style="color: #A6E22E">parseStamp</span><span style="color: #F8F8F2">(uidWithTimestamp));</span>
+<span style="color: #88846F">// 2021-05-03T06:24:58.000Z</span>
+</code></pre>
+				<a href="#use-in-cli" id="use-in-cli" style="color: inherit; text-decoration: none;">
+					<h3>Use in CLI</h3>
+				</a>
+				<pre><code class="language-sh"><span style="color: #F8F8F2">$ npm install -g short-unique-id</span>
+
+<span style="color: #F8F8F2">$ short-unique-id -h</span>
+
+<span style="color: #88846F"># Usage:</span>
+<span style="color: #88846F">#   node short-unique-id [OPTION]</span>
+
+<span style="color: #88846F"># Options:</span>
+<span style="color: #88846F">#   -l, --length=ARG         character length of the uid to generate.</span>
+<span style="color: #88846F">#   -s, --stamp              include timestamp in uid (must be used with --length (-l) of 10 or more).</span>
+<span style="color: #88846F">#   -p, --parse=ARG          extract timestamp from stamped uid (ARG).</span>
+<span style="color: #88846F">#   -d, --dictionaryJson=ARG json file with dictionary array.</span>
+<span style="color: #88846F">#   -h, --help               display this help</span>
+</code></pre>
 				<a href="#use-as-module" id="use-as-module" style="color: inherit; text-decoration: none;">
 					<h3>Use as module</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-comment">// Deno (web module) Import</span>
-<span class="hljs-keyword">import</span> ShortUniqueId <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;https://cdn.jsdelivr.net/npm/short-unique-id@latest/src/index.ts&#x27;</span>;
+				<pre><code class="language-js"><span style="color: #88846F">// Deno (web module) Import</span>
+<span style="color: #F92672">import</span><span style="color: #F8F8F2"> ShortUniqueId </span><span style="color: #F92672">from</span><span style="color: #F8F8F2"> </span><span style="color: #E6DB74">&#039;https://cdn.jsdelivr.net/npm/short-unique-id@latest/src/index.ts&#039;</span><span style="color: #F8F8F2">;</span>
 
-<span class="hljs-comment">// ES6 / TypeScript Import</span>
-<span class="hljs-keyword">import</span> ShortUniqueId <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;short-unique-id&#x27;</span>;
+<span style="color: #88846F">// ES6 / TypeScript Import</span>
+<span style="color: #F92672">import</span><span style="color: #F8F8F2"> ShortUniqueId </span><span style="color: #F92672">from</span><span style="color: #F8F8F2"> </span><span style="color: #E6DB74">&#039;short-unique-id&#039;</span><span style="color: #F8F8F2">;</span>
 
-<span class="hljs-comment">//or Node.js require</span>
-<span class="hljs-keyword">const</span> ShortUniqueId = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;short-unique-id&#x27;</span>);
+<span style="color: #88846F">//or Node.js require</span>
+<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> ShortUniqueId </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">require</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;short-unique-id&#039;</span><span style="color: #F8F8F2">);</span>
 
-<span class="hljs-comment">//Instantiate</span>
-<span class="hljs-keyword">const</span> uid = <span class="hljs-keyword">new</span> ShortUniqueId();
+<span style="color: #88846F">//Instantiate</span>
+<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">();</span>
 
-<span class="hljs-comment">// Random UUID</span>
-<span class="hljs-built_in">console</span>.log(uid());
+<span style="color: #88846F">// Random UUID</span>
+<span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #A6E22E">uid</span><span style="color: #F8F8F2">());</span>
 
-<span class="hljs-comment">// Sequential UUID</span>
-<span class="hljs-built_in">console</span>.log(uid.seq());</code></pre>
+<span style="color: #88846F">// Sequential UUID</span>
+<span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(uid.</span><span style="color: #A6E22E">seq</span><span style="color: #F8F8F2">());</span>
+</code></pre>
 				<a href="#use-in-browser" id="use-in-browser" style="color: inherit; text-decoration: none;">
 					<h3>Use in browser</h3>
 				</a>
-				<pre><code class="language-html"><span class="hljs-comment">&lt;!-- Import --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+				<pre><code class="language-html"><span style="color: #88846F">&lt;!-- Import --&gt;</span>
+<span style="color: #F8F8F2">&lt;</span><span style="color: #F92672">script</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">src</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">&quot;https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js&quot;</span><span style="color: #F8F8F2">&gt;&lt;/</span><span style="color: #F92672">script</span><span style="color: #F8F8F2">&gt;</span>
 
-<span class="hljs-comment">&lt;!-- Usage --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-  <span class="hljs-comment">// Instantiate</span>
-  <span class="hljs-keyword">var</span> uid = <span class="hljs-keyword">new</span> ShortUniqueId();
+<span style="color: #88846F">&lt;!-- Usage --&gt;</span>
+<span style="color: #F8F8F2">&lt;</span><span style="color: #F92672">script</span><span style="color: #F8F8F2">&gt;</span>
+<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Instantiate</span>
+<span style="color: #F8F8F2">  </span><span style="color: #66D9EF">var</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">();</span>
 
-  <span class="hljs-comment">// Random UUID</span>
-  <span class="hljs-built_in">document</span>.write(uid());
+<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Random UUID</span>
+<span style="color: #F8F8F2">  document.</span><span style="color: #A6E22E">write</span><span style="color: #F8F8F2">(</span><span style="color: #A6E22E">uid</span><span style="color: #F8F8F2">());</span>
 
-  <span class="hljs-comment">// Sequential UUID</span>
-  <span class="hljs-built_in">document</span>.write(uid.seq());
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Sequential UUID</span>
+<span style="color: #F8F8F2">  document.</span><span style="color: #A6E22E">write</span><span style="color: #F8F8F2">(uid.</span><span style="color: #A6E22E">seq</span><span style="color: #F8F8F2">());</span>
+<span style="color: #F8F8F2">&lt;/</span><span style="color: #F92672">script</span><span style="color: #F8F8F2">&gt;</span>
+</code></pre>
 				<a href="#options" id="options" style="color: inherit; text-decoration: none;">
 					<h3>Options</h3>
 				</a>
 				<p>Options can be passed when instantiating <code>uid</code>:</p>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> options = { ... };
+				<pre><code class="language-js"><span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> options </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> { </span><span style="color: #F92672">...</span><span style="color: #F8F8F2"> };</span>
 
-<span class="hljs-keyword">const</span> uid = <span class="hljs-keyword">new</span> ShortUniqueId(options);</code></pre>
+<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">(options);</span>
+</code></pre>
 				<p>For more information take a look at the <a href="https://shortunique.id/globals.html#options">docs</a>.</p>
 				<a href="#available-for" id="available-for" style="color: inherit; text-decoration: none;">
 					<h2>Available for</h2>
 				</a>
 				<ul>
 					<li><a href="https://www.npmjs.com/package/short-unique-id">Node.js (npm)</a></li>
-					<li><a href="https://deno.land/x/short_uuid/">Deno</a></li>
+					<li><a href="https://www.jsdelivr.com/package/npm/short-unique-id?path=src">Deno</a></li>
 					<li><a href="https://www.jsdelivr.com/package/npm/short-unique-id?path=dist">Browsers</a></li>
 				</ul>
 				<a href="#documentation-with-online-short-uuid-generator" id="documentation-with-online-short-uuid-generator" style="color: inherit; text-decoration: none;">
@@ -275,50 +285,34 @@ $ short-unique-id -h
 				to 1, higher the uniqueness and thus better the quality).</p>
 				<p>To find out more about the math behind these functions please refer to the
 				<a target="_blank" href="https://shortunique.id/classes/shortuniqueid.html#collisionprobability">API Reference</a>.</p>
-				<a href="#v3x" id="v3x" style="color: inherit; text-decoration: none;">
-					<h2>V3.x</h2>
-				</a>
-				<p>Version 3.0 is a re-write of this library aiming to use <a href="https://deno.land/">Deno</a> as the driving
-				force of the development and distribution of Short Unique ID.</p>
-				<p>We did this by separating the Deno compatible typescript logic into a <a href="https://github.com/jeanlescure/short_uuid">git submodule</a>
-					which gets bundled for the rest of the platforms by the scripts within the
-				<code>package.json</code> in this repo.</p>
-				<p>Another reason for the re-write was to define a new license for the source
-				code within this repo, the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0 license</a>.</p>
-				<a href="#quotdenoquot-who-what" id="quotdenoquot-who-what" style="color: inherit; text-decoration: none;">
-					<h2>&quot;Deno&quot; who? what?</h2>
-				</a>
-				<p>Ryan Dahl, creator of Node.js, has spent the last couple of years working
-					on Deno, a new runtime for JavaScript that is supposed to fix all the inherent
-				problems of Node.</p>
-				<p>We have tried it out and are convinced that Deno is stable enough and
-				delivers on all expectations we could have.</p>
-				<p>For more info check out this <a href="https://blog.logrocket.com/what-is-deno/">detailed look at Deno from LogRocket&#39;s blog</a>.</p>
 				<a href="#acknowledgement-and-platform-support" id="acknowledgement-and-platform-support" style="color: inherit; text-decoration: none;">
 					<h2>Acknowledgement and platform support</h2>
 				</a>
 				<p>This repo and npm package started as a straight up manual transpilation to ES6 of the <a href="https://github.com/serendipious/nodejs-short-uid">short-uid</a> npm package by <a href="https://github.com/serendipious/">Ankit Kuwadekar</a>.</p>
-				<p><img src="https://raw.githubusercontent.com/jeanlescure/short-unique-id/master/assets/weekly-downloads.png" alt="image depicting over 5000 weekly npm downloads"></p>
-				<p>Since this package is now reporting between 4k and 5k+ npm weekly downloads, we&#39;ve gone ahead and re-written the whole of it in TypeScript and made sure to package lib and dist modules compatible with Deno, Node.js and all major Browsers.</p>
+				<p><img src="https://raw.githubusercontent.com/jeanlescure/short-unique-id/master/assets/weekly-downloads.png" alt="image depicting over 12000 weekly npm downloads"></p>
+				<p>Since this package is now reporting 12k+ npm weekly downloads, we&#39;ve gone ahead and re-written the whole of it in TypeScript and made sure to package dist modules compatible with Deno, Node.js and all major Browsers.</p>
 				<a href="#development" id="development" style="color: inherit; text-decoration: none;">
 					<h2>Development</h2>
 				</a>
-				<p>Clone this repo (including submodules):</p>
-				<pre><code class="language-sh"><span class="hljs-comment"># SSH</span>
-git <span class="hljs-built_in">clone</span> --recurse-submodules git@github.com:jeanlescure/short-unique-id.git
+				<p>Clone this repo:</p>
+				<pre><code class="language-sh"><span style="color: #88846F"># SSH</span>
+<span style="color: #F8F8F2">git clone git@github.com:jeanlescure/short-unique-id.git</span>
 
-<span class="hljs-comment"># HTTPS</span>
-git <span class="hljs-built_in">clone</span> --recurse-submodules https://github.com/jeanlescure/short-unique-id.git</code></pre>
-				<p>All feature development must happen under <code>./short_uuid/mod.ts</code>.</p>
-				<p>Tests run using <a href="https://deno.land/std/testing/">Deno</a>:</p>
-				<pre><code>yarn <span class="hljs-built_in">test</span></code></pre><p>Using <a href="https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base">airbnb</a> rules for <a href="https://palantir.github.io/tslint/">tslint</a>:</p>
-				<pre><code><span class="hljs-attribute">yarn lint</span></code></pre>
+<span style="color: #88846F"># HTTPS</span>
+<span style="color: #F8F8F2">git clone https://github.com/jeanlescure/short-unique-id.git</span>
+</code></pre>
+				<p>Tests run using:</p>
+				<pre><code><span style="color: #F8F8F2">yarn test</span>
+</code></pre>
 				<a href="#build" id="build" style="color: inherit; text-decoration: none;">
 					<h2>Build</h2>
 				</a>
-				<p>In order to publish the latest changes you must build the library and distribution files:</p>
-				<pre><code>yarn lib:<span class="hljs-keyword">build</span>
-yarn dist:<span class="hljs-keyword">build</span></code></pre><p><strong>IMPORTANT</strong>: The <code>dist:build</code> script depends on the files generated by <code>lib:build</code>.</p>
+				<p>In order to publish the latest changes you must build the distribution files:</p>
+				<pre><code><span style="color: #F8F8F2">yarn build</span>
+</code></pre>
+				<p>Then commit all changes and run the release script:</p>
+				<pre><code><span style="color: #F8F8F2">yarn release</span>
+</code></pre>
 				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
 					<h2>Contributing</h2>
 				</a>
@@ -354,8 +348,8 @@ yarn dist:<span class="hljs-keyword">build</span></code></pre><p><strong>IMPORTA
 				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 					<h2>License</h2>
 				</a>
-				<p>Copyright (c) 2018-2020 <a href="https://github.com/jeanlescure/short-unique-id/#contributors-">Short Unique ID Contributors</a>.<br/>
-				Licensed under the Apache License 2.0.</p>
+				<p>Copyright (c) 2018-2021 <a href="https://github.com/jeanlescure/short-unique-id/#contributors-">Short Unique ID Contributors</a>.<br/>
+				Licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.</p>
 			</div>
 		</div>
 	</div>

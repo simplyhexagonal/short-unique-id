@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.ShortUniqueId = factory());
-}(this, (function () { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+    typeof define === 'function' && define.amd ? define(['exports'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ShortUniqueId = {}));
+}(this, (function (exports) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -69,8 +69,9 @@
         return to;
     }
 
-    var version = "3.2.3";
+    var version = "4.0.0";
 
+    // @module ShortUniqueId
     /**
      * 6 was chosen as the default UUID length since for most cases
      * it will be more than aptly suitable to provide millions of UUIDs
@@ -112,7 +113,7 @@
      * import ShortUniqueId from 'short-unique-id';
      *
      * //or Node.js require
-     * const {default: ShortUniqueId} = require('short-unique-id');
+     * const ShortUniqueId = require('short-unique-id');
      *
      * //Instantiate
      * const uid = new ShortUniqueId();
@@ -153,7 +154,7 @@
      * const uid = new ShortUniqueId(options);
      * ```
      *
-     * For more information take a look at the [ShortUniqueIdOptions type definition](/globals.html#options).
+     * For more information take a look at the [ShortUniqueIdOptions type definition](/interfaces/shortuniqueidoptions.html).
      */
     var ShortUniqueId = /** @class */ (function (_super) {
         __extends(ShortUniqueId, _super);
@@ -328,7 +329,16 @@
                 return _this.version;
             };
             /**
-             * Generates an id with a timestamp that can be extracted using `uid.parseStamp(stampString);`.
+             * Generates a UUID with a timestamp that can be extracted using `uid.parseStamp(stampString);`.
+             *
+             * ```js
+             *  const uidWithTimestamp = uid.stamp(32);
+             *  console.log(uidWithTimestamp);
+             *  // GDa608f973aRCHLXQYPTbKDbjDeVsSb3
+             *
+             *  console.log(uid.parseStamp(uidWithTimestamp));
+             *  // 2021-05-03T06:24:58.000Z
+             *  ```
              */
             _this.stamp = function (finalLength) {
                 if (finalLength < 10) {
@@ -341,7 +351,16 @@
                 return "" + id.substr(0, rndIdx) + hexStamp + id.substr(rndIdx) + rndIdx.toString(16);
             };
             /**
-             * Extracts the date embeded into an id generated using the `uid.stamp(finalLength);` method.
+             * Extracts the date embeded in a UUID generated using the `uid.stamp(finalLength);` method.
+             *
+             * ```js
+             *  const uidWithTimestamp = uid.stamp(32);
+             *  console.log(uidWithTimestamp);
+             *  // GDa608f973aRCHLXQYPTbKDbjDeVsSb3
+             *
+             *  console.log(uid.parseStamp(uidWithTimestamp));
+             *  // 2021-05-03T06:24:58.000Z
+             *  ```
              */
             _this.parseStamp = function (stamp) {
                 if (stamp.length < 10) {
@@ -391,7 +410,10 @@
         return ShortUniqueId;
     }(Function));
 
-    return ShortUniqueId;
+    exports.DEFAULT_UUID_LENGTH = DEFAULT_UUID_LENGTH;
+    exports.default = ShortUniqueId;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 //# sourceMappingURL=short-unique-id.js.map

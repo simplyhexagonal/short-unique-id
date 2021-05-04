@@ -26,7 +26,8 @@
   "runkitExampleFilename": "./runkit.js",
   "scripts": {
     "test": "ts-node src/test.ts",
-    "build": "scripty"
+    "build": "scripty",
+    "release": "standard-version"
   },
   "devDependencies": {
     "@rollup/plugin-json": "^4.1.0",

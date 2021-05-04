@@ -1,4 +1,7 @@
-// Copyright 2017-2020 the Short Unique ID authors. All rights reserved. Apache 2.0 license.
+// @module ShortUniqueId
+
+// Copyright 2017-2021 the Short Unique ID authors. All rights reserved. Apache 2.0 license.
+
 // @ts-ignore
 import {version} from '../package.json';
 
@@ -18,7 +21,7 @@ interface ShortUniqueIdRanges {
  * }
  * ```
  */
-interface ShortUniqueIdOptions {
+export interface ShortUniqueIdOptions {
   /** User-defined character dictionary */
   dictionary: string[];
 
@@ -42,7 +45,7 @@ interface ShortUniqueIdOptions {
  * the probability of generating a duplicate in 1,000,000 rounds
  * is ~0.00000002, or about 1 in 50,000,000.
  */
-const DEFAULT_UUID_LENGTH: number = 6;
+export const DEFAULT_UUID_LENGTH: number = 6;
 
 const DIGIT_FIRST_ASCII: number = 48;
 const DIGIT_LAST_ASCII: number = 58;
@@ -118,9 +121,9 @@ const DEFAULT_OPTIONS: ShortUniqueIdOptions = {
  * const uid = new ShortUniqueId(options);
  * ```
  *
- * For more information take a look at the [ShortUniqueIdOptions type definition](/globals.html#options).
+ * For more information take a look at the [ShortUniqueIdOptions type definition](/interfaces/shortuniqueidoptions.html).
  */
-class ShortUniqueId extends Function {
+export default class ShortUniqueId extends Function {
   counter: number;
 
   debug: boolean;
@@ -342,7 +345,16 @@ class ShortUniqueId extends Function {
   };
 
   /**
-   * Generates an id with a timestamp that can be extracted using `uid.parseStamp(stampString);`.
+   * Generates a UUID with a timestamp that can be extracted using `uid.parseStamp(stampString);`.
+   * 
+   * ```js
+   *  const uidWithTimestamp = uid.stamp(32);
+   *  console.log(uidWithTimestamp);
+   *  // GDa608f973aRCHLXQYPTbKDbjDeVsSb3
+   * 
+   *  console.log(uid.parseStamp(uidWithTimestamp));
+   *  // 2021-05-03T06:24:58.000Z
+   *  ```
    */
   stamp = (finalLength: number): string => {
     if (finalLength < 10) {
@@ -361,7 +373,16 @@ class ShortUniqueId extends Function {
   };
 
   /**
-   * Extracts the date embeded into an id generated using the `uid.stamp(finalLength);` method.
+   * Extracts the date embeded in a UUID generated using the `uid.stamp(finalLength);` method.
+   * 
+   * ```js
+   *  const uidWithTimestamp = uid.stamp(32);
+   *  console.log(uidWithTimestamp);
+   *  // GDa608f973aRCHLXQYPTbKDbjDeVsSb3
+   * 
+   *  console.log(uid.parseStamp(uidWithTimestamp));
+   *  // 2021-05-03T06:24:58.000Z
+   *  ```
    */
   parseStamp = (stamp: string): Date => {
     if (stamp.length < 10) {
@@ -436,5 +457,3 @@ class ShortUniqueId extends Function {
     });
   }
 }
-
-export default ShortUniqueId;

@@ -65,7 +65,7 @@ console.log(uid.parseStamp(uidWithTimestamp));
 // 2021-05-03T06:24:58.000Z
 ```
 
-### Use in CLI 🆕
+### Use in CLI
 
 ```sh
 $ npm install -g short-unique-id

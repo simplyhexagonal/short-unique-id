@@ -8,7 +8,7 @@
  * }
  * ```
  */
-interface ShortUniqueIdOptions {
+export interface ShortUniqueIdOptions {
     /** User-defined character dictionary */
     dictionary: string[];
     /** If true, sequentialUUID use the dictionary in the given order */
@@ -18,6 +18,17 @@ interface ShortUniqueIdOptions {
     /** From 1 to infinity, the length you wish your UUID to be */
     length: number;
 }
+/**
+ * 6 was chosen as the default UUID length since for most cases
+ * it will be more than aptly suitable to provide millions of UUIDs
+ * with a very low probability of producing a duplicate UUID.
+ *
+ * For example, with a dictionary including digits from 0 to 9,
+ * as well as the alphabet from a to z both in UPPER and lower case,
+ * the probability of generating a duplicate in 1,000,000 rounds
+ * is ~0.00000002, or about 1 in 50,000,000.
+ */
+export declare const DEFAULT_UUID_LENGTH: number;
 /**
  * Generate random or sequential UUID of any length.
  *
@@ -31,7 +42,7 @@ interface ShortUniqueIdOptions {
  * import ShortUniqueId from 'short-unique-id';
  *
  * //or Node.js require
- * const {default: ShortUniqueId} = require('short-unique-id');
+ * const ShortUniqueId = require('short-unique-id');
  *
  * //Instantiate
  * const uid = new ShortUniqueId();
@@ -72,9 +83,9 @@ interface ShortUniqueIdOptions {
  * const uid = new ShortUniqueId(options);
  * ```
  *
- * For more information take a look at the [ShortUniqueIdOptions type definition](/globals.html#options).
+ * For more information take a look at the [ShortUniqueIdOptions type definition](/interfaces/shortuniqueidoptions.html).
  */
-declare class ShortUniqueId extends Function {
+export default class ShortUniqueId extends Function {
     counter: number;
     debug: boolean;
     dict: string[];
@@ -181,13 +192,30 @@ declare class ShortUniqueId extends Function {
      */
     getVersion: () => string;
     /**
-     * Generates an id with a timestamp that can be extracted using `uid.parseStamp(stampString);`.
+     * Generates a UUID with a timestamp that can be extracted using `uid.parseStamp(stampString);`.
+     *
+     * ```js
+     *  const uidWithTimestamp = uid.stamp(32);
+     *  console.log(uidWithTimestamp);
+     *  // GDa608f973aRCHLXQYPTbKDbjDeVsSb3
+     *
+     *  console.log(uid.parseStamp(uidWithTimestamp));
+     *  // 2021-05-03T06:24:58.000Z
+     *  ```
      */
     stamp: (finalLength: number) => string;
     /**
-     * Extracts the date embeded into an id generated using the `uid.stamp(finalLength);` method.
+     * Extracts the date embeded in a UUID generated using the `uid.stamp(finalLength);` method.
+     *
+     * ```js
+     *  const uidWithTimestamp = uid.stamp(32);
+     *  console.log(uidWithTimestamp);
+     *  // GDa608f973aRCHLXQYPTbKDbjDeVsSb3
+     *
+     *  console.log(uid.parseStamp(uidWithTimestamp));
+     *  // 2021-05-03T06:24:58.000Z
+     *  ```
      */
     parseStamp: (stamp: string) => Date;
     constructor(argOptions?: Partial<ShortUniqueIdOptions>);
 }
-export default ShortUniqueId;
