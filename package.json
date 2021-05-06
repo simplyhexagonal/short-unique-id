@@ -29,6 +29,11 @@
     "build": "scripty",
     "release": "standard-version"
   },
+  "files": [
+    "bin",
+    "dist",
+    "package.json"
+  ],
   "standard-version": {
     "scripts": {
       "postbump": "scripty"
