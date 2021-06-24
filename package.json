@@ -1,6 +1,6 @@
 {
   "name": "short-unique-id",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "Generate random or sequential UUID of any length",
   "keywords": [
     "short",
@@ -29,6 +29,11 @@
     "build": "scripty",
     "release": "standard-version"
   },
+  "files": [
+    "bin",
+    "dist",
+    "package.json"
+  ],
   "standard-version": {
     "scripts": {
       "postbump": "scripty"
