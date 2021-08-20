@@ -1,22 +1,6 @@
 #!/usr/bin/env bash
 
-rm -rf dist/* docs/*
-rollup -p @rollup/plugin-typescript -p @rollup/plugin-json -m -f umd -n ShortUniqueId --exports default -i src/dist.ts -o dist/short-unique-id.js
-tsc -d --emitDeclarationOnly --rootDir src --outDir dist
-mv dist/index.d.ts dist/short-unique-id.d.ts
-rm dist/dist.d.ts
-terser -o dist/short-unique-id.min.js --comments /$^/ dist/short-unique-id.js
-typedoc --name "short-unique-id - v$(jq -r .version package.json)"\
-  --highlightTheme monokai\
-  --gaID UA-159642755-1\
-  --readme README.md\
-  --theme node_modules/short-unique-id-typedoc-template/bin/default\
-  --excludePrivate\
-  --excludeProtected\
-  --excludeInternal\
-  --excludeExternals\
-  --out docs src/index.ts
-cp -r ./assets ./docs
-mv ./docs/assets/favicon.ico ./docs/
-mv ./docs/assets/cookie-policy ./docs/
-echo shortunique.id > ./docs/CNAME
+rm -rf dist/*
+esbuild src/index.ts --bundle --platform=node --target=node12 --outfile=dist/short-unique-id.js --sourcemap \
+  && esbuild src/index.ts --bundle --platform=node --target=node12 --outfile=dist/short-unique-id.min.js --minify \
+  && tsc -d --emitDeclarationOnly --rootDir src --outDir dist

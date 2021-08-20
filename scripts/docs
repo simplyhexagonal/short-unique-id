@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+rm -rf docs/*
+typedoc --name "short-unique-id - v$(jq -r .version package.json)"\
+  --highlightTheme monokai\
+  --gaID UA-159642755-1\
+  --readme README.md\
+  --theme node_modules/short-unique-id-typedoc-template/bin/default\
+  --excludePrivate\
+  --excludeProtected\
+  --excludeInternal\
+  --excludeExternals\
+  --out docs src/index.ts
+cp -r ./assets ./docs
+mv ./docs/assets/favicon.ico ./docs/
+mv ./docs/assets/cookie-policy ./docs/
+echo shortunique.id > ./docs/CNAME
