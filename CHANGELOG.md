@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.4](https://github.com/jeanlescure/short-unique-id/compare/v4.3.2...v4.3.4) (2021-08-20)
+
 ### [4.3.3](https://github.com/jeanlescure/short-unique-id/compare/v4.3.2...v4.3.3) (2021-05-06)
 
 ### [4.3.2](https://github.com/jeanlescure/short-unique-id/compare/v4.3.1...v4.3.2) (2021-05-04)
