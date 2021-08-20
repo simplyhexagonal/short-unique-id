@@ -1,5 +1,6 @@
 certs*.json
 *.pem
+import-sc/
 
 ### ArchLinuxPackages ###
 *.tar
