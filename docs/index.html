@@ -145,7 +145,46 @@
 				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 				<p><a href="#contributors"><img src="https://img.shields.io/badge/all_contributors-8-purple.svg" alt="9 Contributors"></a></p>
 				<!-- ALL-CONTRIBUTORS-BADGE:END -->
-				<p>Generate random or sequential UUID of any length.</p>
+				<hr>
+				<p>Tiny (4.6kB minified) no-dependency library for generating random or sequential UUID of any length
+				with exceptionally minuscule probabilies of duplicate IDs.</p>
+				<pre><code class="language-ts"><span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">({ length: </span><span style="color: #AE81FF">10</span><span style="color: #F8F8F2"> });</span>
+<span style="color: #A6E22E">uid</span><span style="color: #F8F8F2">(); </span><span style="color: #88846F">// p0ZoB1FwH6</span>
+<span style="color: #A6E22E">uid</span><span style="color: #F8F8F2">(); </span><span style="color: #88846F">// mSjGCTfn8w</span>
+<span style="color: #A6E22E">uid</span><span style="color: #F8F8F2">(); </span><span style="color: #88846F">// yt4Xx5nHMB</span>
+<span style="color: #88846F">// ...</span>
+</code></pre>
+				<p>For example, using the default dictionary of numbers and letters (lower and upper case):</p>
+				<pre><code class="language-ts"><span style="color: #F8F8F2">  </span><span style="color: #AE81FF">0</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">1</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">2</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">3</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">4</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">5</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">6</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">7</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">8</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">9</span><span style="color: #F8F8F2">,</span>
+<span style="color: #F8F8F2">  a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,</span>
+<span style="color: #F8F8F2">  A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z</span>
+</code></pre>
+				<ul>
+					<li>if you generate a unique ID of 16 characters (half of the standard UUID of 32 characters)</li>
+					<li>generating 100 unique IDs <strong>per second</strong></li>
+				</ul>
+				<a href="#it-would-take-10-thousand-years-to-have-a-1-probability-of-at-least-one-collision" id="it-would-take-10-thousand-years-to-have-a-1-probability-of-at-least-one-collision" style="color: inherit; text-decoration: none;">
+					<h4>It would take <strong>~10 thousand years</strong> to have a 1% probability of at least one collision!</h4>
+				</a>
+				<p>To put this into perspective:</p>
+				<ul>
+					<li>73 years is the (global) average life expectancy of a human being</li>
+					<li>120 years ago no human ever had set foot on either of the Earth&#39;s poles</li>
+					<li>480 years ago Nicolaus Copernicus was still working on his theory of the Earth revolving around the Sun</li>
+					<li>1000 years ago there was no such thing as government-issued paper money (and wouldn&#39;t be for about a century)</li>
+					<li>5000 years ago the global population of humans was under 50 million (right now Mexico has a population of 127 million)</li>
+				</ul>
+				<p>You can calculate duplicate/collision probabilities using the included functions:</p>
+				<ul>
+					<li><a href="https://shortunique.id/classes/default.html#availableuuids">availableUUIDs()</a></li>
+					<li><a href="https://shortunique.id/classes/default.html#approxmaxbeforecollision">approxMaxBeforeCollision()</a></li>
+					<li><a href="https://shortunique.id/classes/default.html#collisionprobability">collisionProbability()</a></li>
+				</ul>
+				<p><em>NOTE: 👆 On these links you will also find explanations for the math used within the functions.</em></p>
+				<hr>
+				<a href="#open-source-notice" id="open-source-notice" style="color: inherit; text-decoration: none;">
+					<h2>Open source notice</h2>
+				</a>
 				<p>This project is open to updates by its users, I ensure that PRs are relevant to the community.
 					In other words, if you find a bug or want a new feature, please help us by becoming one of the
 				<a href="#contributors-">contributors</a> ✌️ ! See the <a href="#contributing">contributing section</a>.</p>
@@ -161,42 +200,31 @@
 				<a href="#📣-v4-notice" id="📣-v4-notice" style="color: inherit; text-decoration: none;">
 					<h2>📣 v4 Notice</h2>
 				</a>
-				<a href="#breaking-changes" id="breaking-changes" style="color: inherit; text-decoration: none;">
-					<h3>BREAKING CHANGES</h3>
-				</a>
-				<p>This project has been completely refactored from v3 to be less &quot;Deno centric&quot; and more good &#39;ol Typescript.</p>
-				<p>We tried avoiding breaking changes, and generally succeded.</p>
-				<p>With that said, for Node.js require use-cases:</p>
-				<ul>
-					<li>The <code>dist</code> js files are now generated as UMD, named as <code>ShortUniqueId</code>, which means that...</li>
-				</ul>
-				<pre><code class="language-js"><span style="color: #88846F">// ...if you get the error &quot;TypeError: ShortUniqueId is not a constructor&quot; then this</span>
-<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> { default: ShortUniqueId } </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">require</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;short-unique-id&#039;</span><span style="color: #F8F8F2">);</span>
-
-<span style="color: #88846F">// must be refactored to this</span>
-<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> ShortUniqueId </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">require</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;short-unique-id&#039;</span><span style="color: #F8F8F2">);</span>
-</code></pre>
-				<ul>
-					<li>The <code>lib</code> directory is now completely removed</li>
-				</ul>
-				<p>Also, the following changes might generate errors in some edge-cases:</p>
-				<ul>
-					<li>The <code>short_uuid</code> Deno submodule has been completely removed from this repo and now all the logic lives in <code>src/index.ts</code></li>
-					<li>Typings are no longer under the <code>typings</code> directory but are now under the <code>dist</code> directory</li>
-					<li>A sourcemap is now included along with the <code>dist</code> files</li>
-				</ul>
 				<a href="#new-features-🥳" id="new-features-🥳" style="color: inherit; text-decoration: none;">
 					<h3>New Features 🥳</h3>
 				</a>
 				<p>The ability to generate UUIDs that contain a timestamp which can be extracted:</p>
-				<pre><code class="language-js"><span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">();</span>
+				<pre><code class="language-js"><span style="color: #88846F">// js/ts</span>
+
+<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">();</span>
 
 <span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uidWithTimestamp </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> uid.</span><span style="color: #A6E22E">stamp</span><span style="color: #F8F8F2">(</span><span style="color: #AE81FF">32</span><span style="color: #F8F8F2">);</span>
 <span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(uidWithTimestamp);</span>
 <span style="color: #88846F">// GDa608f973aRCHLXQYPTbKDbjDeVsSb3</span>
 
-<span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(uid.</span><span style="color: #A6E22E">parseStamp</span><span style="color: #F8F8F2">(uidWithTimestamp));</span>
+<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> recoveredTimestamp </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> uid.</span><span style="color: #A6E22E">parseStamp</span><span style="color: #F8F8F2">(uidWithTimestamp);</span>
+<span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(recoveredTimestamp);</span>
 <span style="color: #88846F">// 2021-05-03T06:24:58.000Z</span>
+</code></pre>
+				<pre><code class="language-bash"><span style="color: #88846F"># cli</span>
+
+<span style="color: #F8F8F2">$ short-unique-id -s -l 42</span>
+
+<span style="color: #F8F8F2">  lW611f30a2ky4276g3l8N7nBHI5AQ5rCiwYzU47HP2</span>
+
+<span style="color: #F8F8F2">$ short-unique-id -p lW611f30a2ky4276g3l8N7nBHI5AQ5rCiwYzU47HP2</span>
+
+<span style="color: #F8F8F2">  2021-08-20T04:33:38.000Z</span>
 </code></pre>
 				<p>Default dictionaries (generated on the spot to reduce memory footprint and
 				avoid dictionary injection vulnerabilities):</p>

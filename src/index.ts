@@ -321,12 +321,14 @@ export default class ShortUniqueId extends Function {
    * - the expected number of values we have to choose before finding the
    * first collision can be expressed as the quantity `Q(H)`
    *
-   * Then `Q(H)` can be approximated as the square root of the of the product
-   * of half of pi times `H`:
+   * Then `Q(H)` can be approximated as the square root of the product of half
+   * of pi times `H`:
    *
    * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%20Q(H)%5Capprox%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7DH%7D)
    *
    * This function returns `Q(H)`.
+   * 
+   * (see [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution))
    */
   approxMaxBeforeCollision = (rounds: number = this.availableUUIDs(this.uuidLength)): number => {
     return parseFloat(
@@ -346,11 +348,13 @@ export default class ShortUniqueId extends Function {
    * the result of running `availableUUIDs()`
    *
    * Then the probability of collision `p(r; H)` can be approximated as the result
-   * of dividing the square root of the of the product of half of pi times `H` by `H`:
+   * of dividing the square root of the product of half of pi times `r` by `H`:
    *
    * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%20p(r%3B%20H)%5Capprox%5Cfrac%7B%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7Dr%7D%7D%7BH%7D)
    *
    * This function returns `p(r; H)`.
+   * 
+   * (see [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution))
    *
    * (Useful if you are wondering _"If I use this lib and expect to perform at most
    * `r` rounds of UUID generations, what is the probability that I will hit a duplicate UUID?"_.)
@@ -490,3 +494,5 @@ export default class ShortUniqueId extends Function {
     });
   }
 }
+
+module.exports = ShortUniqueId;

@@ -8,7 +8,51 @@
 [![9 Contributors](https://img.shields.io/badge/all_contributors-8-purple.svg)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-Generate random or sequential UUID of any length.
+---
+
+Tiny (4.6kB minified) no-dependency library for generating random or sequential UUID of any length
+with exceptionally minuscule probabilies of duplicate IDs.
+
+```ts
+const uid = new ShortUniqueId({ length: 10 });
+uid(); // p0ZoB1FwH6
+uid(); // mSjGCTfn8w
+uid(); // yt4Xx5nHMB
+// ...
+```
+
+For example, using the default dictionary of numbers and letters (lower and upper case):
+
+```ts
+  0,1,2,3,4,5,6,7,8,9,
+  a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,
+  A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
+```
+
+- if you generate a unique ID of 16 characters (half of the standard UUID of 32 characters)
+- generating 100 unique IDs **per second**
+
+#### It would take **~10 thousand years** to have a 1% probability of at least one collision!
+
+To put this into perspective:
+
+- 73 years is the (global) average life expectancy of a human being
+- 120 years ago no human ever had set foot on either of the Earth's poles
+- 480 years ago Nicolaus Copernicus was still working on his theory of the Earth revolving around the Sun
+- 1000 years ago there was no such thing as government-issued paper money (and wouldn't be for about a century)
+- 5000 years ago the global population of humans was under 50 million (right now Mexico has a population of 127 million)
+
+You can calculate duplicate/collision probabilities using the included functions:
+
+- [availableUUIDs()](https://shortunique.id/classes/default.html#availableuuids)
+- [approxMaxBeforeCollision()](https://shortunique.id/classes/default.html#approxmaxbeforecollision)
+- [collisionProbability()](https://shortunique.id/classes/default.html#collisionprobability)
+
+_NOTE: 👆 On these links you will also find explanations for the math used within the functions._
+
+---
+
+## Open source notice
 
 This project is open to updates by its users, I ensure that PRs are relevant to the community.
 In other words, if you find a bug or want a new feature, please help us by becoming one of the
@@ -24,45 +68,34 @@ Please consider:
 
 ## 📣 v4 Notice
 
-### BREAKING CHANGES
-
-This project has been completely refactored from v3 to be less "Deno centric" and more good 'ol Typescript.
-
-We tried avoiding breaking changes, and generally succeded.
-
-With that said, for Node.js require use-cases:
-
-- The `dist` js files are now generated as UMD, named as `ShortUniqueId`, which means that...
-
-```js
-// ...if you get the error "TypeError: ShortUniqueId is not a constructor" then this
-const { default: ShortUniqueId } = require('short-unique-id');
-
-// must be refactored to this
-const ShortUniqueId = require('short-unique-id');
-```
-
-- The `lib` directory is now completely removed
-
-Also, the following changes might generate errors in some edge-cases:
-
-- The `short_uuid` Deno submodule has been completely removed from this repo and now all the logic lives in `src/index.ts`
-- Typings are no longer under the `typings` directory but are now under the `dist` directory
-- A sourcemap is now included along with the `dist` files
-
 ### New Features 🥳
 
 The ability to generate UUIDs that contain a timestamp which can be extracted:
 
 ```js
+// js/ts
+
 const uid = new ShortUniqueId();
 
 const uidWithTimestamp = uid.stamp(32);
 console.log(uidWithTimestamp);
 // GDa608f973aRCHLXQYPTbKDbjDeVsSb3
 
-console.log(uid.parseStamp(uidWithTimestamp));
+const recoveredTimestamp = uid.parseStamp(uidWithTimestamp);
+console.log(recoveredTimestamp);
 // 2021-05-03T06:24:58.000Z
+```
+
+```bash
+# cli
+
+$ short-unique-id -s -l 42
+
+  lW611f30a2ky4276g3l8N7nBHI5AQ5rCiwYzU47HP2
+
+$ short-unique-id -p lW611f30a2ky4276g3l8N7nBHI5AQ5rCiwYzU47HP2
+
+  2021-08-20T04:33:38.000Z
 ```
 
 Default dictionaries (generated on the spot to reduce memory footprint and
