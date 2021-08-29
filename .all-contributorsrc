@@ -60,19 +60,19 @@
       ]
     },
     {
-      "login": "neversun",
-      "name": "Robert Scheinpflug",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/9157500?v=4",
-      "profile": "https://github.com/neversun",
+      "login": "ColdtQ",
+      "name": "ColdtQ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64107374?v=4",
+      "profile": "https://github.com/ColdtQ",
       "contributions": [
         "code"
       ]
     },
     {
-      "login": "ekelvin",
-      "name": "Kelvin",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/6638327?v=4",
-      "profile": "https://github.com/ekelvin",
+      "login": "char0n",
+      "name": "Vladimir Gorej",
+      "avatar_url": "https://avatars.githubusercontent.com/u/193286?v=4",
+      "profile": "https://github.com/char0n",
       "contributions": [
         "ideas"
       ]
@@ -84,6 +84,24 @@
       "profile": "https://github.com/anthony-arnold",
       "contributions": [
         "security"
+      ]
+    },
+    {
+      "login": "neversun",
+      "name": "Robert Scheinpflug",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/9157500?v=4",
+      "profile": "https://github.com/neversun",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "neversun",
+      "name": "Robert Scheinpflug",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/9157500?v=4",
+      "profile": "https://github.com/neversun",
+      "contributions": [
+        "code"
       ]
     }
   ],
