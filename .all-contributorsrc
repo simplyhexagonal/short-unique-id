@@ -17,7 +17,6 @@
       "contributions": [
         "maintenance",
         "code",
-        "content",
         "doc",
         "test"
       ]
@@ -74,7 +73,7 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/193286?v=4",
       "profile": "https://github.com/char0n",
       "contributions": [
-        "ideas"
+        "code"
       ]
     },
     {
@@ -87,12 +86,12 @@
       ]
     },
     {
-      "login": "neversun",
-      "name": "Robert Scheinpflug",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/9157500?v=4",
-      "profile": "https://github.com/neversun",
+      "login": "ekelvin",
+      "name": "Kelvin",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6638327?v=4",
+      "profile": "https://github.com/ekelvin",
       "contributions": [
-        "code"
+        "ideas"
       ]
     },
     {
@@ -102,6 +101,15 @@
       "profile": "https://github.com/neversun",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "mybuddymichael",
+      "name": "Michael Hanson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/186724?v=4",
+      "profile": "https://github.com/mybuddymichael",
+      "contributions": [
+        "doc"
       ]
     }
   ],
