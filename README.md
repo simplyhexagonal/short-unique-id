@@ -206,7 +206,7 @@ For more information take a look at the [docs](https://shortunique.id/interfaces
 ## Available for
 
 - [Node.js (npm)](https://www.npmjs.com/package/short-unique-id)
-- [Deno](https://www.jsdelivr.com/package/npm/short-unique-id?path=src)
+- [Deno](https://esm.sh/short-unique-id)
 - [Browsers](https://www.jsdelivr.com/package/npm/short-unique-id?path=dist)
 
 ## Documentation with Online Short UUID Generator
