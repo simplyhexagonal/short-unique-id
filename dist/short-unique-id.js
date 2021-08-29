@@ -28,7 +28,7 @@ __export(exports, {
 });
 
 // package.json
-var version = "4.3.4";
+var version = "4.3.5";
 
 // src/index.ts
 var DEFAULT_UUID_LENGTH = 6;
