@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.6](https://github.com/jeanlescure/short-unique-id/compare/v4.3.4...v4.3.6) (2021-08-29)
+
+
+### Bug Fixes
+
+* types being inferred in certain situations rather than using .d.ts file ([1d5043a](https://github.com/jeanlescure/short-unique-id/commit/1d5043a8d3ec894327213e96425571ce825a047b))
+
 ### [4.3.5](https://github.com/jeanlescure/short-unique-id/compare/v4.3.4...v4.3.5) (2021-08-29)
 
 
