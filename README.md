@@ -150,7 +150,7 @@ Add to your project:
 
 ```js
 // Deno (web module) Import
-import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@latest/src/index.ts';
+import ShortUniqueId from 'https://esm.sh/short-unique-id';
 
 // ES6 / TypeScript Import
 import ShortUniqueId from 'short-unique-id';
