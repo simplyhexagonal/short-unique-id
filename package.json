@@ -17,7 +17,7 @@
     "short-unique-id": "bin/short-unique-id"
   },
   "main": "dist/short-unique-id.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/short-unique-id.d.ts",
   "homepage": "https://shortunique.id",
   "repository": {
     "type": "git",

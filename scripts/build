@@ -3,4 +3,6 @@
 rm -rf dist/*
 esbuild src/index.ts --bundle --platform=node --target=node12 --outfile=dist/short-unique-id.js --sourcemap \
   && esbuild src/index.ts --bundle --platform=node --target=node12 --outfile=dist/short-unique-id.min.js --minify \
-  && tsc -d --emitDeclarationOnly --rootDir src --outDir dist
+  && tsc -d --emitDeclarationOnly --rootDir src --outDir dist \
+  && mv dist/index.d.ts dist/short-unique-id.d.ts \
+  || exit 1
