@@ -29,24 +29,18 @@
     "test": "ts-node src/test.ts",
     "build": "scripty",
     "docs": "scripty",
-    "release": "standard-version"
+    "release": "scripty"
   },
   "files": [
     "bin",
     "dist",
     "package.json"
   ],
-  "standard-version": {
-    "scripts": {
-      "postbump": "scripty"
-    }
-  },
   "devDependencies": {
     "@types/node": "^16.6.1",
     "esbuild": "^0.12.20",
     "scripty": "^2.0.0",
     "short-unique-id-typedoc-template": "2.0.4",
-    "standard-version": "^9.3.1",
     "ts-node": "^10.2.0",
     "tslib": "^2.3.1",
     "typedoc": "^0.20.36",
