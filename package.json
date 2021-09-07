@@ -1,6 +1,6 @@
 {
   "name": "short-unique-id",
-  "version": "4.3.10",
+  "version": "4.3.8",
   "description": "Generate random or sequential UUID of any length",
   "keywords": [
     "short",
@@ -14,7 +14,8 @@
     "tiny"
   ],
   "bin": {
-    "short-unique-id": "bin/short-unique-id"
+    "short-unique-id": "bin/short-unique-id",
+    "suid": "bin/short-unique-id"
   },
   "main": "dist/short-unique-id.js",
   "types": "dist/short-unique-id.d.ts",

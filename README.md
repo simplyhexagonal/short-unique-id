@@ -89,11 +89,11 @@ console.log(recoveredTimestamp);
 ```bash
 # cli
 
-$ short-unique-id -s -l 42
+$ suid -s -l 42
 
   lW611f30a2ky4276g3l8N7nBHI5AQ5rCiwYzU47HP2
 
-$ short-unique-id -p lW611f30a2ky4276g3l8N7nBHI5AQ5rCiwYzU47HP2
+$ suid -p lW611f30a2ky4276g3l8N7nBHI5AQ5rCiwYzU47HP2
 
   2021-08-20T04:33:38.000Z
 ```
@@ -131,7 +131,7 @@ console.log(uid.dict.join());
 ```sh
 $ npm install -g short-unique-id
 
-$ short-unique-id -h
+$ suid -h
 
 # Usage:
 #   node short-unique-id [OPTION]
