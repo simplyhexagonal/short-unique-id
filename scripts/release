@@ -3,4 +3,5 @@
 yarn build \
   && yarn docs \
   && git add dist docs \
-  && git commit -m "chore: build dist and docs for release"
+  && git commit -m "chore: build dist and docs for release" \
+  && auto-changelog -p
