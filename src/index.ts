@@ -494,5 +494,3 @@ export default class ShortUniqueId extends Function {
     });
   }
 }
-
-module.exports = ShortUniqueId;

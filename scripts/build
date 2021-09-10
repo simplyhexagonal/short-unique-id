@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
 rm -rf dist/*
-esbuild src/index.ts --bundle --platform=node --target=node12 --outfile=dist/short-unique-id.js --sourcemap \
-  && esbuild src/index.ts --bundle --platform=node --target=node12 --outfile=dist/short-unique-id.min.js --minify \
+esbuild src/index.ts --bundle --target=chrome60,firefox60,safari12,edge18 \
+  --outfile=dist/short-unique-id.js --sourcemap --format=iife --global-name=ShortUniqueId \
+  && esbuild src/index.ts --bundle --target=chrome60,firefox60,safari12,edge18 \
+  --outfile=dist/short-unique-id.min.js --minify --format=iife --global-name=ShortUniqueId \
   && tsc -d --emitDeclarationOnly --rootDir src --outDir dist \
   && mv dist/index.d.ts dist/short-unique-id.d.ts \
+  && refup dist/short-unique-id.js ShortUniqueId \
+  && refup dist/short-unique-id.min.js ShortUniqueId \
   || exit 1
