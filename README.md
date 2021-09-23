@@ -5,7 +5,7 @@
 [![JsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/short-unique-id/badge?style=rounded)](https://www.jsdelivr.com/package/npm/short-unique-id)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![9 Contributors](https://img.shields.io/badge/all_contributors-8-purple.svg)](#contributors)
+[![12 Contributors](https://img.shields.io/badge/all_contributors-12-purple.svg)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ---
