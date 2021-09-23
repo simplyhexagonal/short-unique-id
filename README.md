@@ -263,7 +263,7 @@ git clone https://github.com/jeanlescure/short-unique-id.git
 Tests run using:
 
 ```
-yarn test
+pnpm test
 ```
 
 ## Build
@@ -271,13 +271,13 @@ yarn test
 In order to publish the latest changes you must build the distribution files:
 
 ```
-yarn build
+pnpm build
 ```
 
 Then commit all changes and run the release script:
 
 ```
-yarn release
+pnpm release
 ```
 
 ## Contributing

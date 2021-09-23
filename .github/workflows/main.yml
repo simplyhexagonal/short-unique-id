@@ -29,11 +29,11 @@ jobs:
       with:
         node-version: '14.x'
 
-    - name: Install Yarn
-      run: npm install -g yarn
+    - name: Install PNPM
+      run: npm install -g pnpm
 
     - name: Install Dependencies
-      run: yarn
+      run: pnpm i
 
     - name: Test
-      run: yarn test
+      run: pnpm test
