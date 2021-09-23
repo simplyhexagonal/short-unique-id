@@ -46,6 +46,7 @@
   "files": [
     "bin",
     "dist",
+    "runkit.js",
     "package.json"
   ],
   "devDependencies": {
