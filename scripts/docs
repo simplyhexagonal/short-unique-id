@@ -2,16 +2,24 @@
 
 rm -rf docs/*
 typedoc --name "short-unique-id - v$(jq -r .version package.json)"\
-  --highlightTheme monokai\
+  --plugin typedoc-plugin-rename-defaults\
+  --plugin typedoc-plugin-extras\
+  --plugin typedoc-plugin-script-inject\
+  --customTitle "ShortUniqueId - v$(jq -r .version package.json)"\
+  --entryPointStrategy expand\
+  --lightHighlightTheme light-plus\
+  --darkHighlightTheme monokai\
   --gaID UA-159642755-1\
   --readme README.md\
-  --theme node_modules/short-unique-id-typedoc-template/bin/default\
+  --theme default\
   --excludePrivate\
   --excludeProtected\
   --excludeInternal\
   --excludeExternals\
-  --out docs src/index.ts
+  --out docs src/index.ts\
+  --cname shortunique.id\
+  --useTsLinkResolution\
+  --titleLink "https://shortunique.id"
 cp -r ./assets ./docs
 mv ./docs/assets/favicon.ico ./docs/
 mv ./docs/assets/cookie-policy ./docs/
-echo shortunique.id > ./docs/CNAME

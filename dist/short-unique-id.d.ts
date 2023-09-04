@@ -1,7 +1,10 @@
 interface ShortUniqueIdRanges {
     [k: string]: [number, number];
 }
-declare type defaultDictionaries = 'number' | 'alpha' | 'alpha_lower' | 'alpha_upper' | 'alphanum' | 'alphanum_lower' | 'alphanum_upper' | 'hex';
+interface ShortUniqueIdRangesMap {
+    [k: string]: ShortUniqueIdRanges;
+}
+type defaultDictionaries = 'number' | 'alpha' | 'alpha_lower' | 'alpha_upper' | 'alphanum' | 'alphanum_lower' | 'alphanum_upper' | 'hex';
 /**
  * ```js
  * {
@@ -21,6 +24,8 @@ export interface ShortUniqueIdOptions {
     debug: boolean;
     /** From 1 to infinity, the length you wish your UUID to be */
     length: number;
+    /** From 0 to infinity, the current value for the sequential UUID counter */
+    counter: number;
 }
 /**
  * 6 was chosen as the default UUID length since for most cases
@@ -45,14 +50,14 @@ export declare const DEFAULT_UUID_LENGTH: number;
  * // ES6 / TypeScript Import
  * import ShortUniqueId from 'short-unique-id';
  *
- * //or Node.js require
+ * // or Node.js require
  * const ShortUniqueId = require('short-unique-id');
  *
- * //Instantiate
+ * // Instantiate
  * const uid = new ShortUniqueId();
  *
  * // Random UUID
- * console.log(uid());
+ * console.log(uid.rnd());
  *
  * // Sequential UUID
  * console.log(uid.seq());
@@ -70,7 +75,7 @@ export declare const DEFAULT_UUID_LENGTH: number;
  *   var uid = new ShortUniqueId();
  *
  *   // Random UUID
- *   document.write(uid());
+ *   document.write(uid.rnd());
  *
  *   // Sequential UUID
  *   document.write(uid.seq());
@@ -89,7 +94,7 @@ export declare const DEFAULT_UUID_LENGTH: number;
  *
  * For more information take a look at the [ShortUniqueIdOptions type definition](/interfaces/shortuniqueidoptions.html).
  */
-export default class ShortUniqueId extends Function {
+export default class ShortUniqueId {
     static default: typeof ShortUniqueId;
     counter: number;
     debug: boolean;
@@ -116,20 +121,28 @@ export default class ShortUniqueId extends Function {
     protected _alphanum_lower_dict_ranges: ShortUniqueIdRanges;
     protected _alphanum_upper_dict_ranges: ShortUniqueIdRanges;
     protected _hex_dict_ranges: ShortUniqueIdRanges;
+    protected _dict_ranges: ShortUniqueIdRangesMap;
     protected log: (...args: any[]) => void;
     /** Change the dictionary after initialization. */
-    setDictionary: (dictionary: string[] | defaultDictionaries, shuffle?: boolean | undefined) => void;
+    setDictionary: (dictionary: string[] | defaultDictionaries, shuffle?: boolean) => void;
     seq: () => string;
     /**
      * Generates UUID based on internal counter that's incremented after each ID generation.
      * @alias `const uid = new ShortUniqueId(); uid.seq();`
      */
     sequentialUUID: () => string;
+    rnd: (uuidLength?: number) => string;
     /**
      * Generates UUID by creating each part randomly.
-     * @alias `const uid = new ShortUniqueId(); uid(uuidLength: number);`
+     * @alias `const uid = new ShortUniqueId(); uid.rnd(uuidLength: number);`
      */
     randomUUID: (uuidLength?: number) => string;
+    fmt: (format: string, date?: Date) => string;
+    /**
+     * Generates custom UUID with the provided format string.
+     * @alias `const uid = new ShortUniqueId(); uid.fmt(format: string);`
+     */
+    formattedUUID: (format: string, date?: Date) => string;
     /**
      * Calculates total number of possible UUIDs.
      *
@@ -227,7 +240,7 @@ export default class ShortUniqueId extends Function {
      *  // 2021-05-03T06:24:58.000Z
      *  ```
      */
-    stamp: (finalLength: number) => string;
+    stamp: (finalLength: number, date?: Date) => string;
     /**
      * Extracts the date embeded in a UUID generated using the `uid.stamp(finalLength);` method.
      *
@@ -240,7 +253,11 @@ export default class ShortUniqueId extends Function {
      *  // 2021-05-03T06:24:58.000Z
      *  ```
      */
-    parseStamp: (stamp: string) => Date;
+    parseStamp: (suid: string, format?: string) => Date;
+    /**
+     * Set the counter to a specific value.
+     */
+    setCounter: (counter: number) => void;
     constructor(argOptions?: Partial<ShortUniqueIdOptions>);
 }
 export {};

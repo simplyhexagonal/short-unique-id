@@ -1,517 +1,242 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Short Unique ID - Short UUID Generator</title>
-	<meta name="description" content="Documentation for short-unique-id - v4.4.2">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<script src="https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
-	<script src="https://unpkg.com/cookiejs@1.0.26/dist/cookie.js"></script>
-</head>
-<body>
-<header>
-	<div class="tsd-page-title">
-		<div class="container">
-			<h1>short-unique-id - v4.4.2</h1>
-		</div>
-	</div>
-</header>
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>short-unique-id - v5.0.0</title><meta name="description" content="Documentation for short-unique-id - v5.0.0"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/search.js" id="tsd-search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container">
+<div class="table-cell" id="tsd-search" data-base=".">
+<div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
+<div class="field">
+<div id="tsd-toolbar-links"></div></div>
+<ul class="results">
+<li class="state loading">Preparing search index...</li>
+<li class="state failure">The search index is not available</li></ul><a href="https://shortunique.id" class="title">ShortUniqueId - v5.0.0</a></div>
+<div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
 <div class="container container-main">
-	<div class="row">
-		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
-			<h3>API Reference</h3>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-class">
-						<a href="classes/default.html" class="tsd-kind-icon">
-							ShortUniqueId
-						</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/shortuniqueidoptions.html" class="tsd-kind-icon">
-							Short<wbr>Unique<wbr>IdOptions
-						</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#default_uuid_length" class="tsd-kind-icon">
-							DEFAULT_<wbr>UUID_<wbr>LENGTH
-						</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-		<div class="col-9 col-content">
-			<div class="tsd-panel tsd-typography">
-				<h1 class="h3 mb-3 font-weight-normal">Short Unique ID</h1>
-				<img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Order_and_disorder.svg" alt="image depicting order and disorder" width="200">
-				<p>
-					This page is part of the <a href="https://en.wikipedia.org/wiki/Open_source" target="_blank">open source</a>
-					javascript library</a> <a href="https://github.com/jeanlescure/short-unique-id" target="_blank">short-unique-id</a>.
-				</p>
-				<p>
-					For usage examples <a href="/classes/default.html">click here</a>.
-				</p>
-			</div>
-			<div class="tsd-panel tsd-typography">
-				<h2>Online (short) UUID generator</h2>
-				<p>Press the buttons below to generate your short uuid codes:</p>
-				Length: <input type="number" id="uuidLen" name="uuidLen" min="1" max="32" value="6" style="width: 34px;">
-				<button id="genRandom" class="btn-success">
-					Generate Random Short UUID
-				</button>
-				<p>
-					<strong>Your random UUID:</strong> <span id="randomResult" class="m-4">&nbsp;</span>
-				</p>
-				<button id="genSequential" class="btn-success">
-					Generate Random Sequential Short UUID
-				</button>
-				<p>
-					<strong>Your sequential UUID:</strong> <span id="sequentialResult" class="m-4">&nbsp;</span>
-				</p>
-				<h2>Random Color generator</h2>
-				<p>
-					The ability to set a custom dictionary and length means that Short Unique ID is useful for many other cases such as this random color generator.
-				</p>
-				<pre>
-    <code>
-      <span style="color: #88846F">// instantiate using a dictionary containing all 16 valid hex characters</span>
+<div class="col-content">
+<div class="tsd-page-title">
+<h2>short-unique-id - v5.0.0</h2></div>
+<div class="tsd-panel tsd-typography"><a id="md:short-unique-id-uuid-generating-library" class="tsd-anchor"></a><h1><a href="#md:short-unique-id-uuid-generating-library">Short Unique ID (UUID) Generating Library</a></h1><p><img src="https://github.com/jeanlescure/short-unique-id/workflows/tests/badge.svg" alt="Tests">
+<a href="https://npm.runkit.com/short-unique-id"><img src="https://badge.runkitcdn.com/short-unique-id.svg" alt="Try short-unique-id on RunKit"></a>
+<a href="https://npmjs.com/package/short-unique-id"><img src="https://img.shields.io/npm/dt/short-unique-id.svg?maxAge=2592000" alt="NPM Downloads"></a>
+<a href="https://www.jsdelivr.com/package/npm/short-unique-id"><img src="https://data.jsdelivr.com/v1/package/npm/short-unique-id/badge?style=rounded" alt="JsDelivr Hits"></a></p>
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<p><a href="#contributors"><img src="https://img.shields.io/badge/all_contributors-12-purple.svg" alt="12 Contributors"></a></p>
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-      <span class="hljs-keyword">var</span> uid = <span class="hljs-keyword">new</span> ShortUniqueId({
-        dictionary: [
-          <span class="hljs-string">'0'</span>, <span class="hljs-string">'1'</span>, <span class="hljs-string">'2'</span>, <span class="hljs-string">'3'</span>,
-          <span class="hljs-string">'4'</span>, <span class="hljs-string">'5'</span>, <span class="hljs-string">'6'</span>, <span class="hljs-string">'7'</span>,
-          <span class="hljs-string">'8'</span>, <span class="hljs-string">'9'</span>, <span class="hljs-string">'A'</span>, <span class="hljs-string">'B'</span>,
-          <span class="hljs-string">'C'</span>, <span class="hljs-string">'D'</span>, <span class="hljs-string">'E'</span>, <span class="hljs-string">'F'</span>,
-        ],
-      });
+<hr>
+<p>Tiny (6.7kB minified) no-dependency library for generating random or sequential UUID of any length
+with exceptionally minuscule probabilies of duplicate IDs.</p>
+<pre><code class="language-ts"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">uid</span><span class="hl-1"> </span><span class="hl-3">=</span><span class="hl-1"> </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-5">ShortUniqueId</span><span class="hl-1">({ </span><span class="hl-6">length:</span><span class="hl-1"> </span><span class="hl-7">10</span><span class="hl-1"> });</span><br/><span class="hl-6">uid</span><span class="hl-1">.</span><span class="hl-5">rnd</span><span class="hl-1">(); </span><span class="hl-8">// p0ZoB1FwH6</span><br/><span class="hl-6">uid</span><span class="hl-1">.</span><span class="hl-5">rnd</span><span class="hl-1">(); </span><span class="hl-8">// mSjGCTfn8w</span><br/><span class="hl-6">uid</span><span class="hl-1">.</span><span class="hl-5">rnd</span><span class="hl-1">(); </span><span class="hl-8">// yt4Xx5nHMB</span><br/><span class="hl-8">// ...</span><br/><br/><span class="hl-8">// or</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">randomUUID</span><span class="hl-1"> } </span><span class="hl-3">=</span><span class="hl-1"> </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-5">ShortUniqueId</span><span class="hl-1">({ </span><span class="hl-6">length:</span><span class="hl-1"> </span><span class="hl-7">10</span><span class="hl-1"> });</span><br/><span class="hl-5">randomUUID</span><span class="hl-1">(); </span><span class="hl-8">// e8Civ0HoDy</span><br/><span class="hl-5">randomUUID</span><span class="hl-1">(); </span><span class="hl-8">// iPjiGoHXAK</span><br/><span class="hl-5">randomUUID</span><span class="hl-1">(); </span><span class="hl-8">// n528gSMwTN</span><br/><span class="hl-8">// ...</span>
+</code><button>Copy</button></pre>
+<p>For example, using the default dictionary of numbers and letters (lower and upper case):</p>
+<pre><code class="language-ts"><span class="hl-1">  </span><span class="hl-7">0</span><span class="hl-1">,</span><span class="hl-7">1</span><span class="hl-1">,</span><span class="hl-7">2</span><span class="hl-1">,</span><span class="hl-7">3</span><span class="hl-1">,</span><span class="hl-7">4</span><span class="hl-1">,</span><span class="hl-7">5</span><span class="hl-1">,</span><span class="hl-7">6</span><span class="hl-1">,</span><span class="hl-7">7</span><span class="hl-1">,</span><span class="hl-7">8</span><span class="hl-1">,</span><span class="hl-7">9</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-6">a</span><span class="hl-1">,</span><span class="hl-6">b</span><span class="hl-1">,</span><span class="hl-6">c</span><span class="hl-1">,</span><span class="hl-6">d</span><span class="hl-1">,</span><span class="hl-6">e</span><span class="hl-1">,</span><span class="hl-6">f</span><span class="hl-1">,</span><span class="hl-6">g</span><span class="hl-1">,</span><span class="hl-6">h</span><span class="hl-1">,</span><span class="hl-6">i</span><span class="hl-1">,</span><span class="hl-6">j</span><span class="hl-1">,</span><span class="hl-6">k</span><span class="hl-1">,</span><span class="hl-6">l</span><span class="hl-1">,</span><span class="hl-6">m</span><span class="hl-1">,</span><span class="hl-6">n</span><span class="hl-1">,</span><span class="hl-6">o</span><span class="hl-1">,</span><span class="hl-6">p</span><span class="hl-1">,</span><span class="hl-6">q</span><span class="hl-1">,</span><span class="hl-6">r</span><span class="hl-1">,</span><span class="hl-6">s</span><span class="hl-1">,</span><span class="hl-6">t</span><span class="hl-1">,</span><span class="hl-6">u</span><span class="hl-1">,</span><span class="hl-6">v</span><span class="hl-1">,</span><span class="hl-6">w</span><span class="hl-1">,</span><span class="hl-6">x</span><span class="hl-1">,</span><span class="hl-6">y</span><span class="hl-1">,</span><span class="hl-6">z</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">A</span><span class="hl-1">,</span><span class="hl-2">B</span><span class="hl-1">,</span><span class="hl-2">C</span><span class="hl-1">,</span><span class="hl-2">D</span><span class="hl-1">,</span><span class="hl-2">E</span><span class="hl-1">,</span><span class="hl-2">F</span><span class="hl-1">,</span><span class="hl-2">G</span><span class="hl-1">,</span><span class="hl-2">H</span><span class="hl-1">,</span><span class="hl-2">I</span><span class="hl-1">,</span><span class="hl-2">J</span><span class="hl-1">,</span><span class="hl-2">K</span><span class="hl-1">,</span><span class="hl-2">L</span><span class="hl-1">,</span><span class="hl-2">M</span><span class="hl-1">,</span><span class="hl-2">N</span><span class="hl-1">,</span><span class="hl-2">O</span><span class="hl-1">,</span><span class="hl-2">P</span><span class="hl-1">,</span><span class="hl-2">Q</span><span class="hl-1">,</span><span class="hl-2">R</span><span class="hl-1">,</span><span class="hl-2">S</span><span class="hl-1">,</span><span class="hl-2">T</span><span class="hl-1">,</span><span class="hl-2">U</span><span class="hl-1">,</span><span class="hl-2">V</span><span class="hl-1">,</span><span class="hl-2">W</span><span class="hl-1">,</span><span class="hl-2">X</span><span class="hl-1">,</span><span class="hl-2">Y</span><span class="hl-1">,</span><span class="hl-2">Z</span>
+</code><button>Copy</button></pre>
+<ul>
+<li>if you generate a unique ID of 16 characters (half of the standard UUID of 32 characters)</li>
+<li>generating 100 unique IDs <strong>per second</strong></li>
+</ul>
+<a id="md:it-would-take-10-thousand-years-to-have-a-1-probability-of-at-least-one-collision" class="tsd-anchor"></a><h4><a href="#md:it-would-take-10-thousand-years-to-have-a-1-probability-of-at-least-one-collision">It would take <strong>~10 thousand years</strong> to have a 1% probability of at least one collision!</a></h4><p>To put this into perspective:</p>
+<ul>
+<li>73 years is the (global) average life expectancy of a human being</li>
+<li>120 years ago no human ever had set foot on either of the Earth&#39;s poles</li>
+<li>480 years ago Nicolaus Copernicus was still working on his theory of the Earth revolving around the Sun</li>
+<li>1000 years ago there was no such thing as government-issued paper money (and wouldn&#39;t be for about a century)</li>
+<li>5000 years ago the global population of humans was under 50 million (right now Mexico has a population of 127 million)</li>
+</ul>
+<p>You can calculate duplicate/collision probabilities using the included functions:</p>
+<ul>
+<li><a href="https://shortunique.id/classes/default.html#availableuuids">availableUUIDs()</a></li>
+<li><a href="https://shortunique.id/classes/default.html#approxmaxbeforecollision">approxMaxBeforeCollision()</a></li>
+<li><a href="https://shortunique.id/classes/default.html#collisionprobability">collisionProbability()</a></li>
+</ul>
+<p><em>NOTE: 👆 On these links you will also find explanations for the math used within the functions.</em></p>
+<hr>
+<a id="md:open-source-notice" class="tsd-anchor"></a><h2><a href="#md:open-source-notice">Open source notice</a></h2><p>This project is part of the <a href="https://opencollective.com/simplyhexagonal">Open Collective</a> project <a href="https://simplyhexagonal.org">Simply Hexagonal</a>
+and is open to updates by its users, we ensure that PRs are relevant to the community.
+In other words, if you find a bug or want a new feature, please help us by becoming one of the
+<a href="#contributors-">contributors</a> ✌️ ! See the <a href="#contributing">contributing section</a>.</p>
+<a id="md:like-this-module-❤" class="tsd-anchor"></a><h2><a href="#md:like-this-module-❤">Like this module? ❤</a></h2><p>Please consider:</p>
+<ul>
+<li><a href="https://www.buymeacoffee.com/jeanlescure">Buying me a coffee</a> ☕</li>
+<li>Supporting me on <a href="https://www.patreon.com/jeanlescure">Patreon</a> 🏆</li>
+<li>Starring this repo on <a href="https://github.com/jeanlescure/short-unique-id">Github</a> 🌟</li>
+</ul>
+<a id="md:📣-v5-notice" class="tsd-anchor"></a><h2><a href="#md:📣-v5-notice">📣 v5 Notice</a></h2><p>In order to improve security compliance we have removed the ability to use a ShortUniqueId as a
+function, i.e. <code>const uid = new ShortUniqueId(); uid();</code> is no longer supported.</p>
+<p>If you plan to upgrade to v5 make sure to refactor <code>uid();</code> to <code>uid.rnd();</code> in your code beforehand.</p>
+<p>For more information regarding this decision you can view <a href="https://github.com/simplyhexagonal/short-unique-id/issues/53">issue #53</a>.</p>
+<a id="md:features" class="tsd-anchor"></a><h3><a href="#md:features">Features</a></h3><p>The ability to generate UUIDs that contain a timestamp which can be extracted:</p>
+<pre><code class="language-js"><span class="hl-8">// js/ts</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">uid</span><span class="hl-1"> </span><span class="hl-3">=</span><span class="hl-1"> </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-5">ShortUniqueId</span><span class="hl-1">();</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">uidWithTimestamp</span><span class="hl-1"> </span><span class="hl-3">=</span><span class="hl-1"> </span><span class="hl-6">uid</span><span class="hl-1">.</span><span class="hl-5">stamp</span><span class="hl-1">(</span><span class="hl-7">32</span><span class="hl-1">);</span><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-6">uidWithTimestamp</span><span class="hl-1">);</span><br/><span class="hl-8">// GDa608f973aRCHLXQYPTbKDbjDeVsSb3</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">recoveredTimestamp</span><span class="hl-1"> </span><span class="hl-3">=</span><span class="hl-1"> </span><span class="hl-6">uid</span><span class="hl-1">.</span><span class="hl-5">parseStamp</span><span class="hl-1">(</span><span class="hl-6">uidWithTimestamp</span><span class="hl-1">);</span><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-6">recoveredTimestamp</span><span class="hl-1">);</span><br/><span class="hl-8">// 2021-05-03T06:24:58.000Z</span>
+</code><button>Copy</button></pre>
+<pre><code class="language-bash"><span class="hl-8"># cli</span><br/><br/><span class="hl-5">$</span><span class="hl-1"> </span><span class="hl-9">suid</span><span class="hl-1"> </span><span class="hl-10">-s</span><span class="hl-1"> </span><span class="hl-10">-l</span><span class="hl-1"> </span><span class="hl-7">42</span><br/><br/><span class="hl-1">  </span><span class="hl-5">lW611f30a2ky4276g3l8N7nBHI5AQ5rCiwYzU47HP2</span><br/><br/><span class="hl-5">$</span><span class="hl-1"> </span><span class="hl-9">suid</span><span class="hl-1"> </span><span class="hl-10">-p</span><span class="hl-1"> </span><span class="hl-9">lW611f30a2ky4276g3l8N7nBHI5AQ5rCiwYzU47HP2</span><br/><br/><span class="hl-1">  </span><span class="hl-5">2021-08-20T04:33:38.000Z</span>
+</code><button>Copy</button></pre>
+<p>Default dictionaries (generated on the spot to reduce memory footprint and
+avoid dictionary injection vulnerabilities):</p>
+<ul>
+<li>number</li>
+<li>alpha</li>
+<li>alpha_lower</li>
+<li>alpha_upper</li>
+<li><strong>alphanum</strong> <em>(default when no dictionary is provided to <code>new ShortUniqueId()</code>)</em></li>
+<li>alphanum_lower</li>
+<li>alphanum_upper</li>
+<li>hex</li>
+</ul>
+<pre><code class="language-js"><span class="hl-8">// instantiate using one of the default dictionary strings</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">uid</span><span class="hl-1"> </span><span class="hl-3">=</span><span class="hl-1"> </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-5">ShortUniqueId</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-6">dictionary:</span><span class="hl-1"> </span><span class="hl-9">&#39;hex&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-6">uid</span><span class="hl-1">.</span><span class="hl-6">dict</span><span class="hl-1">.</span><span class="hl-5">join</span><span class="hl-1">());</span><br/><span class="hl-8">// 0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f</span><br/><br/><span class="hl-8">// or change the dictionary after instantiation</span><br/><span class="hl-6">uid</span><span class="hl-1">.</span><span class="hl-5">setDictionary</span><span class="hl-1">(</span><span class="hl-9">&#39;alpha_upper&#39;</span><span class="hl-1">);</span><br/><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-6">uid</span><span class="hl-1">.</span><span class="hl-6">dict</span><span class="hl-1">.</span><span class="hl-5">join</span><span class="hl-1">());</span><br/><span class="hl-8">// A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z</span>
+</code><button>Copy</button></pre>
+<p>Ability to use custom formatting.</p>
+<p>Where <code>$r</code> is random UUID, <code>$s</code> is sequential UUID, and <code>$t</code> is timestamp UUID:</p>
+<pre><code class="language-js"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">timestamp</span><span class="hl-1"> </span><span class="hl-3">=</span><span class="hl-1"> </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-5">Date</span><span class="hl-1">(</span><span class="hl-9">&#39;2023-01-29T03:21:21.000Z&#39;</span><span class="hl-1">);</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">result</span><span class="hl-1"> </span><span class="hl-3">=</span><span class="hl-1"> </span><span class="hl-6">uid</span><span class="hl-1">.</span><span class="hl-5">formattedUUID</span><span class="hl-1">(</span><span class="hl-9">&#39;Time: $t0 ID: $s2-$r4&#39;</span><span class="hl-1">, </span><span class="hl-6">timestamp</span><span class="hl-1">); </span><span class="hl-8">// timestamp is optional</span><br/><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-6">result</span><span class="hl-1">);</span><br/><span class="hl-8">// Time: 63d5e631 ID: 0b-aaab</span>
+</code><button>Copy</button></pre>
+<a id="md:use-in-cli" class="tsd-anchor"></a><h3><a href="#md:use-in-cli">Use in CLI</a></h3><pre><code class="language-sh"><span class="hl-5">$</span><span class="hl-1"> </span><span class="hl-9">npm</span><span class="hl-1"> </span><span class="hl-9">install</span><span class="hl-1"> </span><span class="hl-10">--global</span><span class="hl-1"> </span><span class="hl-9">short-unique-id</span><br/><br/><span class="hl-5">$</span><span class="hl-1"> </span><span class="hl-9">suid</span><span class="hl-1"> </span><span class="hl-10">-h</span><br/><br/><span class="hl-8"># Usage:</span><br/><span class="hl-8">#   node short-unique-id [OPTION]</span><br/><span class="hl-8"># </span><br/><span class="hl-8"># Options:</span><br/><span class="hl-8">#   -l, --length=ARG         character length of the uid to generate.</span><br/><span class="hl-8">#   -s, --stamp              include timestamp in uid (must be used with --length (-l) of 10 or more).</span><br/><span class="hl-8">#   -t, --timestamp=ARG      custom timestamp to parse (must be used along with -s, --stamp, -f, or --format).</span><br/><span class="hl-8">#   -f, --format=ARG         string representing custom format to generate id with.</span><br/><span class="hl-8">#   -p, --parse=ARG          extract timestamp from stamped uid (ARG).</span><br/><span class="hl-8">#   -d, --dictionaryJson=ARG json file with dictionary array.</span><br/><span class="hl-8">#   -h, --help               display this help</span>
+</code><button>Copy</button></pre>
+<a id="md:use-as-module" class="tsd-anchor"></a><h3><a href="#md:use-as-module">Use as module</a></h3><p>Add to your project:</p>
+<pre><code class="language-js"><span class="hl-8">// ES6 / TypeScript Import</span><br/><span class="hl-11">import</span><span class="hl-1"> </span><span class="hl-6">ShortUniqueId</span><span class="hl-1"> </span><span class="hl-11">from</span><span class="hl-1"> </span><span class="hl-9">&#39;short-unique-id&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-8">// Node.js require</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">ShortUniqueId</span><span class="hl-1"> </span><span class="hl-3">=</span><span class="hl-1"> </span><span class="hl-5">require</span><span class="hl-1">(</span><span class="hl-9">&#39;short-unique-id&#39;</span><span class="hl-1">);</span><br/><br/><span class="hl-8">// Deno (web module) Import</span><br/><span class="hl-11">import</span><span class="hl-1"> </span><span class="hl-6">ShortUniqueId</span><span class="hl-1"> </span><span class="hl-11">from</span><span class="hl-1"> </span><span class="hl-9">&#39;https://esm.sh/short-unique-id&#39;</span><span class="hl-1">;</span>
+</code><button>Copy</button></pre>
+<p>Instantiate and use:</p>
+<pre><code class="language-js"><span class="hl-8">//Instantiate</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">uid</span><span class="hl-1"> </span><span class="hl-3">=</span><span class="hl-1"> </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-5">ShortUniqueId</span><span class="hl-1">();</span><br/><br/><span class="hl-8">// Random UUID</span><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-6">uid</span><span class="hl-1">.</span><span class="hl-5">rnd</span><span class="hl-1">());</span><br/><br/><span class="hl-8">// Sequential UUID</span><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-6">uid</span><span class="hl-1">.</span><span class="hl-5">seq</span><span class="hl-1">());</span>
+</code><button>Copy</button></pre>
+<p>alternatively using destructuring assignment:</p>
+<pre><code class="language-js"><span class="hl-8">// Instantiate and destructure (long method name recommended for code readability)</span><br/><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">randomUUID</span><span class="hl-1">, </span><span class="hl-2">sequentialUUID</span><span class="hl-1"> } </span><span class="hl-3">=</span><span class="hl-1"> </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-5">ShortUniqueId</span><span class="hl-1">();</span><br/><br/><span class="hl-8">// Random UUID</span><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-5">randomUUID</span><span class="hl-1">());</span><br/><br/><span class="hl-8">// Sequential UUID</span><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-5">sequentialUUID</span><span class="hl-1">());</span>
+</code><button>Copy</button></pre>
+<p><em>NOTE:</em> we made sure to use <code>bind()</code> on all ShortUniqueId methods to ensure that any options
+passed when creating the instance will be respected by the destructured methods.</p>
+<a id="md:use-in-browser" class="tsd-anchor"></a><h3><a href="#md:use-in-browser">Use in browser</a></h3><pre><code class="language-html"><span class="hl-8">&lt;!-- Add source (minified 4.6kB) --&gt;</span><br/><span class="hl-12">&lt;</span><span class="hl-13">script</span><span class="hl-14"> </span><span class="hl-15">src</span><span class="hl-14">=</span><span class="hl-16">&quot;https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js&quot;</span><span class="hl-12">&gt;&lt;/</span><span class="hl-13">script</span><span class="hl-12">&gt;</span><br/><br/><span class="hl-8">&lt;!-- Usage --&gt;</span><br/><span class="hl-12">&lt;</span><span class="hl-13">script</span><span class="hl-12">&gt;</span><br/><span class="hl-14">  </span><span class="hl-8">// Instantiate</span><br/><span class="hl-14">  </span><span class="hl-0">var</span><span class="hl-14"> </span><span class="hl-6">uid</span><span class="hl-14"> </span><span class="hl-3">=</span><span class="hl-14"> </span><span class="hl-4">new</span><span class="hl-14"> </span><span class="hl-5">ShortUniqueId</span><span class="hl-14">();</span><br/><br/><span class="hl-14">  </span><span class="hl-8">// Random UUID</span><br/><span class="hl-14">  </span><span class="hl-6">document</span><span class="hl-14">.</span><span class="hl-5">write</span><span class="hl-14">(</span><span class="hl-6">uid</span><span class="hl-14">.</span><span class="hl-5">rnd</span><span class="hl-14">());</span><br/><br/><span class="hl-14">  </span><span class="hl-8">// Sequential UUID</span><br/><span class="hl-14">  </span><span class="hl-6">document</span><span class="hl-14">.</span><span class="hl-5">write</span><span class="hl-14">(</span><span class="hl-6">uid</span><span class="hl-14">.</span><span class="hl-5">seq</span><span class="hl-14">());</span><br/><span class="hl-12">&lt;/</span><span class="hl-13">script</span><span class="hl-12">&gt;</span>
+</code><button>Copy</button></pre>
+<a id="md:options" class="tsd-anchor"></a><h3><a href="#md:options">Options</a></h3><p>Options can be passed when instantiating <code>uid</code>:</p>
+<pre><code class="language-js"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">options</span><span class="hl-1"> </span><span class="hl-3">=</span><span class="hl-1"> { </span><span class="hl-3">...</span><span class="hl-1"> };</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">uid</span><span class="hl-1"> </span><span class="hl-3">=</span><span class="hl-1"> </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-5">ShortUniqueId</span><span class="hl-1">(</span><span class="hl-6">options</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<p>For more information take a look at the <a href="https://shortunique.id/interfaces/shortuniqueidoptions.html">docs</a>.</p>
+<a id="md:available-for" class="tsd-anchor"></a><h2><a href="#md:available-for">Available for</a></h2><ul>
+<li><a href="https://www.npmjs.com/package/short-unique-id">Node.js (npm)</a></li>
+<li><a href="https://esm.sh/short-unique-id">Deno</a></li>
+<li><a href="https://www.jsdelivr.com/package/npm/short-unique-id?path=dist">Browsers</a></li>
+</ul>
+<a id="md:documentation-with-online-short-uuid-generator" class="tsd-anchor"></a><h2><a href="#md:documentation-with-online-short-uuid-generator">Documentation with Online Short UUID Generator</a></h2><p>You can find the docs and online generator at:</p>
+<p><a target="_blank" href="https://shortunique.id">https://shortunique.id</a></p>
+<a id="md:what-is-the-probability-of-generating-the-same-id-again" class="tsd-anchor"></a><h2><a href="#md:what-is-the-probability-of-generating-the-same-id-again">What is the probability of generating the same id again?</a></h2><p>This largely depends on the given dictionary and the selected UUID length.</p>
+<p>Out of the box this library provides a shuffled dictionary of digits from
+0 to 9, as well as the alphabet from a to z both in UPPER and lower case,
+with a default UUID length of 6. That gives you a total of 56,800,235,584
+possible UUIDs.</p>
+<p>So, given the previous values, the probability of generating a duplicate
+in 1,000,000 rounds is ~0.00000002, or about 1 in 50,000,000.</p>
+<p>If you change the dictionary and/or the UUID length then we have provided
+the function <code>collisionProbability()</code> function to calculate the probability
+of hitting a duplicate in a given number of rounds (a collision) and the
+function <code>uniqueness()</code> which provides a score (from 0 to 1) to rate the 
+&quot;quality&quot; of the combination of given dictionary and UUID length (the closer
+to 1, higher the uniqueness and thus better the quality).</p>
+<p>To find out more about the math behind these functions please refer to the
+<a target="_blank" href="https://shortunique.id/classes/default.html#collisionprobability">API Reference</a>.</p>
+<a id="md:acknowledgement-and-platform-support" class="tsd-anchor"></a><h2><a href="#md:acknowledgement-and-platform-support">Acknowledgement and platform support</a></h2><p>This repo and npm package started as a straight up manual transpilation to ES6 of the <a href="https://github.com/serendipious/nodejs-short-uid">short-uid</a> npm package by <a href="https://github.com/serendipious/">Ankit Kuwadekar</a>.</p>
+<p><img src="https://raw.githubusercontent.com/jeanlescure/short-unique-id/main/assets/weekly-downloads.png" alt="image depicting over 200000 weekly npm downloads">
+<img src="https://raw.githubusercontent.com/jeanlescure/short-unique-id/main/assets/weekly-cdn-hits.png" alt="image depicting over 16000000 weekly cdn hits"></p>
+<p>Since this package is now reporting 200k+ npm weekly downloads and 16M+ weekly cdn hits,
+we&#39;ve gone ahead and re-written the whole of it in TypeScript and made sure to package
+dist modules compatible with Deno, Node.js and all major Browsers.</p>
+<a id="md:sponsors" class="tsd-anchor"></a><h2><a href="#md:sponsors">Sponsors</a></h2><ul>
+<li><a href="https://cleversynapse.com">Clever Synapse</a></li>
+</ul>
+<a id="md:development" class="tsd-anchor"></a><h2><a href="#md:development">Development</a></h2><p>Clone this repo:</p>
+<pre><code class="language-sh"><span class="hl-8"># SSH</span><br/><span class="hl-5">git</span><span class="hl-1"> </span><span class="hl-9">clone</span><span class="hl-1"> </span><span class="hl-9">git@github.com:jeanlescure/short-unique-id.git</span><br/><br/><span class="hl-8"># HTTPS</span><br/><span class="hl-5">git</span><span class="hl-1"> </span><span class="hl-9">clone</span><span class="hl-1"> </span><span class="hl-9">https://github.com/jeanlescure/short-unique-id.git</span>
+</code><button>Copy</button></pre>
+<p>Tests run using:</p>
+<pre><code><span class="hl-6">pnpm</span><span class="hl-1"> </span><span class="hl-6">test</span>
+</code><button>Copy</button></pre>
+<a id="md:build" class="tsd-anchor"></a><h2><a href="#md:build">Build</a></h2><p>In order to publish the latest changes you must build the distribution files:</p>
+<pre><code><span class="hl-6">pnpm</span><span class="hl-1"> </span><span class="hl-6">build</span>
+</code><button>Copy</button></pre>
+<p>Then commit all changes and run the release script:</p>
+<pre><code><span class="hl-6">pnpm</span><span class="hl-1"> </span><span class="hl-6">release</span>
+</code><button>Copy</button></pre>
+<a id="md:contributing" class="tsd-anchor"></a><h2><a href="#md:contributing">Contributing</a></h2><p>Yes, thank you! This plugin is community-driven, most of its features are from different authors.
+Please update the docs and tests and add your name to the <code>package.json</code> file.</p>
+<a id="md:contributors-✨" class="tsd-anchor"></a><h2><a href="#md:contributors-✨">Contributors ✨</a></h2><p>Thanks goes to these wonderful people (<a href="https://allcontributors.org/docs/en/emoji-key">emoji key</a>):</p>
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/serendipious"><img src="https://shortunique.id/assets/contributors/serendipious.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/commits?author=serendipious" title="Code">💻</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://jeanlescure.cr"><img src="https://shortunique.id/assets/contributors/jeanlescure.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="#maintenance-jeanlescure" title="Maintenance">🚧</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Code">💻</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Documentation">📖</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Tests">⚠️</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://dianalu.design"><img src="https://shortunique.id/assets/contributors/dilescure.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short_uuid/commits?author=DiLescure" title="Code">💻</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://github.com/EmerLM"><img src="https://shortunique.id/assets/contributors/emerlm.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short_uuid/commits?author=EmerLM" title="Code">💻</a></td></tr></tbody></table></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/angelnath26"><img src="https://shortunique.id/assets/contributors/angelnath26.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short_uuid/commits?author=angelnath26" title="Code">💻</a> <a href="https://github.com/jeanlescure/short_uuid/pulls?q=is%3Apr+reviewed-by%3Aangelnath26" title="Reviewed Pull Requests">👀</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://twitter.com/jeffturcotte"><img src="https://shortunique.id/assets/contributors/jeffturcotte.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeffturcotte" title="Code">💻</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://github.com/neversun"><img src="https://shortunique.id/assets/contributors/neversun.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/commits?author=neversun" title="Code">💻</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://github.com/ekelvin"><img src="https://shortunique.id/assets/contributors/ekelvin.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/issues/19" title="Ideas, Planning, & Feedback">🤔</a></td></tr></tbody></table></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/anthony-arnold"><img src="https://shortunique.id/assets/contributors/anthony-arnold.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/issues/35" title="Security">🛡️</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://github.com/ColdtQ"><img src="https://shortunique.id/assets/contributors/coldtq.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/pull/46" title="Code">💻</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://github.com/char0n"><img src="https://shortunique.id/assets/contributors/char0n.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/pull/48" title="Code">💻</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://github.com/mybuddymichael"><img src="https://shortunique.id/assets/contributors/mybuddymichael.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/issues/47" title="Documentation">📖</a></td></tr></tbody></table></td>
+  </tr>
+</table>
 
-      <span style="color: #88846F">// or using default dictionaries available since v4.3+</span>
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
-      <span class="hljs-keyword">var</span> uid = <span class="hljs-keyword">new</span> ShortUniqueId({ dictionary: <span class="hljs-string">'hex'</span> });
-
-      <span style="color: #88846F">// then taste the rainbow 🌈</span>
-
-      <span class="hljs-keyword">var</span> color = <span class="hljs-string">'#'</span> + uid.randomUUID(6) + <span class="hljs-string">';'</span>;
-    </code>
-  </pre>
-				<p>
-					<button id="genColor" class="btn-success">
-						Generate Random Color
-					</button>
-					<strong>Your random color:</strong> <span id="colorResult" class="m-4">&nbsp;</span>
-				</p>
-				<script>
-    // Just so website doesn't fail if @latest tag points to bad umd versions
-    if ((window['short-unique-id'] || window['ShortUniqueId'] || {}).default) {
-      var ShortUniqueId = (window['short-unique-id'] || window['ShortUniqueId']).default;
-    }
-
-    var uid = new ShortUniqueId({debug: true});
-    var colorUid = new ShortUniqueId({
-      dictionary: [
-        '0', '1', '2', '3',
-        '4', '5', '6', '7',
-        '8', '9', 'A', 'B',
-        'C', 'D', 'E', 'F',
-      ],
-    });
-    $('#genRandom').click(function(e){
-      e.preventDefault();
-      $('#randomResult').html(uid.randomUUID(parseInt($('#uuidLen')[0].value)));
-    });
-    $('#genSequential').click(function(e){
-      e.preventDefault();
-      $('#sequentialResult').html(uid.sequentialUUID());
-    });
-    $('#genColor').click(function(e){
-      e.preventDefault();
-      var color = colorUid.randomUUID(6);
-      $('#colorResult').html('#' + color);
-      $('#colorResult').attr('style', 'color: #' + color + ';');
-    });
-  </script>
-			</div>
-			<div class="tsd-panel tsd-typography">
-				<a href="#short-unique-id-uuid-generating-library" id="short-unique-id-uuid-generating-library" style="color: inherit; text-decoration: none;">
-					<h1>Short Unique ID (UUID) Generating Library</h1>
-				</a>
-				<p><img src="https://github.com/jeanlescure/short-unique-id/workflows/tests/badge.svg" alt="Tests">
-					<a href="https://npm.runkit.com/short-unique-id"><img src="https://badge.runkitcdn.com/short-unique-id.svg" alt="Try short-unique-id on RunKit"></a>
-					<a href="https://npmjs.com/package/short-unique-id"><img src="https://img.shields.io/npm/dt/short-unique-id.svg?maxAge=2592000" alt="NPM Downloads"></a>
-				<a href="https://www.jsdelivr.com/package/npm/short-unique-id"><img src="https://data.jsdelivr.com/v1/package/npm/short-unique-id/badge?style=rounded" alt="JsDelivr Hits"></a></p>
-				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-				<p><a href="#contributors"><img src="https://img.shields.io/badge/all_contributors-8-purple.svg" alt="9 Contributors"></a></p>
-				<!-- ALL-CONTRIBUTORS-BADGE:END -->
-				<hr>
-				<p>Tiny (4.6kB minified) no-dependency library for generating random or sequential UUID of any length
-				with exceptionally minuscule probabilies of duplicate IDs.</p>
-				<pre><code class="language-ts"><span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">({ length: </span><span style="color: #AE81FF">10</span><span style="color: #F8F8F2"> });</span>
-<span style="color: #A6E22E">uid</span><span style="color: #F8F8F2">(); </span><span style="color: #88846F">// p0ZoB1FwH6</span>
-<span style="color: #A6E22E">uid</span><span style="color: #F8F8F2">(); </span><span style="color: #88846F">// mSjGCTfn8w</span>
-<span style="color: #A6E22E">uid</span><span style="color: #F8F8F2">(); </span><span style="color: #88846F">// yt4Xx5nHMB</span>
-<span style="color: #88846F">// ...</span>
-</code></pre>
-				<p>For example, using the default dictionary of numbers and letters (lower and upper case):</p>
-				<pre><code class="language-ts"><span style="color: #F8F8F2">  </span><span style="color: #AE81FF">0</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">1</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">2</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">3</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">4</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">5</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">6</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">7</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">8</span><span style="color: #F8F8F2">,</span><span style="color: #AE81FF">9</span><span style="color: #F8F8F2">,</span>
-<span style="color: #F8F8F2">  a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,</span>
-<span style="color: #F8F8F2">  A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z</span>
-</code></pre>
-				<ul>
-					<li>if you generate a unique ID of 16 characters (half of the standard UUID of 32 characters)</li>
-					<li>generating 100 unique IDs <strong>per second</strong></li>
-				</ul>
-				<a href="#it-would-take-10-thousand-years-to-have-a-1-probability-of-at-least-one-collision" id="it-would-take-10-thousand-years-to-have-a-1-probability-of-at-least-one-collision" style="color: inherit; text-decoration: none;">
-					<h4>It would take <strong>~10 thousand years</strong> to have a 1% probability of at least one collision!</h4>
-				</a>
-				<p>To put this into perspective:</p>
-				<ul>
-					<li>73 years is the (global) average life expectancy of a human being</li>
-					<li>120 years ago no human ever had set foot on either of the Earth&#39;s poles</li>
-					<li>480 years ago Nicolaus Copernicus was still working on his theory of the Earth revolving around the Sun</li>
-					<li>1000 years ago there was no such thing as government-issued paper money (and wouldn&#39;t be for about a century)</li>
-					<li>5000 years ago the global population of humans was under 50 million (right now Mexico has a population of 127 million)</li>
-				</ul>
-				<p>You can calculate duplicate/collision probabilities using the included functions:</p>
-				<ul>
-					<li><a href="https://shortunique.id/classes/default.html#availableuuids">availableUUIDs()</a></li>
-					<li><a href="https://shortunique.id/classes/default.html#approxmaxbeforecollision">approxMaxBeforeCollision()</a></li>
-					<li><a href="https://shortunique.id/classes/default.html#collisionprobability">collisionProbability()</a></li>
-				</ul>
-				<p><em>NOTE: 👆 On these links you will also find explanations for the math used within the functions.</em></p>
-				<hr>
-				<a href="#open-source-notice" id="open-source-notice" style="color: inherit; text-decoration: none;">
-					<h2>Open source notice</h2>
-				</a>
-				<p>This project is open to updates by its users, I ensure that PRs are relevant to the community.
-					In other words, if you find a bug or want a new feature, please help us by becoming one of the
-				<a href="#contributors-">contributors</a> ✌️ ! See the <a href="#contributing">contributing section</a>.</p>
-				<a href="#like-this-module-❤" id="like-this-module-❤" style="color: inherit; text-decoration: none;">
-					<h2>Like this module? ❤</h2>
-				</a>
-				<p>Please consider:</p>
-				<ul>
-					<li><a href="https://www.buymeacoffee.com/jeanlescure">Buying me a coffee</a> ☕</li>
-					<li>Supporting me on <a href="https://www.patreon.com/jeanlescure">Patreon</a> 🏆</li>
-					<li>Starring this repo on <a href="https://github.com/jeanlescure/short-unique-id">Github</a> 🌟</li>
-				</ul>
-				<a href="#📣-v4-notice" id="📣-v4-notice" style="color: inherit; text-decoration: none;">
-					<h2>📣 v4 Notice</h2>
-				</a>
-				<a href="#new-features-🥳" id="new-features-🥳" style="color: inherit; text-decoration: none;">
-					<h3>New Features 🥳</h3>
-				</a>
-				<p>The ability to generate UUIDs that contain a timestamp which can be extracted:</p>
-				<pre><code class="language-js"><span style="color: #88846F">// js/ts</span>
-
-<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">();</span>
-
-<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uidWithTimestamp </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> uid.</span><span style="color: #A6E22E">stamp</span><span style="color: #F8F8F2">(</span><span style="color: #AE81FF">32</span><span style="color: #F8F8F2">);</span>
-<span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(uidWithTimestamp);</span>
-<span style="color: #88846F">// GDa608f973aRCHLXQYPTbKDbjDeVsSb3</span>
-
-<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> recoveredTimestamp </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> uid.</span><span style="color: #A6E22E">parseStamp</span><span style="color: #F8F8F2">(uidWithTimestamp);</span>
-<span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(recoveredTimestamp);</span>
-<span style="color: #88846F">// 2021-05-03T06:24:58.000Z</span>
-</code></pre>
-				<pre><code class="language-bash"><span style="color: #88846F"># cli</span>
-
-<span style="color: #F8F8F2">$ suid -s -l 42</span>
-
-<span style="color: #F8F8F2">  lW611f30a2ky4276g3l8N7nBHI5AQ5rCiwYzU47HP2</span>
-
-<span style="color: #F8F8F2">$ suid -p lW611f30a2ky4276g3l8N7nBHI5AQ5rCiwYzU47HP2</span>
-
-<span style="color: #F8F8F2">  2021-08-20T04:33:38.000Z</span>
-</code></pre>
-				<p>Default dictionaries (generated on the spot to reduce memory footprint and
-				avoid dictionary injection vulnerabilities):</p>
-				<ul>
-					<li>number</li>
-					<li>alpha</li>
-					<li>alpha_lower</li>
-					<li>alpha_upper</li>
-					<li><strong>alphanum</strong> <em>(default when no dictionary is provided to <code>new ShortUniqueId()</code>)</em></li>
-					<li>alphanum_lower</li>
-					<li>alphanum_upper</li>
-					<li>hex</li>
-				</ul>
-				<pre><code class="language-js"><span style="color: #88846F">// instantiate using one of the default dictionary strings</span>
-<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">({</span>
-<span style="color: #F8F8F2">  dictionary: </span><span style="color: #E6DB74">&#039;hex&#039;</span><span style="color: #F8F8F2">, </span><span style="color: #88846F">// the default</span>
-<span style="color: #F8F8F2">});</span>
-
-<span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(uid.dict.</span><span style="color: #A6E22E">join</span><span style="color: #F8F8F2">());</span>
-<span style="color: #88846F">// 0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f</span>
-
-<span style="color: #88846F">// or change the dictionary after instantiation</span>
-<span style="color: #F8F8F2">uid.</span><span style="color: #A6E22E">setDictionary</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;alpha_upper&#039;</span><span style="color: #F8F8F2">);</span>
-
-<span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(uid.dict.</span><span style="color: #A6E22E">join</span><span style="color: #F8F8F2">());</span>
-<span style="color: #88846F">// A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z</span>
-</code></pre>
-				<a href="#use-in-cli" id="use-in-cli" style="color: inherit; text-decoration: none;">
-					<h3>Use in CLI</h3>
-				</a>
-				<pre><code class="language-sh"><span style="color: #F8F8F2">$ npm install -g short-unique-id</span>
-
-<span style="color: #F8F8F2">$ suid -h</span>
-
-<span style="color: #88846F"># Usage:</span>
-<span style="color: #88846F">#   node short-unique-id [OPTION]</span>
-
-<span style="color: #88846F"># Options:</span>
-<span style="color: #88846F">#   -l, --length=ARG         character length of the uid to generate.</span>
-<span style="color: #88846F">#   -s, --stamp              include timestamp in uid (must be used with --length (-l) of 10 or more).</span>
-<span style="color: #88846F">#   -p, --parse=ARG          extract timestamp from stamped uid (ARG).</span>
-<span style="color: #88846F">#   -d, --dictionaryJson=ARG json file with dictionary array.</span>
-<span style="color: #88846F">#   -h, --help               display this help</span>
-</code></pre>
-				<a href="#use-as-module" id="use-as-module" style="color: inherit; text-decoration: none;">
-					<h3>Use as module</h3>
-				</a>
-				<p>Add to your project:</p>
-				<pre><code class="language-js"><span style="color: #88846F">// Deno (web module) Import</span>
-<span style="color: #F92672">import</span><span style="color: #F8F8F2"> ShortUniqueId </span><span style="color: #F92672">from</span><span style="color: #F8F8F2"> </span><span style="color: #E6DB74">&#039;https://esm.sh/short-unique-id&#039;</span><span style="color: #F8F8F2">;</span>
-
-<span style="color: #88846F">// ES6 / TypeScript Import</span>
-<span style="color: #F92672">import</span><span style="color: #F8F8F2"> ShortUniqueId </span><span style="color: #F92672">from</span><span style="color: #F8F8F2"> </span><span style="color: #E6DB74">&#039;short-unique-id&#039;</span><span style="color: #F8F8F2">;</span>
-
-<span style="color: #88846F">// Node.js require</span>
-<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> ShortUniqueId </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">require</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;short-unique-id&#039;</span><span style="color: #F8F8F2">);</span>
-</code></pre>
-				<p>Instantiate and use:</p>
-				<pre><code class="language-js"><span style="color: #88846F">//Instantiate</span>
-<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">();</span>
-
-<span style="color: #88846F">// Random UUID</span>
-<span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #A6E22E">uid</span><span style="color: #F8F8F2">());</span>
-
-<span style="color: #88846F">// Sequential UUID</span>
-<span style="color: #F8F8F2">console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(uid.</span><span style="color: #A6E22E">seq</span><span style="color: #F8F8F2">());</span>
-</code></pre>
-				<a href="#use-in-browser" id="use-in-browser" style="color: inherit; text-decoration: none;">
-					<h3>Use in browser</h3>
-				</a>
-				<pre><code class="language-html"><span style="color: #88846F">&lt;!-- Add source (minified 4.6kB) --&gt;</span>
-<span style="color: #F8F8F2">&lt;</span><span style="color: #F92672">script</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">src</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">&quot;https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js&quot;</span><span style="color: #F8F8F2">&gt;&lt;/</span><span style="color: #F92672">script</span><span style="color: #F8F8F2">&gt;</span>
-
-<span style="color: #88846F">&lt;!-- Usage --&gt;</span>
-<span style="color: #F8F8F2">&lt;</span><span style="color: #F92672">script</span><span style="color: #F8F8F2">&gt;</span>
-<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Instantiate</span>
-<span style="color: #F8F8F2">  </span><span style="color: #66D9EF">var</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">();</span>
-
-<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Random UUID</span>
-<span style="color: #F8F8F2">  document.</span><span style="color: #A6E22E">write</span><span style="color: #F8F8F2">(</span><span style="color: #A6E22E">uid</span><span style="color: #F8F8F2">());</span>
-
-<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Sequential UUID</span>
-<span style="color: #F8F8F2">  document.</span><span style="color: #A6E22E">write</span><span style="color: #F8F8F2">(uid.</span><span style="color: #A6E22E">seq</span><span style="color: #F8F8F2">());</span>
-<span style="color: #F8F8F2">&lt;/</span><span style="color: #F92672">script</span><span style="color: #F8F8F2">&gt;</span>
-</code></pre>
-				<a href="#options" id="options" style="color: inherit; text-decoration: none;">
-					<h3>Options</h3>
-				</a>
-				<p>Options can be passed when instantiating <code>uid</code>:</p>
-				<pre><code class="language-js"><span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> options </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> { </span><span style="color: #F92672">...</span><span style="color: #F8F8F2"> };</span>
-
-<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> uid </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">ShortUniqueId</span><span style="color: #F8F8F2">(options);</span>
-</code></pre>
-				<p>For more information take a look at the <a href="https://shortunique.id/interfaces/shortuniqueidoptions.html">docs</a>.</p>
-				<a href="#available-for" id="available-for" style="color: inherit; text-decoration: none;">
-					<h2>Available for</h2>
-				</a>
-				<ul>
-					<li><a href="https://www.npmjs.com/package/short-unique-id">Node.js (npm)</a></li>
-					<li><a href="https://esm.sh/short-unique-id">Deno</a></li>
-					<li><a href="https://www.jsdelivr.com/package/npm/short-unique-id?path=dist">Browsers</a></li>
-				</ul>
-				<a href="#documentation-with-online-short-uuid-generator" id="documentation-with-online-short-uuid-generator" style="color: inherit; text-decoration: none;">
-					<h2>Documentation with Online Short UUID Generator</h2>
-				</a>
-				<p>You can find the docs and online generator at:</p>
-				<p><a target="_blank" href="https://shortunique.id">https://shortunique.id</a></p>
-				<a href="#what-is-the-probability-of-generating-the-same-id-again" id="what-is-the-probability-of-generating-the-same-id-again" style="color: inherit; text-decoration: none;">
-					<h2>What is the probability of generating the same id again?</h2>
-				</a>
-				<p>This largely depends on the given dictionary and the selected UUID length.</p>
-				<p>Out of the box this library provides a shuffled dictionary of digits from
-					0 to 9, as well as the alphabet from a to z both in UPPER and lower case,
-					with a default UUID length of 6. That gives you a total of 56,800,235,584
-				possible UUIDs.</p>
-				<p>So, given the previous values, the probability of generating a duplicate
-				in 1,000,000 rounds is ~0.00000002, or about 1 in 50,000,000.</p>
-				<p>If you change the dictionary and/or the UUID length then we have provided
-					the function <code>collisionProbability()</code> function to calculate the probability
-					of hitting a duplicate in a given number of rounds (a collision) and the
-					function <code>uniqueness()</code> which provides a score (from 0 to 1) to rate the
-					&quot;quality&quot; of the combination of given dictionary and UUID length (the closer
-				to 1, higher the uniqueness and thus better the quality).</p>
-				<p>To find out more about the math behind these functions please refer to the
-				<a target="_blank" href="https://shortunique.id/classes/default.html#collisionprobability">API Reference</a>.</p>
-				<a href="#acknowledgement-and-platform-support" id="acknowledgement-and-platform-support" style="color: inherit; text-decoration: none;">
-					<h2>Acknowledgement and platform support</h2>
-				</a>
-				<p>This repo and npm package started as a straight up manual transpilation to ES6 of the <a href="https://github.com/serendipious/nodejs-short-uid">short-uid</a> npm package by <a href="https://github.com/serendipious/">Ankit Kuwadekar</a>.</p>
-				<p><img src="https://raw.githubusercontent.com/jeanlescure/short-unique-id/main/assets/weekly-downloads.png" alt="image depicting over 12000 weekly npm downloads">
-				<img src="https://raw.githubusercontent.com/jeanlescure/short-unique-id/main/assets/weekly-cdn-hits.png" alt="image depicting over 100000 weekly cdn hits"></p>
-				<p>Since this package is now reporting 12k+ npm weekly downloads and 100k+ weekly cdn hits,
-					we&#39;ve gone ahead and re-written the whole of it in TypeScript and made sure to package
-				dist modules compatible with Deno, Node.js and all major Browsers.</p>
-				<a href="#development" id="development" style="color: inherit; text-decoration: none;">
-					<h2>Development</h2>
-				</a>
-				<p>Clone this repo:</p>
-				<pre><code class="language-sh"><span style="color: #88846F"># SSH</span>
-<span style="color: #F8F8F2">git clone git@github.com:jeanlescure/short-unique-id.git</span>
-
-<span style="color: #88846F"># HTTPS</span>
-<span style="color: #F8F8F2">git clone https://github.com/jeanlescure/short-unique-id.git</span>
-</code></pre>
-				<p>Tests run using:</p>
-				<pre><code><span style="color: #F8F8F2">yarn test</span>
-</code></pre>
-				<a href="#build" id="build" style="color: inherit; text-decoration: none;">
-					<h2>Build</h2>
-				</a>
-				<p>In order to publish the latest changes you must build the distribution files:</p>
-				<pre><code><span style="color: #F8F8F2">yarn build</span>
-</code></pre>
-				<p>Then commit all changes and run the release script:</p>
-				<pre><code><span style="color: #F8F8F2">yarn release</span>
-</code></pre>
-				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
-					<h2>Contributing</h2>
-				</a>
-				<p>Yes, thank you! This plugin is community-driven, most of its features are from different authors.
-				Please update the docs and tests and add your name to the <code>package.json</code> file.</p>
-				<a href="#contributors-✨" id="contributors-✨" style="color: inherit; text-decoration: none;">
-					<h2>Contributors ✨</h2>
-				</a>
-				<p>Thanks goes to these wonderful people (<a href="https://allcontributors.org/docs/en/emoji-key">emoji key</a>):</p>
-				<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-				<!-- prettier-ignore-start -->
-				<!-- markdownlint-disable -->
-				<table>
-					<tr>
-						<td align="center"><a href="https://github.com/serendipious"><img src="https://shortunique.id/assets/contributors/serendipious.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/commits?author=serendipious" title="Code">💻</a></td></tr></tbody></table></td>
-						<td align="center"><a href="https://jeanlescure.cr"><img src="https://shortunique.id/assets/contributors/jeanlescure.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="#maintenance-jeanlescure" title="Maintenance">🚧</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Code">💻</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Documentation">📖</a> <a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeanlescure" title="Tests">⚠️</a></td></tr></tbody></table></td>
-						<td align="center"><a href="https://dianalu.design"><img src="https://shortunique.id/assets/contributors/dilescure.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short_uuid/commits?author=DiLescure" title="Code">💻</a></td></tr></tbody></table></td>
-						<td align="center"><a href="https://github.com/EmerLM"><img src="https://shortunique.id/assets/contributors/emerlm.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short_uuid/commits?author=EmerLM" title="Code">💻</a></td></tr></tbody></table></td>
-					</tr>
-					<tr>
-						<td align="center"><a href="https://github.com/angelnath26"><img src="https://shortunique.id/assets/contributors/angelnath26.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short_uuid/commits?author=angelnath26" title="Code">💻</a> <a href="https://github.com/jeanlescure/short_uuid/pulls?q=is%3Apr+reviewed-by%3Aangelnath26" title="Reviewed Pull Requests">👀</a></td></tr></tbody></table></td>
-						<td align="center"><a href="https://twitter.com/jeffturcotte"><img src="https://shortunique.id/assets/contributors/jeffturcotte.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/commits?author=jeffturcotte" title="Code">💻</a></td></tr></tbody></table></td>
-						<td align="center"><a href="https://github.com/neversun"><img src="https://shortunique.id/assets/contributors/neversun.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/commits?author=neversun" title="Code">💻</a></td></tr></tbody></table></td>
-						<td align="center"><a href="https://github.com/ekelvin"><img src="https://shortunique.id/assets/contributors/ekelvin.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/issues/19" title="Ideas, Planning, & Feedback">🤔</a></td></tr></tbody></table></td>
-					</tr>
-					<tr>
-						<td align="center"><a href="https://github.com/anthony-arnold"><img src="https://shortunique.id/assets/contributors/anthony-arnold.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/issues/35" title="Security">🛡️</a></td></tr></tbody></table></td>
-						<td align="center"><a href="https://github.com/ColdtQ"><img src="https://shortunique.id/assets/contributors/coldtq.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/pull/46" title="Code">💻</a></td></tr></tbody></table></td>
-						<td align="center"><a href="https://github.com/char0n"><img src="https://shortunique.id/assets/contributors/char0n.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/pull/48" title="Code">💻</a></td></tr></tbody></table></td>
-						<td align="center"><a href="https://github.com/mybuddymichael"><img src="https://shortunique.id/assets/contributors/mybuddymichael.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/issues/47" title="Documentation">📖</a></td></tr></tbody></table></td>
-					</tr>
-				</table>
-				<!-- markdownlint-enable -->
-				<!-- prettier-ignore-end -->
-				<!-- ALL-CONTRIBUTORS-LIST:END -->
-				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
-					<h2>License</h2>
-				</a>
-				<p>Copyright (c) 2018-2021 <a href="https://github.com/jeanlescure/short-unique-id/#contributors-">Short Unique ID Contributors</a>.<br/>
-				Licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.</p>
-			</div>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<p>
-			<svg height="18" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="18" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> See in <a href="https://github.com/jeanlescure/short-unique-id" target="_blank" rel="noopener noreferrer">Github</a> | <a href="https://jeanlescure.cr" target="_blank" rel="noopener noreferrer">Jean M. Lescure</a> &copy; 2018-<script>document.write(new Date().getFullYear())</script> | Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a>
-		</p>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>
-		&nbsp;
-	</p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-159642755-1"></script>
-<script>
-    var gtagId = 'UA-159642755-1';
-    window['ga-disable-' + gtagId] = true;
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    function initTracking(){
-      cookie('cookieconsent_status', 'allow');
-
-      $('.tsd-page-cookieconsent').removeClass('show');
-      $(window).off('scroll');
-      $('.cookieconsent-button').off('click');
-
-      window['ga-disable-' + gtagId] = false;
-      gtag('event', 'CookieConsent');
-      gtag('config', gtagId, {
-        'custom_map': {
-          'metric1': 'cookie_consent',
-          'metric2': 'color_mode_dark',
-          'metric3': 'color_mode_light',
-          'metric4': 'color_mode_np'
-        }
-      });
-      gtag('event', 'custom_metrics', {
-        'cookie_consent': 1,
-        'color_mode_dark': (
-          window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-        ) ? (
-          1
-        ) : (
-          0
-        ),
-        'color_mode_light': (
-          window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
-        ) ? (
-          1
-        ) : (
-          0
-        ),
-        'color_mode_np' : (
-          !window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-          && !window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
-        ) ? (
-          1
-        ) : (
-          0
-        )
-      });
-    }
-
-    if (cookie.get('cookieconsent_status') === 'allow') {
-      initTracking();
-    } else {
-      $('.tsd-page-cookieconsent').addClass('show');
-
-      var scrollCounter = 0;
-      $(window).scroll(function(e) {
-        scrollCounter += 1;
-
-        if (scrollCounter >= 30) {
-          initTracking();
-        }
-      });
-
-      $('.cookieconsent-button').click(function() {
-        initTracking();
-      });
-    }
-  </script>
-</body>
-</html>
+<a id="md:license" class="tsd-anchor"></a><h2><a href="#md:license">License</a></h2><p>Copyright (c) 2018-2023 <a href="https://github.com/jeanlescure/short-unique-id/#contributors-">Short Unique ID Contributors</a>.<br/>
+Licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.</p>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)" id="icon-chevronDown"></path></svg>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility">
+<h4 class="uppercase">Member Visibility</h4><form>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></form></div>
+<div class="tsd-theme-toggle">
+<h4 class="uppercase">Theme</h4><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-index-accordion tsd-page-navigation"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="#icon-chevronDown"></use></svg>On This Page</h3></summary>
+<div class="tsd-accordion-details">
+<ul>
+<li>
+<ul>
+<li><a href="#md:short-unique-id-uuid-generating-library"><span>Short <wbr/>Unique ID (UUID) <wbr/>Generating <wbr/>Library</span></a></li>
+<li>
+<ul>
+<li><a href="#md:it-would-take-10-thousand-years-to-have-a-1-probability-of-at-least-one-collision"><span>It would take ~10 thousand years to have a 1% probability of at least one collision!</span></a></li>
+<li><a href="#md:open-source-notice"><span>Open source notice</span></a></li>
+<li><a href="#md:like-this-module-❤"><span>Like this module? ❤</span></a></li>
+<li><a href="#md:📣-v5-notice"><span>📣 v5 <wbr/>Notice</span></a></li>
+<li>
+<ul>
+<li><a href="#md:features"><span>Features</span></a></li>
+<li><a href="#md:use-in-cli"><span>Use in CLI</span></a></li>
+<li><a href="#md:use-as-module"><span>Use as module</span></a></li>
+<li><a href="#md:use-in-browser"><span>Use in browser</span></a></li>
+<li><a href="#md:options"><span>Options</span></a></li></ul></li>
+<li><a href="#md:available-for"><span>Available for</span></a></li>
+<li><a href="#md:documentation-with-online-short-uuid-generator"><span>Documentation with <wbr/>Online <wbr/>Short UUID <wbr/>Generator</span></a></li>
+<li><a href="#md:what-is-the-probability-of-generating-the-same-id-again"><span>What is the probability of generating the same id again?</span></a></li>
+<li><a href="#md:acknowledgement-and-platform-support"><span>Acknowledgement and platform support</span></a></li>
+<li><a href="#md:sponsors"><span>Sponsors</span></a></li>
+<li><a href="#md:development"><span>Development</span></a></li>
+<li><a href="#md:build"><span>Build</span></a></li>
+<li><a href="#md:contributing"><span>Contributing</span></a></li>
+<li><a href="#md:contributors-✨"><span>Contributors ✨</span></a></li>
+<li><a href="#md:license"><span>License</span></a></li></ul></li></ul></li></ul></div></details></div>
+<div class="site-menu">
+<nav id="tsd-sidebar-links" class="tsd-navigation"><a href="https://web.archive.org/web/20230607190646/https://shortunique.id/" target="_blank">Previous Docs (v4)</a></nav>
+<nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)"></path></g></svg><span>short-<wbr/>unique-<wbr/>id -<wbr/> v5.0.0</span></a>
+<ul class="tsd-small-nested-navigation">
+<li><a href="classes/ShortUniqueId.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-128"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)"></path></g></svg><span>Short<wbr/>Unique<wbr/>Id</span></a></li>
+<li><a href="interfaces/ShortUniqueIdOptions.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-256"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-interface)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.51 16V15.016H11.298V8.224H9.51V7.24H14.19V8.224H12.402V15.016H14.19V16H9.51Z" fill="var(--color-text)"></path></g></svg><span>Short<wbr/>Unique<wbr/>Id<wbr/>Options</span></a></li>
+<li><a href="interfaces/ShortUniqueIdRanges.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Short<wbr/>Unique<wbr/>Id<wbr/>Ranges</span></a></li>
+<li><a href="interfaces/ShortUniqueIdRangesMap.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Short<wbr/>Unique<wbr/>Id<wbr/>Ranges<wbr/>Map</span></a></li>
+<li><a href="types/ShortUniqueIdDefaultDictionaries.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4194304"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)"></path></g></svg><span>Short<wbr/>Unique<wbr/>Id<wbr/>Default<wbr/>Dictionaries</span></a></li>
+<li><a href="variables/DEFAULT_OPTIONS.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-32"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-variable)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.106 16L8.85 7.24H9.966L11.454 13.192C11.558 13.608 11.646 13.996 11.718 14.356C11.79 14.708 11.842 14.976 11.874 15.16C11.906 14.976 11.954 14.708 12.018 14.356C12.09 13.996 12.178 13.608 12.282 13.192L13.758 7.24H14.85L12.582 16H11.106Z" fill="var(--color-text)"></path></g></svg><span>DEFAULT_<wbr/>OPTIONS</span></a></li>
+<li><a href="variables/DEFAULT_UUID_LENGTH.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>DEFAULT_<wbr/>UUID_<wbr/>LENGTH</span></a></li></ul></nav></div></div></div>
+<div class="tsd-generator">
+<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
+<div class="overlay"></div><script async src="https://www.googletagmanager.com/gtag/js?id=UA-159642755-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-159642755-1');</script><script async src="https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js" crossOrigin="anonymous"></script></body></html>

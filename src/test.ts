@@ -12,18 +12,18 @@ const test = (
     fn: () => void,
   },
 ) => {
-  console.log(`Testing: ${name}`);
+  console.log(`\nTesting: ${name}`);
   fn();
 };
 
 test({
   name: 'ability to show module version',
   fn(): void {
-    const uid: ShortUniqueId = new ShortUniqueId({
+    const { getVersion } = new ShortUniqueId({
       dictionary: ['a', 'b'],
       shuffle: false,
     });
-    const version = uid.getVersion();
+    const version = getVersion();
 
     console.log(version);
 
@@ -34,13 +34,13 @@ test({
 test({
   name: 'ability to generate random id\'s of different lengths',
   fn(): void {
-    const uid: ShortUniqueId = new ShortUniqueId();
+    const { rnd } = new ShortUniqueId();
     const uidCollection: string[] = [];
 
     /* tslint:disable no-magic-numbers */
-    uidCollection.push(uid(6));
-    uidCollection.push(uid(7));
-    uidCollection.push(uid(10));
+    uidCollection.push(rnd(6));
+    uidCollection.push(rnd(7));
+    uidCollection.push(rnd(10));
 
     console.log(uidCollection);
 
@@ -61,71 +61,73 @@ test({
 test({
   name: 'ability to generate consecutive id\'s based on internal counter',
   fn(): void {
-    const uid: ShortUniqueId = new ShortUniqueId();
-    uid.setDictionary(['v', '0', 'Y']);
+    const { setDictionary, seq } = new ShortUniqueId();
+    setDictionary(['v', '0', 'Y']);
 
-    let seq = uid.seq();
-    console.log(seq);
-    assert(seq === 'v');
+    let result = seq();
+    console.log(result);
+    assert(result === 'v');
 
-    seq = uid.seq();
-    console.log(seq);
-    assert(seq === '0');
+    result = seq();
+    console.log(result);
+    assert(result === '0');
 
-    seq = uid.seq();
-    console.log(seq);
-    assert(seq === 'Y');
+    result = seq();
+    console.log(result);
+    assert(result === 'Y');
   },
 });
 
 test({
   name: 'ability to be instantiated with default dictionaries',
   fn(): void {
-    const uid: ShortUniqueId = new ShortUniqueId();
+    const uid = new ShortUniqueId();
 
-    uid.setDictionary('number', false);
-    console.log(uid.dict.join());
-    assert([uid.seq(), uid.seq()].join('') === '01');
+    const { setDictionary, seq, rnd } = uid;
 
-    uid.setDictionary('alpha', false);
+    setDictionary('number', false);
     console.log(uid.dict.join());
-    assert([uid.seq(), uid.seq()].join('') === 'ab');
+    assert([seq(), seq()].join('') === '01');
+
+    setDictionary('alpha', false);
+    console.log(uid.dict.join());
+    assert([seq(), seq()].join('') === 'ab');
     assert(uid.dict[uid.dict.length - 1] === 'Z');
 
-    uid.setDictionary('alpha_lower', false);
+    setDictionary('alpha_lower', false);
     console.log(uid.dict.join());
     assert(uid.dict[uid.dict.length - 1] === 'z');
 
-    uid.setDictionary('alpha_upper', false);
+    setDictionary('alpha_upper', false);
     console.log(uid.dict.join());
-    assert([uid.seq(), uid.seq()].join('') === 'AB');
+    assert([seq(), seq()].join('') === 'AB');
 
-    uid.setDictionary('alphanum', false);
+    setDictionary('alphanum', false);
     console.log(uid.dict.join());
-    assert([uid.seq(), uid.seq()].join('') === '01');
+    assert([seq(), seq()].join('') === '01');
     assert(uid.dict[uid.dict.length - 1] === 'Z');
 
-    uid.setDictionary('alphanum_lower', false);
+    setDictionary('alphanum_lower', false);
     console.log(uid.dict.join());
-    assert([uid.seq(), uid.seq()].join('') === '01');
+    assert([seq(), seq()].join('') === '01');
     assert(uid.dict[uid.dict.length - 1] === 'z');
 
-    uid.setDictionary('alphanum_upper', false);
+    setDictionary('alphanum_upper', false);
     console.log(uid.dict.join());
-    assert([uid.seq(), uid.seq()].join('') === '01');
+    assert([seq(), seq()].join('') === '01');
     assert(uid.dict[uid.dict.length - 1] === 'Z');
 
-    uid.setDictionary('hex', false);
+    setDictionary('hex', false);
     console.log(uid.dict.join());
     assert([
-      uid.seq(), uid.seq(), uid.seq(), uid.seq(),
-      uid.seq(), uid.seq(), uid.seq(), uid.seq(),
-      uid.seq(), uid.seq(), uid.seq(), uid.seq(),
-      uid.seq(), uid.seq(), uid.seq(), uid.seq(),
+      seq(), seq(), seq(), seq(),
+      seq(), seq(), seq(), seq(),
+      seq(), seq(), seq(), seq(),
+      seq(), seq(), seq(), seq(),
     ].join('') === '0123456789abcdef');
 
-    uid.setDictionary('hex', true);
-    const result = uid(3);
+    setDictionary('hex', true);
+    const result = rnd(3);
     console.log(result);
     assert((/^[0123456789abcdef][0123456789abcdef][0123456789abcdef]$/).test(result));
   },
@@ -134,16 +136,15 @@ test({
 test({
   name: 'ability to be instantiated with user-defined dictionary',
   fn(): void {
-    const uid: ShortUniqueId = new ShortUniqueId({
+    const { rnd, seq } = new ShortUniqueId({
       dictionary: ['a', '1'],
       shuffle: false,
       length: 2,
     });
-    /* tslint:disable no-magic-numbers */
-    assert((/^[a1][a1]$/).test(uid()));
-    /* tslint:enable no-magic-numbers */
 
-    const result = [uid.seq(), uid.seq()].join('');
+    assert((/^[a1][a1]$/).test(rnd()));
+
+    const result = [seq(), seq()].join('');
     console.log(result);
     assert(result === 'a1');
   },
@@ -152,34 +153,34 @@ test({
 test({
   name: 'ability to skip shuffle when instantiated',
   fn(): void {
-    const uid: ShortUniqueId = new ShortUniqueId({ shuffle: false });
+    const { seq } = new ShortUniqueId({ shuffle: false });
 
-    let seq = uid.seq();
-    console.log(seq);
-    assert(seq === '0');
+    let result = seq();
+    console.log(result);
+    assert(result === '0');
 
-    seq = uid.seq();
-    console.log(seq);
-    assert(seq === '1');
+    result = seq();
+    console.log(result);
+    assert(result === '1');
   },
 });
 
 test({
   name: 'ability to calculate total number of possible UUIDs',
   fn(): void {
-    const totals = [];
-    const uid: ShortUniqueId = new ShortUniqueId();
-    totals.push(uid.availableUUIDs());
+    const totals: number[] = [];
+    const { availableUUIDs, setDictionary } = new ShortUniqueId();
+    totals.push(availableUUIDs());
 
-    uid.setDictionary(['a', 'b']);
-    totals.push(uid.availableUUIDs());
+    setDictionary(['a', 'b']);
+    totals.push(availableUUIDs());
 
-    uid.setDictionary(['a', 'b', 'b', 'a']);
-    totals.push(uid.availableUUIDs());
+    setDictionary(['a', 'b', 'b', 'a']);
+    totals.push(availableUUIDs());
 
-    uid.setDictionary(['a', 'b', 'b', 'a']);
+    setDictionary(['a', 'b', 'b', 'a']);
     const lengthOfTwo = 2;
-    totals.push(uid.availableUUIDs(lengthOfTwo));
+    totals.push(availableUUIDs(lengthOfTwo));
 
     console.log(totals);
 
@@ -196,16 +197,17 @@ test({
   name: 'ability to calculate probability of collision given number of UUID generation rounds',
   fn(): void {
     const totals: number[] = [];
-    const uid: ShortUniqueId = new ShortUniqueId();
+    const { collisionProbability, setDictionary } = new ShortUniqueId();
+
     /* tslint:disable no-magic-numbers */
-    totals.push(uid.collisionProbability());
-    totals.push(uid.collisionProbability(1000000));
+    totals.push(collisionProbability());
+    totals.push(collisionProbability(1000000));
 
-    uid.setDictionary(['a', 'b']);
-    totals.push(uid.collisionProbability(1, 1));
+    setDictionary(['a', 'b']);
+    totals.push(collisionProbability(1, 1));
 
-    uid.setDictionary(['a', 'b', 'b', 'a']);
-    totals.push(uid.collisionProbability(1, 1));
+    setDictionary(['a', 'b', 'b', 'a']);
+    totals.push(collisionProbability(1, 1));
 
     console.log(totals);
 
@@ -220,15 +222,16 @@ test({
 test({
   name: 'ability to calculate approx. num. of hashes before first collision',
   fn(): void {
-    const totals = [];
-    const uid: ShortUniqueId = new ShortUniqueId();
-    totals.push(uid.approxMaxBeforeCollision());
+    const totals: number[] = [];
+    const { approxMaxBeforeCollision, setDictionary } = new ShortUniqueId();
 
-    uid.setDictionary(['a', 'b']);
-    totals.push(uid.approxMaxBeforeCollision());
+    totals.push(approxMaxBeforeCollision());
 
-    uid.setDictionary(['a', 'b', 'b', 'a']);
-    totals.push(uid.approxMaxBeforeCollision());
+    setDictionary(['a', 'b']);
+    totals.push(approxMaxBeforeCollision());
+
+    setDictionary(['a', 'b', 'b', 'a']);
+    totals.push(approxMaxBeforeCollision());
 
     console.log(totals);
 
@@ -243,22 +246,23 @@ test({
 test({
   name: 'ability to calculate "uniqueness" score of UUIDs based on size of dictionary and chosen UUID length',
   fn(): void {
-    const totals = [];
-    const uid: ShortUniqueId = new ShortUniqueId();
-    totals.push(uid.uniqueness());
-    const millionPossibleRounds = 1000000;
-    totals.push(uid.uniqueness(millionPossibleRounds));
+    const totals: number[] = [];
+    const { uniqueness, setDictionary } = new ShortUniqueId();
 
-    uid.setDictionary(['a', 'a']);
-    totals.push(uid.uniqueness());
-    uid.setDictionary(['a', 'a', 'a', 'a']);
-    totals.push(uid.uniqueness());
+    totals.push(uniqueness());
+    const millionPossibleRounds = 1000000;
+    totals.push(uniqueness(millionPossibleRounds));
+
+    setDictionary(['a', 'a']);
+    totals.push(uniqueness());
+    setDictionary(['a', 'a', 'a', 'a']);
+    totals.push(uniqueness());
 
     const twoPossibleRounds = 2;
-    uid.setDictionary(['a', 'b']);
-    totals.push(uid.uniqueness(twoPossibleRounds));
-    uid.setDictionary(['a', 'b', 'b', 'a']);
-    totals.push(uid.uniqueness(twoPossibleRounds));
+    setDictionary(['a', 'b']);
+    totals.push(uniqueness(twoPossibleRounds));
+    setDictionary(['a', 'b', 'b', 'a']);
+    totals.push(uniqueness(twoPossibleRounds));
 
     console.log(totals);
 
@@ -276,28 +280,82 @@ test({
 test({
   name: 'ability to generate UUIDs that include an extractable timestamp',
   fn(): void {
-    const uid: ShortUniqueId = new ShortUniqueId();
+    const { stamp, parseStamp } = new ShortUniqueId();
 
     /* tslint:disable no-magic-numbers */
     const nowTenStamp = parseInt(Math.floor(+new Date() / 1000).toString(16), 16) * 1000;
-    const tenStamp = uid.stamp(10);
+    const tenStamp = stamp(10);
     console.log(tenStamp);
     assert(tenStamp.length === 10);
     /* tslint:enable no-magic-numbers */
 
-    const parsedTenStamp = uid.parseStamp(tenStamp);
+    const parsedTenStamp = parseStamp(tenStamp);
     console.log(+parsedTenStamp, nowTenStamp);
     assert(+parsedTenStamp === nowTenStamp);
 
     /* tslint:disable no-magic-numbers */
-    const nowOmniStamp = parseInt(Math.floor(+new Date() / 1000).toString(16), 16) * 1000;
-    const omniStamp = uid.stamp(42);
+    const pastDate = new Date('2020-04-24');
+    const nowOmniStamp = parseInt(Math.floor(+pastDate / 1000).toString(16), 16) * 1000;
+    const omniStamp = stamp(42, pastDate);
     console.log(omniStamp);
     assert(omniStamp.length === 42);
     /* tslint:enable no-magic-numbers */
 
-    const parsedOmniStamp = uid.parseStamp(omniStamp);
+    const parsedOmniStamp = parseStamp(omniStamp);
     console.log(+parsedOmniStamp, nowOmniStamp);
     assert(+parsedOmniStamp === nowOmniStamp);
+
+    const isoOmniStamp = (new Date(+parsedOmniStamp)).toISOString();
+    console.log(isoOmniStamp);
+    assert(isoOmniStamp === '2020-04-24T00:00:00.000Z');
+  },
+});
+
+test({
+  name: 'ability to create custom formatted UUID',
+  fn(): void {
+    const { stamp, fmt } = new ShortUniqueId({
+      dictionary: ['a', 'b'],
+      shuffle: false,
+    });
+
+    let testRegex = new RegExp(`[0-9abcdef]{11}[0-3]-a-[ab]{2}`);
+    let result = fmt('$t12-$s0-$r2');
+
+    console.log(result);
+    assert((testRegex).test(result));
+
+    testRegex = new RegExp(`Time: ${stamp(0)} ID: 0b-[ab]{4}`);
+    result = fmt('Time: $t0 ID: $s2-$r4');
+
+    console.log(result);
+    assert((testRegex).test(result));
+
+    const timestamp = new Date('2023-01-29T03:21:21.000Z');
+    testRegex = new RegExp(`Time: ${stamp(0, timestamp)} ID: ab-[ab]{4}`);
+    result = fmt('Time: $t0 ID: $s2-$r4', timestamp);
+
+    console.log(result);
+    assert((testRegex).test(result));
+  },
+});
+
+test({
+  name: 'ability to create custom formatted UUID with an extractable timestamp',
+  fn(): void {
+    const { fmt, parseStamp } = new ShortUniqueId({
+      dictionary: ['a', 'b'],
+      shuffle: false,
+    });
+
+    const timestamp = new Date('2023-01-29T03:21:21.000Z');
+    const nowStamp = parseInt(Math.floor(+timestamp / 1000).toString(16), 16) * 1000;
+    const format = '$r2-$t12-$s2';
+    const result = fmt(format, timestamp);
+    console.log(result);
+
+    const parsedStamp = parseStamp(result, format);
+    console.log(parsedStamp);
+    assert(+parsedStamp === nowStamp);
   },
 });

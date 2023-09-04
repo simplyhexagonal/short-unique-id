@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-pnpm build \
-  && pnpm docs \
+npm build \
+  && npm docs \
   && git add dist docs \
   && git commit -m "chore: build dist and docs for release" \
   && auto-changelog -p

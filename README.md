@@ -10,14 +10,22 @@
 
 ---
 
-Tiny (4.6kB minified) no-dependency library for generating random or sequential UUID of any length
+Tiny (6.7kB minified) no-dependency library for generating random or sequential UUID of any length
 with exceptionally minuscule probabilies of duplicate IDs.
 
 ```ts
 const uid = new ShortUniqueId({ length: 10 });
-uid(); // p0ZoB1FwH6
-uid(); // mSjGCTfn8w
-uid(); // yt4Xx5nHMB
+uid.rnd(); // p0ZoB1FwH6
+uid.rnd(); // mSjGCTfn8w
+uid.rnd(); // yt4Xx5nHMB
+// ...
+
+// or
+
+const { randomUUID } = new ShortUniqueId({ length: 10 });
+randomUUID(); // e8Civ0HoDy
+randomUUID(); // iPjiGoHXAK
+randomUUID(); // n528gSMwTN
 // ...
 ```
 
@@ -54,7 +62,8 @@ _NOTE: 👆 On these links you will also find explanations for the math used wit
 
 ## Open source notice
 
-This project is open to updates by its users, I ensure that PRs are relevant to the community.
+This project is part of the [Open Collective](https://opencollective.com/simplyhexagonal) project [Simply Hexagonal](https://simplyhexagonal.org)
+and is open to updates by its users, we ensure that PRs are relevant to the community.
 In other words, if you find a bug or want a new feature, please help us by becoming one of the
 [contributors](#contributors-) ✌️ ! See the [contributing section](#contributing).
 
@@ -66,9 +75,16 @@ Please consider:
 - Supporting me on [Patreon](https://www.patreon.com/jeanlescure) 🏆
 - Starring this repo on [Github](https://github.com/jeanlescure/short-unique-id) 🌟
 
-## 📣 v4 Notice
+## 📣 v5 Notice
 
-### New Features 🥳
+In order to improve security compliance we have removed the ability to use a ShortUniqueId as a
+function, i.e. `const uid = new ShortUniqueId(); uid();` is no longer supported.
+
+If you plan to upgrade to v5 make sure to refactor `uid();` to `uid.rnd();` in your code beforehand.
+
+For more information regarding this decision you can view [issue #53](https://github.com/simplyhexagonal/short-unique-id/issues/53).
+
+### Features
 
 The ability to generate UUIDs that contain a timestamp which can be extracted:
 
@@ -113,7 +129,7 @@ avoid dictionary injection vulnerabilities):
 ```js
 // instantiate using one of the default dictionary strings
 const uid = new ShortUniqueId({
-  dictionary: 'hex', // the default
+  dictionary: 'hex',
 });
 
 console.log(uid.dict.join());
@@ -126,19 +142,33 @@ console.log(uid.dict.join());
 // A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
 ```
 
+Ability to use custom formatting.
+
+Where `$r` is random UUID, `$s` is sequential UUID, and `$t` is timestamp UUID:
+
+```js
+const timestamp = new Date('2023-01-29T03:21:21.000Z');
+const result = uid.formattedUUID('Time: $t0 ID: $s2-$r4', timestamp); // timestamp is optional
+
+console.log(result);
+// Time: 63d5e631 ID: 0b-aaab
+```
+
 ### Use in CLI
 
 ```sh
-$ npm install -g short-unique-id
+$ npm install --global short-unique-id
 
 $ suid -h
 
 # Usage:
 #   node short-unique-id [OPTION]
-
+# 
 # Options:
 #   -l, --length=ARG         character length of the uid to generate.
 #   -s, --stamp              include timestamp in uid (must be used with --length (-l) of 10 or more).
+#   -t, --timestamp=ARG      custom timestamp to parse (must be used along with -s, --stamp, -f, or --format).
+#   -f, --format=ARG         string representing custom format to generate id with.
 #   -p, --parse=ARG          extract timestamp from stamped uid (ARG).
 #   -d, --dictionaryJson=ARG json file with dictionary array.
 #   -h, --help               display this help
@@ -149,14 +179,14 @@ $ suid -h
 Add to your project:
 
 ```js
-// Deno (web module) Import
-import ShortUniqueId from 'https://esm.sh/short-unique-id';
-
 // ES6 / TypeScript Import
 import ShortUniqueId from 'short-unique-id';
 
 // Node.js require
 const ShortUniqueId = require('short-unique-id');
+
+// Deno (web module) Import
+import ShortUniqueId from 'https://esm.sh/short-unique-id';
 ```
 
 Instantiate and use:
@@ -166,11 +196,27 @@ Instantiate and use:
 const uid = new ShortUniqueId();
 
 // Random UUID
-console.log(uid());
+console.log(uid.rnd());
 
 // Sequential UUID
 console.log(uid.seq());
 ```
+
+alternatively using destructuring assignment:
+
+```js
+// Instantiate and destructure (long method name recommended for code readability)
+const { randomUUID, sequentialUUID } = new ShortUniqueId();
+
+// Random UUID
+console.log(randomUUID());
+
+// Sequential UUID
+console.log(sequentialUUID());
+```
+
+_NOTE:_ we made sure to use `bind()` on all ShortUniqueId methods to ensure that any options
+passed when creating the instance will be respected by the destructured methods.
 
 ### Use in browser
 
@@ -184,7 +230,7 @@ console.log(uid.seq());
   var uid = new ShortUniqueId();
 
   // Random UUID
-  document.write(uid());
+  document.write(uid.rnd());
 
   // Sequential UUID
   document.write(uid.seq());
@@ -241,12 +287,16 @@ To find out more about the math behind these functions please refer to the
 
 This repo and npm package started as a straight up manual transpilation to ES6 of the [short-uid](https://github.com/serendipious/nodejs-short-uid) npm package by [Ankit Kuwadekar](https://github.com/serendipious/).
 
-![image depicting over 12000 weekly npm downloads](https://raw.githubusercontent.com/jeanlescure/short-unique-id/main/assets/weekly-downloads.png)
-![image depicting over 100000 weekly cdn hits](https://raw.githubusercontent.com/jeanlescure/short-unique-id/main/assets/weekly-cdn-hits.png)
+![image depicting over 200000 weekly npm downloads](https://raw.githubusercontent.com/jeanlescure/short-unique-id/main/assets/weekly-downloads.png)
+![image depicting over 16000000 weekly cdn hits](https://raw.githubusercontent.com/jeanlescure/short-unique-id/main/assets/weekly-cdn-hits.png)
 
-Since this package is now reporting 12k+ npm weekly downloads and 100k+ weekly cdn hits,
+Since this package is now reporting 200k+ npm weekly downloads and 16M+ weekly cdn hits,
 we've gone ahead and re-written the whole of it in TypeScript and made sure to package
 dist modules compatible with Deno, Node.js and all major Browsers.
+
+## Sponsors
+
+- [Clever Synapse](https://cleversynapse.com)
 
 ## Development
 
@@ -319,5 +369,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 ## License
 
-Copyright (c) 2018-2021 [Short Unique ID Contributors](https://github.com/jeanlescure/short-unique-id/#contributors-).<br/>
+Copyright (c) 2018-2023 [Short Unique ID Contributors](https://github.com/jeanlescure/short-unique-id/#contributors-).<br/>
 Licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).

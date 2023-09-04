@@ -1,15 +1,21 @@
-// @module ShortUniqueId
+/**
+ * @packageDocumentation
+ **/
 
-// Copyright 2017-2021 the Short Unique ID authors. All rights reserved. Apache 2.0 license.
+// Copyright 2017-2022 the Short Unique ID authors. All rights reserved. Apache 2.0 license.
 
 // @ts-ignore
 import {version} from '../package.json';
 
-interface ShortUniqueIdRanges {
+export interface ShortUniqueIdRanges {
   [k: string]: [number, number];
 };
 
-type defaultDictionaries = 'number' | 'alpha' | 'alpha_lower' | 'alpha_upper' | 'alphanum' | 'alphanum_lower' | 'alphanum_upper' | 'hex';
+export interface ShortUniqueIdRangesMap {
+  [k: string]: ShortUniqueIdRanges;
+};
+
+export type ShortUniqueIdDefaultDictionaries = 'number' | 'alpha' | 'alpha_lower' | 'alpha_upper' | 'alphanum' | 'alphanum_lower' | 'alphanum_upper' | 'hex';
 
 /**
  * ```js
@@ -20,10 +26,12 @@ type defaultDictionaries = 'number' | 'alpha' | 'alpha_lower' | 'alpha_upper' | 
  *   length: 6,
  * }
  * ```
+ * <br/>
+ * @see {@link DEFAULT_OPTIONS}
  */
 export interface ShortUniqueIdOptions {
   /** User-defined character dictionary */
-  dictionary: string[] | defaultDictionaries;
+  dictionary: string[] | ShortUniqueIdDefaultDictionaries;
 
   /** If true, sequentialUUID use the dictionary in the given order */
   shuffle: boolean;
@@ -33,6 +41,9 @@ export interface ShortUniqueIdOptions {
 
   /** From 1 to infinity, the length you wish your UUID to be */
   length: number;
+
+  /** From 0 to infinity, the current value for the sequential UUID counter */
+  counter: number;
 };
 
 /**
@@ -47,11 +58,12 @@ export interface ShortUniqueIdOptions {
  */
 export const DEFAULT_UUID_LENGTH: number = 6;
 
-const DEFAULT_OPTIONS: ShortUniqueIdOptions = {
+export const DEFAULT_OPTIONS: ShortUniqueIdOptions = {
   dictionary: 'alphanum',
   shuffle: true,
   debug: false,
   length: DEFAULT_UUID_LENGTH,
+  counter: 0,
 };
 
 /**
@@ -66,14 +78,14 @@ const DEFAULT_OPTIONS: ShortUniqueIdOptions = {
  * // ES6 / TypeScript Import
  * import ShortUniqueId from 'short-unique-id';
  *
- * //or Node.js require
+ * // or Node.js require
  * const ShortUniqueId = require('short-unique-id');
  *
- * //Instantiate
+ * // Instantiate
  * const uid = new ShortUniqueId();
  *
  * // Random UUID
- * console.log(uid());
+ * console.log(uid.rnd());
  *
  * // Sequential UUID
  * console.log(uid.seq());
@@ -91,7 +103,7 @@ const DEFAULT_OPTIONS: ShortUniqueIdOptions = {
  *   var uid = new ShortUniqueId();
  *
  *   // Random UUID
- *   document.write(uid());
+ *   document.write(uid.rnd());
  *
  *   // Sequential UUID
  *   document.write(uid.seq());
@@ -110,7 +122,8 @@ const DEFAULT_OPTIONS: ShortUniqueIdOptions = {
  *
  * For more information take a look at the [ShortUniqueIdOptions type definition](/interfaces/shortuniqueidoptions.html).
  */
-export default class ShortUniqueId extends Function {
+export default class ShortUniqueId {
+  /** @hidden */
   static default: typeof ShortUniqueId = ShortUniqueId;
 
   public counter: number;
@@ -170,6 +183,17 @@ export default class ShortUniqueId extends Function {
     alphaDigits: [this._alpha_lower_first_ascii, this._hex_last_ascii],
   };
 
+  protected _dict_ranges: ShortUniqueIdRangesMap = {
+    _number_dict_ranges: this._number_dict_ranges,
+    _alpha_dict_ranges: this._alpha_dict_ranges,
+    _alpha_lower_dict_ranges: this._alpha_lower_dict_ranges,
+    _alpha_upper_dict_ranges: this._alpha_upper_dict_ranges,
+    _alphanum_dict_ranges: this._alphanum_dict_ranges,
+    _alphanum_lower_dict_ranges: this._alphanum_lower_dict_ranges,
+    _alphanum_upper_dict_ranges: this._alphanum_upper_dict_ranges,
+    _hex_dict_ranges: this._hex_dict_ranges,
+  };
+
   /* tslint:disable consistent-return */
   protected log = (...args: any[]): void => {
     const finalArgs = [...args];
@@ -185,7 +209,7 @@ export default class ShortUniqueId extends Function {
   /* tslint:enable consistent-return */
 
   /** Change the dictionary after initialization. */
-  setDictionary = (dictionary: string[] | defaultDictionaries, shuffle?: boolean): void => {
+  setDictionary = (dictionary: string[] | ShortUniqueIdDefaultDictionaries, shuffle?: boolean): void => {
     let finalDict: string[];
 
     if (dictionary && Array.isArray(dictionary) && dictionary.length > 1) {
@@ -197,8 +221,8 @@ export default class ShortUniqueId extends Function {
 
       this.dictIndex = i = 0;
 
-      const rangesName = `_${dictionary as defaultDictionaries}_dict_ranges`;
-      const ranges: ShortUniqueIdRanges = this[rangesName as keyof ShortUniqueId];
+      const rangesName = `_${dictionary as ShortUniqueIdDefaultDictionaries}_dict_ranges`;
+      const ranges = this._dict_ranges[rangesName];
 
       Object.keys(ranges).forEach((rangeType) => {
         const rangeTypeKey = rangeType;
@@ -227,8 +251,10 @@ export default class ShortUniqueId extends Function {
     this.dict = finalDict;
 
     // Cache Dictionary Length for future usage.
-    this.dictLength = this.dict.length;// Resets internal counter.
-    this.counter = 0;
+    this.dictLength = this.dict.length;
+
+    // Reset internal counter.
+    this.setCounter(0);
   };
 
   seq = (): string => {
@@ -257,9 +283,13 @@ export default class ShortUniqueId extends Function {
     return id;
   };
 
+  rnd = (uuidLength: number = this.uuidLength || DEFAULT_UUID_LENGTH): string => {
+    return this.randomUUID(uuidLength);
+  };
+
   /**
    * Generates UUID by creating each part randomly.
-   * @alias `const uid = new ShortUniqueId(); uid(uuidLength: number);`
+   * @alias `const uid = new ShortUniqueId(); uid.rnd(uuidLength: number);`
    */
   randomUUID = (uuidLength: number = this.uuidLength || DEFAULT_UUID_LENGTH): string => {
     let id: string;
@@ -290,6 +320,42 @@ export default class ShortUniqueId extends Function {
     return id;
   };
 
+  fmt = (format: string, date?: Date): string => {
+    return this.formattedUUID(format, date);
+  };
+
+  /**
+   * Generates custom UUID with the provided format string.
+   * @alias `const uid = new ShortUniqueId(); uid.fmt(format: string);`
+   */
+  formattedUUID = (format: string, date?: Date): string => {
+    const fnMap = {
+      '$r': this.randomUUID,
+      '$s': this.sequentialUUID,
+      '$t': this.stamp,
+    };
+
+    const result = format.replace(
+      /\$[rs]\d{0,}|\$t0|\$t[1-9]\d{1,}/g,
+      (m) => {
+        const fn = m.slice(0, 2);
+        const len = parseInt(m.slice(2), 10);
+
+        if (fn === '$s') {
+          return fnMap[fn]().padStart(len, '0');
+        }
+
+        if (fn === '$t' && date) {
+          return fnMap[fn](len, date);
+        }
+
+        return fnMap[fn as keyof typeof fnMap](len);
+      },
+    );
+
+    return result;
+  };
+
   /**
    * Calculates total number of possible UUIDs.
    *
@@ -301,7 +367,9 @@ export default class ShortUniqueId extends Function {
    *
    * Then `H` is defined as `n` to the power of `l`:
    *
-   * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%20H=n%5El)
+   * <div style="background: white; padding: 5px; border-radius: 5px; overflow: hidden;">
+   *  <img src="https://render.githubusercontent.com/render/math?math=%5CHuge%20H=n%5El"/>
+   * </div>
    *
    * This function returns `H`.
    */
@@ -324,7 +392,9 @@ export default class ShortUniqueId extends Function {
    * Then `Q(H)` can be approximated as the square root of the product of half
    * of pi times `H`:
    *
-   * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%20Q(H)%5Capprox%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7DH%7D)
+   * <div style="background: white; padding: 5px; border-radius: 5px; overflow: hidden;">
+   *  <img src="https://render.githubusercontent.com/render/math?math=%5CHuge%20Q(H)%5Capprox%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7DH%7D"/>
+   * </div>
    *
    * This function returns `Q(H)`.
    * 
@@ -350,7 +420,9 @@ export default class ShortUniqueId extends Function {
    * Then the probability of collision `p(r; H)` can be approximated as the result
    * of dividing the square root of the product of half of pi times `r` by `H`:
    *
-   * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%20p(r%3B%20H)%5Capprox%5Cfrac%7B%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7Dr%7D%7D%7BH%7D)
+   * <div style="background: white; padding: 5px; border-radius: 5px; overflow: hidden;">
+   *  <img src="https://render.githubusercontent.com/render/math?math=%5CHuge%20p(r%3B%20H)%5Capprox%5Cfrac%7B%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7Dr%7D%7D%7BH%7D"/>
+   * </div>
    *
    * This function returns `p(r; H)`.
    * 
@@ -385,7 +457,9 @@ export default class ShortUniqueId extends Function {
    * generating a "word" I had previously generated (a duplicate) at any given iteration
    * up to the the total number of possible UUIDs expressed as the quotiend of `Q(H)` and `H`:
    *
-   * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%201-%5Cfrac%7BQ(H)%7D%7BH%7D)
+   * <div style="background: white; padding: 5px; border-radius: 5px; overflow: hidden;">
+   *  <img src="https://render.githubusercontent.com/render/math?math=%5CHuge%201-%5Cfrac%7BQ(H)%7D%7BH%7D"/>
+   * </div>
    *
    * (Useful if you need a value to rate the "quality" of the combination of given dictionary
    * and UUID length. The closer to 1, higher the uniqueness and thus better the quality.)
@@ -424,12 +498,21 @@ export default class ShortUniqueId extends Function {
    *  // 2021-05-03T06:24:58.000Z
    *  ```
    */
-  stamp = (finalLength: number): string => {
-    if (typeof finalLength !== 'number' || finalLength < 10) {
-      throw new Error('Param finalLength must be number greater than 10');
+  stamp = (finalLength: number, date?: Date): string => {
+    const hexStamp = Math.floor(+(date || new Date()) / 1000).toString(16);
+
+    if (typeof finalLength === 'number' && finalLength === 0) {
+      return hexStamp;
     }
 
-    const hexStamp = Math.floor(+new Date() / 1000).toString(16);
+    if (typeof finalLength !== 'number' || finalLength < 10) {
+      throw new Error(
+        [
+          'Param finalLength must be a number greater than or equal to 10,',
+          'or 0 if you want the raw hexadecimal timestamp',
+        ].join('\n')
+      );
+    }
 
     const idLength = finalLength - 9;
 
@@ -437,7 +520,7 @@ export default class ShortUniqueId extends Function {
 
     const id = this.randomUUID(idLength);
 
-    return `${id.substr(0, rndIdx)}${hexStamp}${id.substr(rndIdx)}${rndIdx.toString(16)}`;
+    return `${id.substring(0, rndIdx)}${hexStamp}${id.substring(rndIdx)}${rndIdx.toString(16)}`;
   };
 
   /**
@@ -452,19 +535,59 @@ export default class ShortUniqueId extends Function {
    *  // 2021-05-03T06:24:58.000Z
    *  ```
    */
-  parseStamp = (stamp: string): Date => {
+  parseStamp = (suid: string, format?: string): Date => {
+    if (format && !(/t0|t[1-9]\d{1,}/).test(format)) {
+      throw new Error('Cannot extract date from a formated UUID with no timestamp in the format');
+    }
+
+    const stamp = (
+      format
+    ) ? (
+      format.replace(
+        /\$[rs]\d{0,}|\$t0|\$t[1-9]\d{1,}/g,
+        (m) => {
+          const fnMap = {
+            '$r': (len: number) => [...Array(len)].map(() => 'r').join(''),
+            '$s': (len: number) => [...Array(len)].map(() => 's').join(''),
+            '$t': (len: number) => [...Array(len)].map(() => 't').join(''),
+          };
+
+          const fn = m.slice(0, 2);
+          const len = parseInt(m.slice(2), 10);
+
+          return fnMap[fn as keyof typeof fnMap](len);
+        },
+      ).replace(
+        /^(.*?)(t{8,})(.*)$/g,
+        (_m, p1, p2) => {
+          return suid.substring(p1.length, p1.length + p2.length);
+        },
+      )
+    ) : (
+      suid
+    );
+
+    if (stamp.length === 8) {
+      return new Date(parseInt(stamp, 16) * 1000);
+    }
+
     if (stamp.length < 10) {
       throw new Error('Stamp length invalid');
     }
 
-    const rndIdx = parseInt(stamp.substr(stamp.length - 1, 1), 16);
+    const rndIdx = parseInt(stamp.substring(stamp.length - 1), 16);
 
-    return new Date(parseInt(stamp.substr(rndIdx, 8), 16) * 1000);
+    return new Date(parseInt(stamp.substring(rndIdx, rndIdx + 8), 16) * 1000);
+  };
+
+  /**
+   * Set the counter to a specific value.
+   */
+  setCounter = (counter: number): void => {
+    this.counter = counter;
   };
 
   constructor(argOptions: Partial<ShortUniqueIdOptions> = {}) {
-    super();
-
     const options: ShortUniqueIdOptions = {
       ...DEFAULT_OPTIONS,
       ...argOptions as Partial<ShortUniqueIdOptions>,
@@ -479,18 +602,37 @@ export default class ShortUniqueId extends Function {
       dictionary,
       shuffle,
       length,
+      counter,
     } = options;
 
     this.uuidLength = length;
 
     this.setDictionary(dictionary, shuffle);
+    this.setCounter(counter);
 
     this.debug = options.debug;
     this.log(this.dict);
-    this.log((`Generator instantiated with Dictionary Size ${this.dictLength}`));
+    this.log(
+      `Generator instantiated with Dictionary Size ${this.dictLength} and counter set to ${this.counter}`
+    );
 
-    return new Proxy(this, {
-      apply: (target, that, args) => this.randomUUID(...args),
-    });
+    this.log = this.log.bind(this);
+    this.setDictionary = this.setDictionary.bind(this);
+    this.setCounter = this.setCounter.bind(this);
+    this.seq = this.seq.bind(this);
+    this.sequentialUUID = this.sequentialUUID.bind(this);
+    this.rnd = this.rnd.bind(this);
+    this.randomUUID = this.randomUUID.bind(this);
+    this.fmt = this.fmt.bind(this);
+    this.formattedUUID = this.formattedUUID.bind(this);
+    this.availableUUIDs = this.availableUUIDs.bind(this);
+    this.approxMaxBeforeCollision = this.approxMaxBeforeCollision.bind(this);
+    this.collisionProbability = this.collisionProbability.bind(this);
+    this.uniqueness = this.uniqueness.bind(this);
+    this.getVersion = this.getVersion.bind(this);
+    this.stamp = this.stamp.bind(this);
+    this.parseStamp = this.parseStamp.bind(this);
+
+    return this;
   }
 }

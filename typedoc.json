@@ -1,0 +1,6 @@
+{
+  "sidebarLinks": {
+    "Previous Docs (v4)": "https://web.archive.org/web/20230607190646/https://shortunique.id/"
+  },
+  "scriptSrc": "https://cdn.jsdelivr.net/npm/short-unique-id@latest/dist/short-unique-id.min.js"
+}
