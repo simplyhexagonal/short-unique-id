@@ -31,16 +31,21 @@ var ShortUniqueId = (() => {
     return to;
   };
   var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+  var __publicField = (obj, key, value) => {
+    __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+    return value;
+  };
 
   // src/index.ts
   var src_exports = {};
   __export(src_exports, {
+    DEFAULT_OPTIONS: () => DEFAULT_OPTIONS,
     DEFAULT_UUID_LENGTH: () => DEFAULT_UUID_LENGTH,
     default: () => ShortUniqueId
   });
 
   // package.json
-  var version = "4.4.4";
+  var version = "5.0.0";
 
   // src/index.ts
   var DEFAULT_UUID_LENGTH = 6;
@@ -51,51 +56,56 @@ var ShortUniqueId = (() => {
     length: DEFAULT_UUID_LENGTH,
     counter: 0
   };
-  var _ShortUniqueId = class {
+  var _ShortUniqueId = class _ShortUniqueId {
     constructor(argOptions = {}) {
-      this.dictIndex = 0;
-      this.dictRange = [];
-      this.lowerBound = 0;
-      this.upperBound = 0;
-      this.dictLength = 0;
-      this._digit_first_ascii = 48;
-      this._digit_last_ascii = 58;
-      this._alpha_lower_first_ascii = 97;
-      this._alpha_lower_last_ascii = 123;
-      this._hex_last_ascii = 103;
-      this._alpha_upper_first_ascii = 65;
-      this._alpha_upper_last_ascii = 91;
-      this._number_dict_ranges = {
+      __publicField(this, "counter");
+      __publicField(this, "debug");
+      __publicField(this, "dict");
+      __publicField(this, "version");
+      __publicField(this, "dictIndex", 0);
+      __publicField(this, "dictRange", []);
+      __publicField(this, "lowerBound", 0);
+      __publicField(this, "upperBound", 0);
+      __publicField(this, "dictLength", 0);
+      __publicField(this, "uuidLength");
+      __publicField(this, "_digit_first_ascii", 48);
+      __publicField(this, "_digit_last_ascii", 58);
+      __publicField(this, "_alpha_lower_first_ascii", 97);
+      __publicField(this, "_alpha_lower_last_ascii", 123);
+      __publicField(this, "_hex_last_ascii", 103);
+      __publicField(this, "_alpha_upper_first_ascii", 65);
+      __publicField(this, "_alpha_upper_last_ascii", 91);
+      __publicField(this, "_number_dict_ranges", {
         digits: [this._digit_first_ascii, this._digit_last_ascii]
-      };
-      this._alpha_dict_ranges = {
+      });
+      __publicField(this, "_alpha_dict_ranges", {
         lowerCase: [this._alpha_lower_first_ascii, this._alpha_lower_last_ascii],
         upperCase: [this._alpha_upper_first_ascii, this._alpha_upper_last_ascii]
-      };
-      this._alpha_lower_dict_ranges = {
+      });
+      __publicField(this, "_alpha_lower_dict_ranges", {
         lowerCase: [this._alpha_lower_first_ascii, this._alpha_lower_last_ascii]
-      };
-      this._alpha_upper_dict_ranges = {
+      });
+      __publicField(this, "_alpha_upper_dict_ranges", {
         upperCase: [this._alpha_upper_first_ascii, this._alpha_upper_last_ascii]
-      };
-      this._alphanum_dict_ranges = {
+      });
+      __publicField(this, "_alphanum_dict_ranges", {
         digits: [this._digit_first_ascii, this._digit_last_ascii],
         lowerCase: [this._alpha_lower_first_ascii, this._alpha_lower_last_ascii],
         upperCase: [this._alpha_upper_first_ascii, this._alpha_upper_last_ascii]
-      };
-      this._alphanum_lower_dict_ranges = {
+      });
+      __publicField(this, "_alphanum_lower_dict_ranges", {
         digits: [this._digit_first_ascii, this._digit_last_ascii],
         lowerCase: [this._alpha_lower_first_ascii, this._alpha_lower_last_ascii]
-      };
-      this._alphanum_upper_dict_ranges = {
+      });
+      __publicField(this, "_alphanum_upper_dict_ranges", {
         digits: [this._digit_first_ascii, this._digit_last_ascii],
         upperCase: [this._alpha_upper_first_ascii, this._alpha_upper_last_ascii]
-      };
-      this._hex_dict_ranges = {
+      });
+      __publicField(this, "_hex_dict_ranges", {
         decDigits: [this._digit_first_ascii, this._digit_last_ascii],
         alphaDigits: [this._alpha_lower_first_ascii, this._hex_last_ascii]
-      };
-      this._dict_ranges = {
+      });
+      __publicField(this, "_dict_ranges", {
         _number_dict_ranges: this._number_dict_ranges,
         _alpha_dict_ranges: this._alpha_dict_ranges,
         _alpha_lower_dict_ranges: this._alpha_lower_dict_ranges,
@@ -104,9 +114,9 @@ var ShortUniqueId = (() => {
         _alphanum_lower_dict_ranges: this._alphanum_lower_dict_ranges,
         _alphanum_upper_dict_ranges: this._alphanum_upper_dict_ranges,
         _hex_dict_ranges: this._hex_dict_ranges
-      };
+      });
       /* tslint:disable consistent-return */
-      this.log = (...args) => {
+      __publicField(this, "log", (...args) => {
         const finalArgs = [...args];
         finalArgs[0] = `[short-unique-id] ${args[0]}`;
         if (this.debug === true) {
@@ -114,10 +124,10 @@ var ShortUniqueId = (() => {
             return console.log(...finalArgs);
           }
         }
-      };
+      });
       /* tslint:enable consistent-return */
       /** Change the dictionary after initialization. */
-      this.setDictionary = (dictionary, shuffle) => {
+      __publicField(this, "setDictionary", (dictionary, shuffle) => {
         let finalDict;
         if (dictionary && Array.isArray(dictionary) && dictionary.length > 1) {
           finalDict = dictionary;
@@ -144,15 +154,15 @@ var ShortUniqueId = (() => {
         this.dict = finalDict;
         this.dictLength = this.dict.length;
         this.setCounter(0);
-      };
-      this.seq = () => {
+      });
+      __publicField(this, "seq", () => {
         return this.sequentialUUID();
-      };
+      });
       /**
        * Generates UUID based on internal counter that's incremented after each ID generation.
        * @alias `const uid = new ShortUniqueId(); uid.seq();`
        */
-      this.sequentialUUID = () => {
+      __publicField(this, "sequentialUUID", () => {
         let counterDiv;
         let counterRem;
         let id = "";
@@ -164,15 +174,15 @@ var ShortUniqueId = (() => {
         } while (counterDiv !== 0);
         this.counter += 1;
         return id;
-      };
-      this.rnd = (uuidLength = this.uuidLength || DEFAULT_UUID_LENGTH) => {
+      });
+      __publicField(this, "rnd", (uuidLength = this.uuidLength || DEFAULT_UUID_LENGTH) => {
         return this.randomUUID(uuidLength);
-      };
+      });
       /**
        * Generates UUID by creating each part randomly.
        * @alias `const uid = new ShortUniqueId(); uid.rnd(uuidLength: number);`
        */
-      this.randomUUID = (uuidLength = this.uuidLength || DEFAULT_UUID_LENGTH) => {
+      __publicField(this, "randomUUID", (uuidLength = this.uuidLength || DEFAULT_UUID_LENGTH) => {
         let id;
         let randomPartIdx;
         let j;
@@ -189,15 +199,15 @@ var ShortUniqueId = (() => {
           id += this.dict[randomPartIdx];
         }
         return id;
-      };
-      this.fmt = (format, date) => {
+      });
+      __publicField(this, "fmt", (format, date) => {
         return this.formattedUUID(format, date);
-      };
+      });
       /**
        * Generates custom UUID with the provided format string.
        * @alias `const uid = new ShortUniqueId(); uid.fmt(format: string);`
        */
-      this.formattedUUID = (format, date) => {
+      __publicField(this, "formattedUUID", (format, date) => {
         const fnMap = {
           "$r": this.randomUUID,
           "$s": this.sequentialUUID,
@@ -218,7 +228,7 @@ var ShortUniqueId = (() => {
           }
         );
         return result;
-      };
+      });
       /**
        * Calculates total number of possible UUIDs.
        *
@@ -230,15 +240,17 @@ var ShortUniqueId = (() => {
        *
        * Then `H` is defined as `n` to the power of `l`:
        *
-       * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%20H=n%5El)
+       * <div style="background: white; padding: 5px; border-radius: 5px; overflow: hidden;">
+       *  <img src="https://render.githubusercontent.com/render/math?math=%5CHuge%20H=n%5El"/>
+       * </div>
        *
        * This function returns `H`.
        */
-      this.availableUUIDs = (uuidLength = this.uuidLength) => {
+      __publicField(this, "availableUUIDs", (uuidLength = this.uuidLength) => {
         return parseFloat(
           Math.pow([...new Set(this.dict)].length, uuidLength).toFixed(0)
         );
-      };
+      });
       /**
        * Calculates approximate number of hashes before first collision.
        *
@@ -252,17 +264,19 @@ var ShortUniqueId = (() => {
        * Then `Q(H)` can be approximated as the square root of the product of half
        * of pi times `H`:
        *
-       * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%20Q(H)%5Capprox%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7DH%7D)
+       * <div style="background: white; padding: 5px; border-radius: 5px; overflow: hidden;">
+       *  <img src="https://render.githubusercontent.com/render/math?math=%5CHuge%20Q(H)%5Capprox%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7DH%7D"/>
+       * </div>
        *
        * This function returns `Q(H)`.
        * 
        * (see [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution))
        */
-      this.approxMaxBeforeCollision = (rounds = this.availableUUIDs(this.uuidLength)) => {
+      __publicField(this, "approxMaxBeforeCollision", (rounds = this.availableUUIDs(this.uuidLength)) => {
         return parseFloat(
           Math.sqrt(Math.PI / 2 * rounds).toFixed(20)
         );
-      };
+      });
       /**
        * Calculates probability of generating duplicate UUIDs (a collision) in a
        * given number of UUID generation rounds.
@@ -277,7 +291,9 @@ var ShortUniqueId = (() => {
        * Then the probability of collision `p(r; H)` can be approximated as the result
        * of dividing the square root of the product of half of pi times `r` by `H`:
        *
-       * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%20p(r%3B%20H)%5Capprox%5Cfrac%7B%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7Dr%7D%7D%7BH%7D)
+       * <div style="background: white; padding: 5px; border-radius: 5px; overflow: hidden;">
+       *  <img src="https://render.githubusercontent.com/render/math?math=%5CHuge%20p(r%3B%20H)%5Capprox%5Cfrac%7B%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7Dr%7D%7D%7BH%7D"/>
+       * </div>
        *
        * This function returns `p(r; H)`.
        * 
@@ -286,11 +302,11 @@ var ShortUniqueId = (() => {
        * (Useful if you are wondering _"If I use this lib and expect to perform at most
        * `r` rounds of UUID generations, what is the probability that I will hit a duplicate UUID?"_.)
        */
-      this.collisionProbability = (rounds = this.availableUUIDs(this.uuidLength), uuidLength = this.uuidLength) => {
+      __publicField(this, "collisionProbability", (rounds = this.availableUUIDs(this.uuidLength), uuidLength = this.uuidLength) => {
         return parseFloat(
           (this.approxMaxBeforeCollision(rounds) / this.availableUUIDs(uuidLength)).toFixed(20)
         );
-      };
+      });
       /**
        * Calculate a "uniqueness" score (from 0 to 1) of UUIDs based on size of
        * dictionary and chosen UUID length.
@@ -306,23 +322,25 @@ var ShortUniqueId = (() => {
        * generating a "word" I had previously generated (a duplicate) at any given iteration
        * up to the the total number of possible UUIDs expressed as the quotiend of `Q(H)` and `H`:
        *
-       * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%201-%5Cfrac%7BQ(H)%7D%7BH%7D)
+       * <div style="background: white; padding: 5px; border-radius: 5px; overflow: hidden;">
+       *  <img src="https://render.githubusercontent.com/render/math?math=%5CHuge%201-%5Cfrac%7BQ(H)%7D%7BH%7D"/>
+       * </div>
        *
        * (Useful if you need a value to rate the "quality" of the combination of given dictionary
        * and UUID length. The closer to 1, higher the uniqueness and thus better the quality.)
        */
-      this.uniqueness = (rounds = this.availableUUIDs(this.uuidLength)) => {
+      __publicField(this, "uniqueness", (rounds = this.availableUUIDs(this.uuidLength)) => {
         const score = parseFloat(
           (1 - this.approxMaxBeforeCollision(rounds) / rounds).toFixed(20)
         );
         return score > 1 ? 1 : score < 0 ? 0 : score;
-      };
+      });
       /**
        * Return the version of this module.
        */
-      this.getVersion = () => {
+      __publicField(this, "getVersion", () => {
         return this.version;
-      };
+      });
       /**
        * Generates a UUID with a timestamp that can be extracted using `uid.parseStamp(stampString);`.
        * 
@@ -335,7 +353,7 @@ var ShortUniqueId = (() => {
        *  // 2021-05-03T06:24:58.000Z
        *  ```
        */
-      this.stamp = (finalLength, date) => {
+      __publicField(this, "stamp", (finalLength, date) => {
         const hexStamp = Math.floor(+(date || /* @__PURE__ */ new Date()) / 1e3).toString(16);
         if (typeof finalLength === "number" && finalLength === 0) {
           return hexStamp;
@@ -352,7 +370,7 @@ var ShortUniqueId = (() => {
         const rndIdx = Math.round(Math.random() * (idLength > 15 ? 15 : idLength));
         const id = this.randomUUID(idLength);
         return `${id.substring(0, rndIdx)}${hexStamp}${id.substring(rndIdx)}${rndIdx.toString(16)}`;
-      };
+      });
       /**
        * Extracts the date embeded in a UUID generated using the `uid.stamp(finalLength);` method.
        * 
@@ -365,7 +383,7 @@ var ShortUniqueId = (() => {
        *  // 2021-05-03T06:24:58.000Z
        *  ```
        */
-      this.parseStamp = (suid, format) => {
+      __publicField(this, "parseStamp", (suid, format) => {
         if (format && !/t0|t[1-9]\d{1,}/.test(format)) {
           throw new Error("Cannot extract date from a formated UUID with no timestamp in the format");
         }
@@ -395,13 +413,13 @@ var ShortUniqueId = (() => {
         }
         const rndIdx = parseInt(stamp.substring(stamp.length - 1), 16);
         return new Date(parseInt(stamp.substring(rndIdx, rndIdx + 8), 16) * 1e3);
-      };
+      });
       /**
        * Set the counter to a specific value.
        */
-      this.setCounter = (counter) => {
+      __publicField(this, "setCounter", (counter) => {
         this.counter = counter;
-      };
+      });
       const options = __spreadValues(__spreadValues({}, DEFAULT_OPTIONS), argOptions);
       this.counter = 0;
       this.debug = false;
@@ -440,8 +458,9 @@ var ShortUniqueId = (() => {
       return this;
     }
   };
+  /** @hidden */
+  __publicField(_ShortUniqueId, "default", _ShortUniqueId);
   var ShortUniqueId = _ShortUniqueId;
-  ShortUniqueId.default = _ShortUniqueId;
   return __toCommonJS(src_exports);
 })();
 //# sourceMappingURL=short-unique-id.js.map

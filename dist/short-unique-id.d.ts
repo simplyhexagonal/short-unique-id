@@ -1,10 +1,13 @@
-interface ShortUniqueIdRanges {
+/**
+ * @packageDocumentation
+ **/
+export interface ShortUniqueIdRanges {
     [k: string]: [number, number];
 }
-interface ShortUniqueIdRangesMap {
+export interface ShortUniqueIdRangesMap {
     [k: string]: ShortUniqueIdRanges;
 }
-type defaultDictionaries = 'number' | 'alpha' | 'alpha_lower' | 'alpha_upper' | 'alphanum' | 'alphanum_lower' | 'alphanum_upper' | 'hex';
+export type ShortUniqueIdDefaultDictionaries = 'number' | 'alpha' | 'alpha_lower' | 'alpha_upper' | 'alphanum' | 'alphanum_lower' | 'alphanum_upper' | 'hex';
 /**
  * ```js
  * {
@@ -14,10 +17,12 @@ type defaultDictionaries = 'number' | 'alpha' | 'alpha_lower' | 'alpha_upper' | 
  *   length: 6,
  * }
  * ```
+ * <br/>
+ * @see {@link DEFAULT_OPTIONS}
  */
 export interface ShortUniqueIdOptions {
     /** User-defined character dictionary */
-    dictionary: string[] | defaultDictionaries;
+    dictionary: string[] | ShortUniqueIdDefaultDictionaries;
     /** If true, sequentialUUID use the dictionary in the given order */
     shuffle: boolean;
     /** If true the instance will console.log useful info */
@@ -38,6 +43,7 @@ export interface ShortUniqueIdOptions {
  * is ~0.00000002, or about 1 in 50,000,000.
  */
 export declare const DEFAULT_UUID_LENGTH: number;
+export declare const DEFAULT_OPTIONS: ShortUniqueIdOptions;
 /**
  * Generate random or sequential UUID of any length.
  *
@@ -95,6 +101,7 @@ export declare const DEFAULT_UUID_LENGTH: number;
  * For more information take a look at the [ShortUniqueIdOptions type definition](/interfaces/shortuniqueidoptions.html).
  */
 export default class ShortUniqueId {
+    /** @hidden */
     static default: typeof ShortUniqueId;
     counter: number;
     debug: boolean;
@@ -124,7 +131,7 @@ export default class ShortUniqueId {
     protected _dict_ranges: ShortUniqueIdRangesMap;
     protected log: (...args: any[]) => void;
     /** Change the dictionary after initialization. */
-    setDictionary: (dictionary: string[] | defaultDictionaries, shuffle?: boolean) => void;
+    setDictionary: (dictionary: string[] | ShortUniqueIdDefaultDictionaries, shuffle?: boolean) => void;
     seq: () => string;
     /**
      * Generates UUID based on internal counter that's incremented after each ID generation.
@@ -154,7 +161,9 @@ export default class ShortUniqueId {
      *
      * Then `H` is defined as `n` to the power of `l`:
      *
-     * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%20H=n%5El)
+     * <div style="background: white; padding: 5px; border-radius: 5px; overflow: hidden;">
+     *  <img src="https://render.githubusercontent.com/render/math?math=%5CHuge%20H=n%5El"/>
+     * </div>
      *
      * This function returns `H`.
      */
@@ -172,7 +181,9 @@ export default class ShortUniqueId {
      * Then `Q(H)` can be approximated as the square root of the product of half
      * of pi times `H`:
      *
-     * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%20Q(H)%5Capprox%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7DH%7D)
+     * <div style="background: white; padding: 5px; border-radius: 5px; overflow: hidden;">
+     *  <img src="https://render.githubusercontent.com/render/math?math=%5CHuge%20Q(H)%5Capprox%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7DH%7D"/>
+     * </div>
      *
      * This function returns `Q(H)`.
      *
@@ -193,7 +204,9 @@ export default class ShortUniqueId {
      * Then the probability of collision `p(r; H)` can be approximated as the result
      * of dividing the square root of the product of half of pi times `r` by `H`:
      *
-     * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%20p(r%3B%20H)%5Capprox%5Cfrac%7B%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7Dr%7D%7D%7BH%7D)
+     * <div style="background: white; padding: 5px; border-radius: 5px; overflow: hidden;">
+     *  <img src="https://render.githubusercontent.com/render/math?math=%5CHuge%20p(r%3B%20H)%5Capprox%5Cfrac%7B%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7Dr%7D%7D%7BH%7D"/>
+     * </div>
      *
      * This function returns `p(r; H)`.
      *
@@ -218,7 +231,9 @@ export default class ShortUniqueId {
      * generating a "word" I had previously generated (a duplicate) at any given iteration
      * up to the the total number of possible UUIDs expressed as the quotiend of `Q(H)` and `H`:
      *
-     * ![](https://render.githubusercontent.com/render/math?math=%5CHuge%201-%5Cfrac%7BQ(H)%7D%7BH%7D)
+     * <div style="background: white; padding: 5px; border-radius: 5px; overflow: hidden;">
+     *  <img src="https://render.githubusercontent.com/render/math?math=%5CHuge%201-%5Cfrac%7BQ(H)%7D%7BH%7D"/>
+     * </div>
      *
      * (Useful if you need a value to rate the "quality" of the combination of given dictionary
      * and UUID length. The closer to 1, higher the uniqueness and thus better the quality.)
@@ -260,4 +275,3 @@ export default class ShortUniqueId {
     setCounter: (counter: number) => void;
     constructor(argOptions?: Partial<ShortUniqueIdOptions>);
 }
-export {};
