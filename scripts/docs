@@ -20,6 +20,7 @@ typedoc --name "short-unique-id - v$(jq -r .version package.json)"\
   --cname shortunique.id\
   --useTsLinkResolution\
   --titleLink "https://shortunique.id"
+./scripts/generator
 cp -r ./assets ./docs
 mv ./docs/assets/favicon.ico ./docs/
 mv ./docs/assets/cookie-policy ./docs/
