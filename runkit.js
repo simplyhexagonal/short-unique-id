@@ -2,7 +2,7 @@ const ShortUniqueId = require('short-unique-id');
 
 const uid = new ShortUniqueId();
 
-console.log(uid(6));
+console.log(uid.rnd(6));
 console.log(uid.seq());
 
 const uidWithTimestamp = uid.stamp(32);
