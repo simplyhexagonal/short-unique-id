@@ -1,6 +1,6 @@
 {
   "name": "short-unique-id",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Generate random or sequential UUID of any length",
   "keywords": [
     "short",
