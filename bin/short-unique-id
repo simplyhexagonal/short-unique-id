@@ -57,5 +57,5 @@ if ('format' in options) {
 } else if ('parse' in options) {
   console.log(uid.parseStamp(options.parse));
 } else {
-  console.log(uid());
+  console.log(uid.rnd());
 }
