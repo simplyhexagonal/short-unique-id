@@ -154,6 +154,24 @@ console.log(result);
 // Time: 63d5e631 ID: 0b-aaab
 ```
 
+Ability to validate UUIDs against the instance dictionary or a provided dictionary for improved data integrity and consistency.
+
+Example of using .validate() method:
+
+```js
+// Instantiate using one of the default dictionary strings
+const uid = new ShortUniqueId({
+  dictionary: 'hex',
+});
+
+const uuid = uid.stamp(32); // Generate a UUID
+
+// Validate the generated UUID against the instance dictionary
+const isValid = uid.validate(uuid);
+
+console.log(`Is the UUID valid? ${isValid}`);
+``
+
 ### Use in CLI
 
 ```sh

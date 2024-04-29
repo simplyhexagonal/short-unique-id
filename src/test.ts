@@ -359,3 +359,55 @@ test({
     assert(+parsedStamp === nowStamp);
   },
 });
+
+test({
+  name: 'ability to validate UUID against instance dictionary',
+  fn(): void {
+    const { validate, fmt } = new ShortUniqueId({
+      dictionary: ['a', 'b'],
+    });
+
+    assert(validate('ab'));
+
+    assert(validate('b'));
+
+    assert(validate('abba'));
+
+    assert(!validate('abc'));
+
+    // Formatted UIDs are custom, thus user should implement their own validation
+    assert(!validate(fmt('$r2-$t12')));
+  },
+});
+
+test({
+  name: 'ability to validate UUID against custom dictionary',
+  fn(): void {
+    const { validate } = new ShortUniqueId({
+      dictionary: ['a', 'b'],
+    });
+
+    assert(validate('dc', ['c', 'd']));
+
+    assert(validate('dccd', ['c', 'd']));
+
+    assert(!validate('dccb', ['c', 'd']));
+  },
+});
+
+test({
+  name: 'ability to validate UUID against internal dictionary',
+  fn(): void {
+    const { validate, stamp } = new ShortUniqueId({
+      dictionary: ['a', 'b'],
+    });
+
+    assert(validate(stamp(32), 'hex'));
+
+    assert(!validate(stamp(32)));
+
+    assert(validate('0987654321fedcba', 'hex'));
+
+    assert(!validate('0987654321fedcbag', 'hex'));
+  },
+});

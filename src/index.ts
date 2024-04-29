@@ -208,8 +208,7 @@ export default class ShortUniqueId {
   };
   /* tslint:enable consistent-return */
 
-  /** Change the dictionary after initialization. */
-  setDictionary = (dictionary: string[] | ShortUniqueIdDefaultDictionaries, shuffle?: boolean): void => {
+  protected _normalizeDictionary = (dictionary: string[] | ShortUniqueIdDefaultDictionaries, shuffle?: boolean): string[] => {
     let finalDict: string[];
 
     if (dictionary && Array.isArray(dictionary) && dictionary.length > 1) {
@@ -248,7 +247,12 @@ export default class ShortUniqueId {
       finalDict = finalDict.sort(() => Math.random() - PROBABILITY);
     }
 
-    this.dict = finalDict;
+    return finalDict;
+  }
+
+  /** Change the dictionary after initialization. */
+  setDictionary = (dictionary: string[] | ShortUniqueIdDefaultDictionaries, shuffle?: boolean): void => {
+    this.dict = this._normalizeDictionary(dictionary, shuffle);
 
     // Cache Dictionary Length for future usage.
     this.dictLength = this.dict.length;
@@ -585,6 +589,15 @@ export default class ShortUniqueId {
    */
   setCounter = (counter: number): void => {
     this.counter = counter;
+  };
+
+  /**
+   * Validate given UID contains only characters from the instanced dictionary or optionally provided dictionary.
+   */
+  validate = (uid: string, dictionary?: string[] | ShortUniqueIdDefaultDictionaries): boolean => {
+    const finalDictionary = dictionary ? this._normalizeDictionary(dictionary) : this.dict;
+
+    return uid.split('').every((c) => finalDictionary.includes(c));
   };
 
   constructor(argOptions: Partial<ShortUniqueIdOptions> = {}) {
