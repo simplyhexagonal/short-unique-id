@@ -86,7 +86,7 @@ For more information regarding this decision you can view [issue #53](https://gi
 
 ### Features
 
-The ability to generate UUIDs that contain a timestamp which can be extracted:
+#### Ability to generate UUIDs that contain a timestamp which can be extracted:
 
 ```js
 // js/ts
@@ -114,8 +114,7 @@ $ suid -p lW611f30a2ky4276g3l8N7nBHI5AQ5rCiwYzU47HP2
   2021-08-20T04:33:38.000Z
 ```
 
-Default dictionaries (generated on the spot to reduce memory footprint and
-avoid dictionary injection vulnerabilities):
+#### Default dictionaries (generated on the spot to reduce memory footprint and avoid dictionary injection vulnerabilities):
 
 - number
 - alpha
@@ -142,7 +141,7 @@ console.log(uid.dict.join());
 // A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
 ```
 
-Ability to use custom formatting.
+#### Ability to use custom formatting
 
 Where `$r` is random UUID, `$s` is sequential UUID, and `$t` is timestamp UUID:
 
@@ -154,7 +153,7 @@ console.log(result);
 // Time: 63d5e631 ID: 0b-aaab
 ```
 
-Ability to validate UUIDs against the instance dictionary or a provided dictionary for improved data integrity and consistency.
+#### Ability to validate UUIDs against the instance dictionary or a provided dictionary
 
 Example of using .validate() method:
 
@@ -170,7 +169,15 @@ const uuid = uid.stamp(32); // Generate a UUID
 const isValid = uid.validate(uuid);
 
 console.log(`Is the UUID valid? ${isValid}`);
-``
+
+// -----------
+
+// Validate the generated UUID against the provided dictionary
+const customDictionary = ['a', 'b', /* ... */];
+const isValid = uid.validate(uuid, customDictionary);
+
+console.log(`Is the UUID valid? ${isValid}`);
+```
 
 ### Use in CLI
 
