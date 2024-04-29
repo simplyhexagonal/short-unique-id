@@ -27,7 +27,8 @@
   "license": "Apache-2.0",
   "runkitExampleFilename": "./runkit.js",
   "scripts": {
-    "test": "ts-node src/test.ts",
+    "test": "tsx ./src/test.ts",
+    "test:local": "tsx ./src/test.ts && tsx --tsconfig ./specs/tsconfig.json ./specs/import-esm.spec.ts && ./scripts/cjs-test",
     "build": "./scripts/build",
     "docs": "./scripts/docs",
     "release": "release-it"
@@ -50,17 +51,17 @@
     "package.json"
   ],
   "devDependencies": {
-    "@types/node": "^20.3.2",
+    "@types/node": "^20.12.7",
     "auto-changelog": "^2.4.0",
     "esbuild": "^0.18.10",
     "refup": "^1.1.0",
     "release-it": "^15.11.0",
-    "ts-node": "^10.9.1",
-    "tslib": "^2.6.0",
-    "typedoc": "^0.24.8",
-    "typedoc-plugin-extras": "^2.3.3",
-    "typedoc-plugin-rename-defaults": "^0.6.5",
-    "typedoc-plugin-script-inject": "^1.0.0",
-    "typescript": "^5.1.6"
+    "tslib": "^2.6.2",
+    "tsx": "^4.7.3",
+    "typedoc": "^0.25.13",
+    "typedoc-plugin-extras": "^3.0.0",
+    "typedoc-plugin-rename-defaults": "^0.7.0",
+    "typedoc-plugin-script-inject": "^2.0.0",
+    "typescript": "^5.4.5"
   }
 }
