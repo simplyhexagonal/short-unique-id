@@ -5,7 +5,7 @@
 [![JsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/short-unique-id/badge?style=rounded)](https://www.jsdelivr.com/package/npm/short-unique-id)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![12 Contributors](https://img.shields.io/badge/all_contributors-12-purple.svg)](#contributors)
+[![15 Contributors](https://img.shields.io/badge/all_contributors-15-purple.svg)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ---
@@ -378,6 +378,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/ColdtQ"><img src="https://shortunique.id/assets/contributors/coldtq.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/pull/46" title="Code">💻</a></td></tr></tbody></table></td>
     <td align="center"><a href="https://github.com/char0n"><img src="https://shortunique.id/assets/contributors/char0n.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/pull/48" title="Code">💻</a></td></tr></tbody></table></td>
     <td align="center"><a href="https://github.com/mybuddymichael"><img src="https://shortunique.id/assets/contributors/mybuddymichael.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/issues/47" title="Documentation">📖</a></td></tr></tbody></table></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/irfancnk"><img src="https://shortunique.id/assets/contributors/irfancnk.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/issues/52" title="Ideas, Planning, & Feedback">🤔</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://github.com/apottere"><img src="https://shortunique.id/assets/contributors/apottere.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/issues/59" title="Ideas, Planning, & Feedback">🤔</a></td></tr></tbody></table></td>
+    <td align="center"><a href="https://github.com/bambuchaAdm"><img src="https://shortunique.id/assets/contributors/bambuchaAdm.svg" /></a><table><tbody><tr><td width="150" align="center"><a href="https://github.com/jeanlescure/short-unique-id/issues/59" title="Ideas, Planning, & Feedback">🤔</a></td></tr></tbody></table></td>
   </tr>
 </table>
 
