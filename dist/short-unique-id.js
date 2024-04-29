@@ -45,7 +45,7 @@ var ShortUniqueId = (() => {
   });
 
   // package.json
-  var version = "5.0.4";
+  var version = "5.1.0";
 
   // src/index.ts
   var DEFAULT_UUID_LENGTH = 6;
@@ -126,8 +126,7 @@ var ShortUniqueId = (() => {
         }
       });
       /* tslint:enable consistent-return */
-      /** Change the dictionary after initialization. */
-      __publicField(this, "setDictionary", (dictionary, shuffle) => {
+      __publicField(this, "_normalizeDictionary", (dictionary, shuffle) => {
         let finalDict;
         if (dictionary && Array.isArray(dictionary) && dictionary.length > 1) {
           finalDict = dictionary;
@@ -151,7 +150,11 @@ var ShortUniqueId = (() => {
           const PROBABILITY = 0.5;
           finalDict = finalDict.sort(() => Math.random() - PROBABILITY);
         }
-        this.dict = finalDict;
+        return finalDict;
+      });
+      /** Change the dictionary after initialization. */
+      __publicField(this, "setDictionary", (dictionary, shuffle) => {
+        this.dict = this._normalizeDictionary(dictionary, shuffle);
         this.dictLength = this.dict.length;
         this.setCounter(0);
       });
@@ -419,6 +422,13 @@ var ShortUniqueId = (() => {
        */
       __publicField(this, "setCounter", (counter) => {
         this.counter = counter;
+      });
+      /**
+       * Validate given UID contains only characters from the instanced dictionary or optionally provided dictionary.
+       */
+      __publicField(this, "validate", (uid, dictionary) => {
+        const finalDictionary = dictionary ? this._normalizeDictionary(dictionary) : this.dict;
+        return uid.split("").every((c) => finalDictionary.includes(c));
       });
       const options = __spreadValues(__spreadValues({}, DEFAULT_OPTIONS), argOptions);
       this.counter = 0;

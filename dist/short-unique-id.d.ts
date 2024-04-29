@@ -130,6 +130,7 @@ export default class ShortUniqueId {
     protected _hex_dict_ranges: ShortUniqueIdRanges;
     protected _dict_ranges: ShortUniqueIdRangesMap;
     protected log: (...args: any[]) => void;
+    protected _normalizeDictionary: (dictionary: string[] | ShortUniqueIdDefaultDictionaries, shuffle?: boolean) => string[];
     /** Change the dictionary after initialization. */
     setDictionary: (dictionary: string[] | ShortUniqueIdDefaultDictionaries, shuffle?: boolean) => void;
     seq: () => string;
@@ -273,5 +274,9 @@ export default class ShortUniqueId {
      * Set the counter to a specific value.
      */
     setCounter: (counter: number) => void;
+    /**
+     * Validate given UID contains only characters from the instanced dictionary or optionally provided dictionary.
+     */
+    validate: (uid: string, dictionary?: string[] | ShortUniqueIdDefaultDictionaries) => boolean;
     constructor(argOptions?: Partial<ShortUniqueIdOptions>);
 }
