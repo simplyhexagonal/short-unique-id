@@ -147,7 +147,7 @@ Ability to use custom formatting.
 Where `$r` is random UUID, `$s` is sequential UUID, and `$t` is timestamp UUID:
 
 ```js
-const timestamp = new Date('2023-01-29T03:21:21.000Z');
+const timestamp = new Date('4-01-29T03:21:21.000Z');
 const result = uid.formattedUUID('Time: $t0 ID: $s2-$r4', timestamp); // timestamp is optional
 
 console.log(result);
@@ -392,5 +392,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 ## License
 
-Copyright (c) 2018-2023 [Short Unique ID Contributors](https://github.com/jeanlescure/short-unique-id/#contributors-).<br/>
+Copyright (c) 2018-2024 [Short Unique ID Contributors](https://github.com/jeanlescure/short-unique-id/#contributors-).<br/>
 Licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
