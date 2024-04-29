@@ -63,5 +63,8 @@
     "typedoc-plugin-rename-defaults": "^0.7.0",
     "typedoc-plugin-script-inject": "^2.0.0",
     "typescript": "^5.4.5"
+  },
+  "overrides": {
+    "vm2": "npm:vm2-fixed@0.0.1"
   }
 }
