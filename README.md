@@ -52,9 +52,9 @@ To put this into perspective:
 
 You can calculate duplicate/collision probabilities using the included functions:
 
-- [availableUUIDs()](https://shortunique.id/classes/default.html#availableuuids)
-- [approxMaxBeforeCollision()](https://shortunique.id/classes/default.html#approxmaxbeforecollision)
-- [collisionProbability()](https://shortunique.id/classes/default.html#collisionprobability)
+- [availableUUIDs()](https://shortunique.id/classes/ShortUniqueId.html#availableUUIDs)
+- [approxMaxBeforeCollision()](https://shortunique.id/classes/ShortUniqueId.html#approxMaxBeforeCollision)
+- [collisionProbability()](https://shortunique.id/classes/ShortUniqueId.html#collisionProbability)
 
 _NOTE: 👆 On these links you will also find explanations for the math used within the functions._
 
@@ -306,7 +306,7 @@ function `uniqueness()` which provides a score (from 0 to 1) to rate the
 to 1, higher the uniqueness and thus better the quality).
 
 To find out more about the math behind these functions please refer to the
-<a target="_blank" href="https://shortunique.id/classes/default.html#collisionprobability">API Reference</a>.
+<a target="_blank" href="https://shortunique.id/classes/ShortUniqueId.html#collisionProbability">API Reference</a>.
 
 ## Acknowledgement and platform support
 
