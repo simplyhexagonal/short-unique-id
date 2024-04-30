@@ -1,13 +1,13 @@
 /**
  * @packageDocumentation
  **/
-export interface ShortUniqueIdRanges {
+declare interface ShortUniqueIdRanges {
     [k: string]: [number, number];
 }
-export interface ShortUniqueIdRangesMap {
+declare interface ShortUniqueIdRangesMap {
     [k: string]: ShortUniqueIdRanges;
 }
-export type ShortUniqueIdDefaultDictionaries = 'number' | 'alpha' | 'alpha_lower' | 'alpha_upper' | 'alphanum' | 'alphanum_lower' | 'alphanum_upper' | 'hex';
+declare type ShortUniqueIdDefaultDictionaries = 'number' | 'alpha' | 'alpha_lower' | 'alpha_upper' | 'alphanum' | 'alphanum_lower' | 'alphanum_upper' | 'hex';
 /**
  * ```js
  * {
@@ -20,7 +20,7 @@ export type ShortUniqueIdDefaultDictionaries = 'number' | 'alpha' | 'alpha_lower
  * <br/>
  * @see {@link DEFAULT_OPTIONS}
  */
-export interface ShortUniqueIdOptions {
+declare interface ShortUniqueIdOptions {
     /** User-defined character dictionary */
     dictionary: string[] | ShortUniqueIdDefaultDictionaries;
     /** If true, sequentialUUID use the dictionary in the given order */
@@ -42,8 +42,8 @@ export interface ShortUniqueIdOptions {
  * the probability of generating a duplicate in 1,000,000 rounds
  * is ~0.00000002, or about 1 in 50,000,000.
  */
-export declare const DEFAULT_UUID_LENGTH: number;
-export declare const DEFAULT_OPTIONS: ShortUniqueIdOptions;
+declare const DEFAULT_UUID_LENGTH: number;
+declare const DEFAULT_OPTIONS: ShortUniqueIdOptions;
 /**
  * Generate random or sequential UUID of any length.
  *
@@ -100,7 +100,17 @@ export declare const DEFAULT_OPTIONS: ShortUniqueIdOptions;
  *
  * For more information take a look at the [ShortUniqueIdOptions type definition](/interfaces/shortuniqueidoptions.html).
  */
-export default class ShortUniqueId {
+declare namespace ShortUniqueId {
+    export {
+        ShortUniqueIdRanges,
+        ShortUniqueIdRangesMap,
+        ShortUniqueIdDefaultDictionaries,
+        ShortUniqueIdOptions,
+        DEFAULT_UUID_LENGTH,
+        DEFAULT_OPTIONS
+    }
+}
+declare class ShortUniqueId {
     /** @hidden */
     static default: typeof ShortUniqueId;
     counter: number;
@@ -280,3 +290,5 @@ export default class ShortUniqueId {
     validate: (uid: string, dictionary?: string[] | ShortUniqueIdDefaultDictionaries) => boolean;
     constructor(argOptions?: Partial<ShortUniqueIdOptions>);
 }
+
+export = ShortUniqueId;

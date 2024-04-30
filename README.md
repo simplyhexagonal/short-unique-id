@@ -170,7 +170,7 @@ const isValid = uid.validate(uuid);
 
 console.log(`Is the UUID valid? ${isValid}`);
 
-// -----------
+// ---
 
 // Validate the generated UUID against the provided dictionary
 const customDictionary = ['a', 'b', /* ... */];
@@ -225,6 +225,12 @@ console.log(uid.rnd());
 
 // Sequential UUID
 console.log(uid.seq());
+
+// ---
+
+// Legacy support (Node 16 or less)
+// or if using "Node16" as "module" or "moduleResolution" in "tsconfig.json"
+const uid = new ShortUniqueId.default();
 ```
 
 alternatively using destructuring assignment:

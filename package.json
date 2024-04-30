@@ -28,7 +28,7 @@
   "runkitExampleFilename": "./runkit.js",
   "scripts": {
     "test": "tsx ./src/test.ts",
-    "test:local": "tsx ./src/test.ts && tsx --tsconfig ./specs/tsconfig.json ./specs/import-esm.spec.ts && ./scripts/cjs-test",
+    "test:local": "tsx ./src/test.ts && tsx --tsconfig ./specs/esm/tsconfig.json ./specs/esm/import.spec.ts && ./scripts/cjs-test",
     "build": "./scripts/build",
     "docs": "./scripts/docs",
     "release": "release-it"

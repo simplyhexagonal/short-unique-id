@@ -1,4 +1,4 @@
-const ShortUniqueId = require('../dist/short-unique-id');
+const ShortUniqueId = require('../../dist/short-unique-id');
 
 const suid = new ShortUniqueId({length: 3});
 
