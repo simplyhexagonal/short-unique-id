@@ -225,12 +225,6 @@ console.log(uid.rnd());
 
 // Sequential UUID
 console.log(uid.seq());
-
-// ---
-
-// Legacy support (Node 16 or less)
-// or if using "Node16" as "module" or "moduleResolution" in "tsconfig.json"
-const uid = new ShortUniqueId.default();
 ```
 
 alternatively using destructuring assignment:
