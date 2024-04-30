@@ -6,7 +6,8 @@ esbuild src/index.ts --bundle --target=chrome60,firefox60,safari12,edge18 \
   && esbuild src/index.ts --bundle --target=chrome60,firefox60,safari12,edge18 \
   --outfile=dist/short-unique-id.min.js --minify --format=iife --global-name=ShortUniqueId \
   && tsc -d --emitDeclarationOnly --rootDir src --outDir dist \
-  && mv dist/index.d.ts dist/short-unique-id.d.ts \
+  && mv dist/index.d.ts dist/short-unique-id-core.d.ts \
+  && cp src/short-unique-id.d.ts dist/short-unique-id.d.ts \
   && refup dist/short-unique-id.js ShortUniqueId \
   && refup dist/short-unique-id.min.js ShortUniqueId \
   || exit 1
