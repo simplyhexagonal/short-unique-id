@@ -53,7 +53,7 @@
   "devDependencies": {
     "@types/node": "^20.12.7",
     "auto-changelog": "^2.4.0",
-    "esbuild": "^0.18.10",
+    "esbuild": "^0.25.0",
     "refup": "^1.1.0",
     "release-it": "^15.11.0",
     "tslib": "^2.6.2",
