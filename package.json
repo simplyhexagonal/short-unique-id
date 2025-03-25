@@ -28,7 +28,7 @@
   "runkitExampleFilename": "./runkit.js",
   "scripts": {
     "test": "tsx ./src/test.ts",
-    "test:local": "tsx ./src/test.ts && tsx --tsconfig ./specs/esm/tsconfig.json ./specs/esm/import.spec.ts && ./scripts/cjs-test",
+    "test:all": "tsc --noEmit --project ./specs/esm/tsconfig.json && tsx ./specs/esm/import.spec.ts && node ./specs/cjs/require.spec.js && npm run test",
     "build": "./scripts/build",
     "docs": "./scripts/docs",
     "release": "release-it"
@@ -51,20 +51,17 @@
     "package.json"
   ],
   "devDependencies": {
-    "@types/node": "^20.12.7",
-    "auto-changelog": "^2.4.0",
-    "esbuild": "^0.18.10",
+    "@types/node": "^22.13.13",
+    "auto-changelog": "^2.5.0",
+    "esbuild": "^0.25.1",
     "refup": "^1.1.0",
-    "release-it": "^15.11.0",
-    "tslib": "^2.6.2",
-    "tsx": "^4.7.3",
+    "release-it": "^18.1.2",
+    "tslib": "^2.8.1",
+    "tsx": "^4.19.3",
     "typedoc": "^0.25.13",
     "typedoc-plugin-extras": "^3.0.0",
     "typedoc-plugin-rename-defaults": "^0.7.0",
     "typedoc-plugin-script-inject": "^2.0.0",
-    "typescript": "^5.4.5"
-  },
-  "overrides": {
-    "vm2": "npm:vm2-fixed@0.0.1"
+    "typescript": "^5.8.2"
   }
 }

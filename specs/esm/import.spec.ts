@@ -1,5 +1,5 @@
 import ShortUniqueId from '../../dist/short-unique-id.js';
 
-const suid = new ShortUniqueId({length: 3});
+const { randomUUID } = new ShortUniqueId();
 
-console.log(suid.rnd());
+console.log(randomUUID());
