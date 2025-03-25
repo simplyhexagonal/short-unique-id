@@ -31,21 +31,18 @@ var ShortUniqueId = (() => {
     return to;
   };
   var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-  var __publicField = (obj, key, value) => {
-    __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-    return value;
-  };
+  var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 
   // src/index.ts
-  var src_exports = {};
-  __export(src_exports, {
+  var index_exports = {};
+  __export(index_exports, {
     DEFAULT_OPTIONS: () => DEFAULT_OPTIONS,
     DEFAULT_UUID_LENGTH: () => DEFAULT_UUID_LENGTH,
     default: () => ShortUniqueId
   });
 
   // package.json
-  var version = "5.2.0";
+  var version = "5.2.2";
 
   // src/index.ts
   var DEFAULT_UUID_LENGTH = 6;
@@ -118,10 +115,11 @@ var ShortUniqueId = (() => {
       /* tslint:disable consistent-return */
       __publicField(this, "log", (...args) => {
         const finalArgs = [...args];
-        finalArgs[0] = `[short-unique-id] ${args[0]}`;
+        finalArgs[0] = "[short-unique-id] ".concat(args[0]);
         if (this.debug === true) {
           if (typeof console !== "undefined" && console !== null) {
-            return console.log(...finalArgs);
+            console.log(...finalArgs);
+            return;
           }
         }
       });
@@ -132,23 +130,43 @@ var ShortUniqueId = (() => {
           finalDict = dictionary;
         } else {
           finalDict = [];
-          let i;
-          this.dictIndex = i = 0;
-          const rangesName = `_${dictionary}_dict_ranges`;
+          this.dictIndex = 0;
+          const rangesName = "_".concat(dictionary, "_dict_ranges");
           const ranges = this._dict_ranges[rangesName];
-          Object.keys(ranges).forEach((rangeType) => {
-            const rangeTypeKey = rangeType;
-            this.dictRange = ranges[rangeTypeKey];
+          let capacity = 0;
+          for (const [, rangeValue] of Object.entries(ranges)) {
+            const [lower, upper] = rangeValue;
+            capacity += Math.abs(upper - lower);
+          }
+          finalDict = new Array(capacity);
+          let dictIdx = 0;
+          for (const [, rangeTypeValue] of Object.entries(ranges)) {
+            this.dictRange = rangeTypeValue;
             this.lowerBound = this.dictRange[0];
             this.upperBound = this.dictRange[1];
-            for (this.dictIndex = i = this.lowerBound; this.lowerBound <= this.upperBound ? i < this.upperBound : i > this.upperBound; this.dictIndex = this.lowerBound <= this.upperBound ? i += 1 : i -= 1) {
-              finalDict.push(String.fromCharCode(this.dictIndex));
+            const isAscending = this.lowerBound <= this.upperBound;
+            const start = this.lowerBound;
+            const end = this.upperBound;
+            if (isAscending) {
+              for (let i = start; i < end; i++) {
+                finalDict[dictIdx++] = String.fromCharCode(i);
+                this.dictIndex = i;
+              }
+            } else {
+              for (let i = start; i > end; i--) {
+                finalDict[dictIdx++] = String.fromCharCode(i);
+                this.dictIndex = i;
+              }
             }
-          });
+          }
+          finalDict.length = dictIdx;
         }
         if (shuffle) {
-          const PROBABILITY = 0.5;
-          finalDict = finalDict.sort(() => Math.random() - PROBABILITY);
+          const len = finalDict.length;
+          for (let i = len - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [finalDict[i], finalDict[j]] = [finalDict[j], finalDict[i]];
+          }
         }
         return finalDict;
       });
@@ -166,15 +184,16 @@ var ShortUniqueId = (() => {
        * @alias `const uid = new ShortUniqueId(); uid.seq();`
        */
       __publicField(this, "sequentialUUID", () => {
-        let counterDiv;
-        let counterRem;
-        let id = "";
-        counterDiv = this.counter;
+        const dictLen = this.dictLength;
+        const dict = this.dict;
+        let counterDiv = this.counter;
+        const idParts = [];
         do {
-          counterRem = counterDiv % this.dictLength;
-          counterDiv = Math.trunc(counterDiv / this.dictLength);
-          id += this.dict[counterRem];
+          const counterRem = counterDiv % dictLen;
+          counterDiv = Math.trunc(counterDiv / dictLen);
+          idParts.push(dict[counterRem]);
         } while (counterDiv !== 0);
+        const id = idParts.join("");
         this.counter += 1;
         return id;
       });
@@ -186,22 +205,17 @@ var ShortUniqueId = (() => {
        * @alias `const uid = new ShortUniqueId(); uid.rnd(uuidLength: number);`
        */
       __publicField(this, "randomUUID", (uuidLength = this.uuidLength || DEFAULT_UUID_LENGTH) => {
-        let id;
-        let randomPartIdx;
-        let j;
         if (uuidLength === null || typeof uuidLength === "undefined" || uuidLength < 1) {
           throw new Error("Invalid UUID Length Provided");
         }
-        const isPositive = uuidLength >= 0;
-        id = "";
-        for (j = 0; j < uuidLength; j += 1) {
-          randomPartIdx = parseInt(
-            (Math.random() * this.dictLength).toFixed(0),
-            10
-          ) % this.dictLength;
-          id += this.dict[randomPartIdx];
+        const result = new Array(uuidLength);
+        const dictLen = this.dictLength;
+        const dict = this.dict;
+        for (let j = 0; j < uuidLength; j++) {
+          const randomPartIdx = Math.floor(Math.random() * dictLen);
+          result[j] = dict[randomPartIdx];
         }
-        return id;
+        return result.join("");
       });
       __publicField(this, "fmt", (format, date) => {
         return this.formattedUUID(format, date);
@@ -212,24 +226,21 @@ var ShortUniqueId = (() => {
        */
       __publicField(this, "formattedUUID", (format, date) => {
         const fnMap = {
-          "$r": this.randomUUID,
-          "$s": this.sequentialUUID,
-          "$t": this.stamp
+          $r: this.randomUUID,
+          $s: this.sequentialUUID,
+          $t: this.stamp
         };
-        const result = format.replace(
-          /\$[rs]\d{0,}|\$t0|\$t[1-9]\d{1,}/g,
-          (m) => {
-            const fn = m.slice(0, 2);
-            const len = parseInt(m.slice(2), 10);
-            if (fn === "$s") {
-              return fnMap[fn]().padStart(len, "0");
-            }
-            if (fn === "$t" && date) {
-              return fnMap[fn](len, date);
-            }
-            return fnMap[fn](len);
+        const result = format.replace(/\$[rs]\d{0,}|\$t0|\$t[1-9]\d{1,}/g, (m) => {
+          const fn = m.slice(0, 2);
+          const len = Number.parseInt(m.slice(2), 10);
+          if (fn === "$s") {
+            return fnMap[fn]().padStart(len, "0");
           }
-        );
+          if (fn === "$t" && date) {
+            return fnMap[fn](len, date);
+          }
+          return fnMap[fn](len);
+        });
         return result;
       });
       /**
@@ -250,9 +261,7 @@ var ShortUniqueId = (() => {
        * This function returns `H`.
        */
       __publicField(this, "availableUUIDs", (uuidLength = this.uuidLength) => {
-        return parseFloat(
-          Math.pow([...new Set(this.dict)].length, uuidLength).toFixed(0)
-        );
+        return Number.parseFloat(([...new Set(this.dict)].length ** uuidLength).toFixed(0));
       });
       /**
        * Calculates approximate number of hashes before first collision.
@@ -272,13 +281,20 @@ var ShortUniqueId = (() => {
        * </div>
        *
        * This function returns `Q(H)`.
-       * 
+       *
        * (see [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution))
        */
+      // Cache for memoization
+      __publicField(this, "_collisionCache", /* @__PURE__ */ new Map());
       __publicField(this, "approxMaxBeforeCollision", (rounds = this.availableUUIDs(this.uuidLength)) => {
-        return parseFloat(
-          Math.sqrt(Math.PI / 2 * rounds).toFixed(20)
-        );
+        const cacheKey = rounds;
+        const cached = this._collisionCache.get(cacheKey);
+        if (cached !== void 0) {
+          return cached;
+        }
+        const result = Number.parseFloat(Math.sqrt(Math.PI / 2 * rounds).toFixed(20));
+        this._collisionCache.set(cacheKey, result);
+        return result;
       });
       /**
        * Calculates probability of generating duplicate UUIDs (a collision) in a
@@ -299,14 +315,14 @@ var ShortUniqueId = (() => {
        * </div>
        *
        * This function returns `p(r; H)`.
-       * 
+       *
        * (see [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution))
        *
        * (Useful if you are wondering _"If I use this lib and expect to perform at most
        * `r` rounds of UUID generations, what is the probability that I will hit a duplicate UUID?"_.)
        */
       __publicField(this, "collisionProbability", (rounds = this.availableUUIDs(this.uuidLength), uuidLength = this.uuidLength) => {
-        return parseFloat(
+        return Number.parseFloat(
           (this.approxMaxBeforeCollision(rounds) / this.availableUUIDs(uuidLength)).toFixed(20)
         );
       });
@@ -333,7 +349,7 @@ var ShortUniqueId = (() => {
        * and UUID length. The closer to 1, higher the uniqueness and thus better the quality.)
        */
       __publicField(this, "uniqueness", (rounds = this.availableUUIDs(this.uuidLength)) => {
-        const score = parseFloat(
+        const score = Number.parseFloat(
           (1 - this.approxMaxBeforeCollision(rounds) / rounds).toFixed(20)
         );
         return score > 1 ? 1 : score < 0 ? 0 : score;
@@ -346,12 +362,12 @@ var ShortUniqueId = (() => {
       });
       /**
        * Generates a UUID with a timestamp that can be extracted using `uid.parseStamp(stampString);`.
-       * 
+       *
        * ```js
        *  const uidWithTimestamp = uid.stamp(32);
        *  console.log(uidWithTimestamp);
        *  // GDa608f973aRCHLXQYPTbKDbjDeVsSb3
-       * 
+       *
        *  console.log(uid.parseStamp(uidWithTimestamp));
        *  // 2021-05-03T06:24:58.000Z
        *  ```
@@ -372,16 +388,16 @@ var ShortUniqueId = (() => {
         const idLength = finalLength - 9;
         const rndIdx = Math.round(Math.random() * (idLength > 15 ? 15 : idLength));
         const id = this.randomUUID(idLength);
-        return `${id.substring(0, rndIdx)}${hexStamp}${id.substring(rndIdx)}${rndIdx.toString(16)}`;
+        return "".concat(id.substring(0, rndIdx)).concat(hexStamp).concat(id.substring(rndIdx)).concat(rndIdx.toString(16));
       });
       /**
        * Extracts the date embeded in a UUID generated using the `uid.stamp(finalLength);` method.
-       * 
+       *
        * ```js
        *  const uidWithTimestamp = uid.stamp(32);
        *  console.log(uidWithTimestamp);
        *  // GDa608f973aRCHLXQYPTbKDbjDeVsSb3
-       * 
+       *
        *  console.log(uid.parseStamp(uidWithTimestamp));
        *  // 2021-05-03T06:24:58.000Z
        *  ```
@@ -390,32 +406,26 @@ var ShortUniqueId = (() => {
         if (format && !/t0|t[1-9]\d{1,}/.test(format)) {
           throw new Error("Cannot extract date from a formated UUID with no timestamp in the format");
         }
-        const stamp = format ? format.replace(
-          /\$[rs]\d{0,}|\$t0|\$t[1-9]\d{1,}/g,
-          (m) => {
-            const fnMap = {
-              "$r": (len2) => [...Array(len2)].map(() => "r").join(""),
-              "$s": (len2) => [...Array(len2)].map(() => "s").join(""),
-              "$t": (len2) => [...Array(len2)].map(() => "t").join("")
-            };
-            const fn = m.slice(0, 2);
-            const len = parseInt(m.slice(2), 10);
-            return fnMap[fn](len);
-          }
-        ).replace(
-          /^(.*?)(t{8,})(.*)$/g,
-          (_m, p1, p2) => {
-            return suid.substring(p1.length, p1.length + p2.length);
-          }
-        ) : suid;
+        const stamp = format ? format.replace(/\$[rs]\d{0,}|\$t0|\$t[1-9]\d{1,}/g, (m) => {
+          const fnMap = {
+            $r: (len2) => [...Array(len2)].map(() => "r").join(""),
+            $s: (len2) => [...Array(len2)].map(() => "s").join(""),
+            $t: (len2) => [...Array(len2)].map(() => "t").join("")
+          };
+          const fn = m.slice(0, 2);
+          const len = Number.parseInt(m.slice(2), 10);
+          return fnMap[fn](len);
+        }).replace(/^(.*?)(t{8,})(.*)$/g, (_m, p1, p2) => {
+          return suid.substring(p1.length, p1.length + p2.length);
+        }) : suid;
         if (stamp.length === 8) {
-          return new Date(parseInt(stamp, 16) * 1e3);
+          return new Date(Number.parseInt(stamp, 16) * 1e3);
         }
         if (stamp.length < 10) {
           throw new Error("Stamp length invalid");
         }
-        const rndIdx = parseInt(stamp.substring(stamp.length - 1), 16);
-        return new Date(parseInt(stamp.substring(rndIdx, rndIdx + 8), 16) * 1e3);
+        const rndIdx = Number.parseInt(stamp.substring(stamp.length - 1), 16);
+        return new Date(Number.parseInt(stamp.substring(rndIdx, rndIdx + 8), 16) * 1e3);
       });
       /**
        * Set the counter to a specific value.
@@ -435,19 +445,14 @@ var ShortUniqueId = (() => {
       this.debug = false;
       this.dict = [];
       this.version = version;
-      const {
-        dictionary,
-        shuffle,
-        length,
-        counter
-      } = options;
+      const { dictionary, shuffle, length, counter } = options;
       this.uuidLength = length;
       this.setDictionary(dictionary, shuffle);
       this.setCounter(counter);
       this.debug = options.debug;
       this.log(this.dict);
       this.log(
-        `Generator instantiated with Dictionary Size ${this.dictLength} and counter set to ${this.counter}`
+        "Generator instantiated with Dictionary Size ".concat(this.dictLength, " and counter set to ").concat(this.counter)
       );
       this.log = this.log.bind(this);
       this.setDictionary = this.setDictionary.bind(this);
@@ -465,13 +470,12 @@ var ShortUniqueId = (() => {
       this.getVersion = this.getVersion.bind(this);
       this.stamp = this.stamp.bind(this);
       this.parseStamp = this.parseStamp.bind(this);
-      return this;
     }
   };
   /** @hidden */
   __publicField(_ShortUniqueId, "default", _ShortUniqueId);
   var ShortUniqueId = _ShortUniqueId;
-  return __toCommonJS(src_exports);
+  return __toCommonJS(index_exports);
 })();
 //# sourceMappingURL=short-unique-id.js.map
 'undefined'!=typeof module&&(module.exports=ShortUniqueId.default),'undefined'!=typeof window&&(ShortUniqueId=ShortUniqueId.default);

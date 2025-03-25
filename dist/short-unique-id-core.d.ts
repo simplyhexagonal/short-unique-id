@@ -129,7 +129,7 @@ export default class ShortUniqueId {
     protected _alphanum_upper_dict_ranges: ShortUniqueIdRanges;
     protected _hex_dict_ranges: ShortUniqueIdRanges;
     protected _dict_ranges: ShortUniqueIdRangesMap;
-    protected log: (...args: any[]) => void;
+    protected log: (...args: unknown[]) => void;
     protected _normalizeDictionary: (dictionary: string[] | ShortUniqueIdDefaultDictionaries, shuffle?: boolean) => string[];
     /** Change the dictionary after initialization. */
     setDictionary: (dictionary: string[] | ShortUniqueIdDefaultDictionaries, shuffle?: boolean) => void;
@@ -190,6 +190,7 @@ export default class ShortUniqueId {
      *
      * (see [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution))
      */
+    private _collisionCache;
     approxMaxBeforeCollision: (rounds?: number) => number;
     /**
      * Calculates probability of generating duplicate UUIDs (a collision) in a
