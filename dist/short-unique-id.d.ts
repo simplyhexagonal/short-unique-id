@@ -7,17 +7,16 @@ import type {
   ShortUniqueIdRanges,
   ShortUniqueIdRangesMap,
 } from './short-unique-id-core.d.ts';
+
 declare namespace ShortUniqueId {
   export type {
-    ShortUniqueIdRanges,
-    ShortUniqueIdRangesMap,
+    DEFAULT_OPTIONS,
+    DEFAULT_UUID_LENGTH,
     ShortUniqueIdDefaultDictionaries,
     ShortUniqueIdOptions,
-    DEFAULT_UUID_LENGTH,
-    DEFAULT_OPTIONS,
+    ShortUniqueIdRanges,
+    ShortUniqueIdRangesMap,
   };
-
-  export * from './short-unique-id-core.d.ts';
 }
 declare class ShortUniqueId extends ShortUniqueIdCore {}
 export = ShortUniqueId;

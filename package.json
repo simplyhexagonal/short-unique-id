@@ -27,9 +27,10 @@
   "license": "Apache-2.0",
   "runkitExampleFilename": "./runkit.js",
   "scripts": {
+    "types:check": "tsc --noEmit",
     "test": "tsx ./src/test.ts",
-    "test:all": "tsc --noEmit --project ./specs/esm/tsconfig.json && tsx ./specs/esm/import.spec.ts && node ./specs/cjs/require.spec.js && npm run test",
-    "build": "./scripts/build",
+    "test:all": "npm run build && tsc --noEmit --project ./specs/esm/tsconfig.json && tsx ./specs/esm/import.spec.ts && node ./specs/cjs/require.spec.js && npm run test",
+    "build": "./scripts/build && tsc --noEmit ./dist/short-unique-id.d.ts",
     "docs": "./scripts/docs",
     "release": "release-it"
   },
