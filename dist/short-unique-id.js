@@ -42,7 +42,7 @@ var ShortUniqueId = (() => {
   });
 
   // package.json
-  var version = "5.2.2";
+  var version = "5.3.0";
 
   // src/index.ts
   var DEFAULT_UUID_LENGTH = 6;
