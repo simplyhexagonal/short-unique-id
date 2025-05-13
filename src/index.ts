@@ -2,7 +2,7 @@
  * @packageDocumentation
  **/
 
-// Copyright 2017-2022 the Short Unique ID authors. All rights reserved. Apache 2.0 license.
+// Copyright 2017-2025 the Short Unique ID authors. All rights reserved. Apache 2.0 license.
 
 // @ts-ignore
 import { version } from '../package.json';

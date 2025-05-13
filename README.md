@@ -403,5 +403,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 ## License
 
-Copyright (c) 2018-2024 [Short Unique ID Contributors](https://github.com/jeanlescure/short-unique-id/#contributors-).<br/>
+Copyright (c) 2018-2025 [Short Unique ID Contributors](https://github.com/jeanlescure/short-unique-id/#contributors-).<br/>
 Licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
