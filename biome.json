@@ -8,8 +8,7 @@
 	"files": {
 		"ignoreUnknown": false,
 		"ignore": [
-			"node_modules",
-			"src/app/*"
+			"node_modules"
 		]
 	},
 	"formatter": {
